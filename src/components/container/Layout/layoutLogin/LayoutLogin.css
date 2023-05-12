@@ -1,0 +1,17 @@
+.Login {
+    position: relative;
+    width: 1440px;
+    height: 810px;
+    background: #F7F7F7;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid;
+}
+
+.LoginLogo {
+    position: absolute;
+    width: 170px;
+    height: 136px;
+    left: 208px;
+    top: 82px;
+}

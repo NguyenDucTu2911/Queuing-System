@@ -1,4 +1,26 @@
+@import "@font/nunito";
+
 body {
+  font-family: var(--fontFamily-nunito);
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,500;1,900&display=swap');
+
+/* or get specific weights only */
+/* @import "@font/nuninto/regular"; */
+
+body {
+  font-family: var(--fontFamily-nunito);
+  font-weight: var(--fontWeight-nunito-regular);
+}
+
+:root {
+  --fontWeight-nunito-light: 300;
+  --fontWeight-nunito-regular: 400;
+  --fontWeight-nunito-bold: 700;
+  --fontFamily-nunito: 'Nunito', sans-serif;
+}
+
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +32,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */

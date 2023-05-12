@@ -1,0 +1,107 @@
+.LoginName {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
+
+    position: absolute;
+    width: 400px;
+    height: 75px;
+    left: 94px;
+    top: 293px;
+}
+
+.LoginPass {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
+
+    position: absolute;
+    width: 400px;
+    height: 75px;
+    left: 94px;
+    top: 384px;
+}
+
+.LB {
+    width: 100%;
+    height: 26px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: var(--fontWeight-nunito-regular);
+    font-size: 18px;
+    line-height: 27px;
+    color: #37474F;
+    flex: none;
+    flex-grow: 0;
+    order: 0;
+    flex-grow: 0;
+}
+
+.IP {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 270px 10px 12px;
+    gap: 10px;
+    width: 400px;
+    height: 44px;
+    background: #FFFFFF;
+    border: 1.5px solid #D4D4D7;
+    border-radius: 8px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.ForgotPassWord {
+    position: absolute;
+    width: 125px;
+    height: 21px;
+    left: 233px;
+    top: 564px;
+    font-weight: var(--fontWeight-nunito-regular);
+    font-size: 14px;
+    line-height: 21px;
+    color: #E73F3F;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+.Button-Login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 24px;
+    gap: 8px;
+
+    position: absolute;
+    width: 162px;
+    height: 40px;
+    left: 215px;
+    top: 511px;
+    background: #FF9138;
+    box-shadow: 0px 0px 6px #E7E9F2;
+    border-radius: 8px;
+    /* text */
+    font-weight: var(--fontWeight-nunito-bold);
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    cursor: pointer;
+}
+
+.Button-Login:hover {
+    background-color: #ff9138b3;
+}
