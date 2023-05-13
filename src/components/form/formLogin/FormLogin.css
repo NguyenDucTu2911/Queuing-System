@@ -43,6 +43,7 @@
     flex-grow: 0;
 }
 
+.input-error,
 .IP {
     box-sizing: border-box;
     display: flex;
@@ -104,4 +105,14 @@
 
 .Button-Login:hover {
     background-color: #ff9138b3;
+}
+
+.show {
+    position: absolute;
+    right: 13px;
+    top: 43px;
+}
+
+.input-error {
+    border: 1px solid red;
 }

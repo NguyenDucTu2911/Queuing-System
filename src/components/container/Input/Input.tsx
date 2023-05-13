@@ -8,10 +8,11 @@ type inputProps = {
     name?: string,
     id?: string
     style?: any
+    children?: React.ReactNode;
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input = ({ className, value, placeholder, type, name, id, handleChange, style }: inputProps) => {
+export const Input = ({ className, value, placeholder, type, name, id, handleChange, style, children }: inputProps) => {
     return <input
         className={className}
         type={type}
@@ -20,5 +21,5 @@ export const Input = ({ className, value, placeholder, type, name, id, handleCha
         id={id}
         placeholder={placeholder}
         style={style}
-        onChange={handleChange} />;
+        onChange={handleChange}>{children}</input>;
 };

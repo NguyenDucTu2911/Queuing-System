@@ -1,19 +1,15 @@
 import React from 'react';
-import Logo from "../../../../assets/image/Logoalta.png"
-import FormLogin from '../../../form/formLogin/formLogin';
-import LayoutLoginRight from './LayoutLoginRight/LayoutLoginRight';
+import Group from "../../../../assets/image/Group.png"
 import "./LayoutLogin.css"
-interface LayoutLoginProps { }
+interface LayoutLoginLeftProps { }
 
-const LayoutLogin: React.FC<LayoutLoginProps> = (props) => {
+const LayoutLogin: React.FC<LayoutLoginLeftProps> = (props) => {
     return (
         <>
-            <div className="Login">
-                <div className="LoginLogo"
-                    style={{ background: (`url(${Logo})`) }}
-                />
-                <FormLogin />
-                <LayoutLoginRight />
+            <div className="layoutRight">
+                <div className="layoutRight-image" style={{ backgroundImage: (`url(${Group})`) }} />
+                <p className='TextHT'>Hệ Thống</p>
+                <p className='TextQL'>QUẢN LÝ XẾP HÀNG</p>
             </div>
         </>
     );

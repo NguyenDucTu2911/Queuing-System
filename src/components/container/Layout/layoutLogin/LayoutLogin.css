@@ -1,17 +1,45 @@
-.Login {
-    position: relative;
-    width: 1440px;
+.layoutRight {
+    position: absolute;
+    width: 848px;
     height: 810px;
-    background: #F7F7F7;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid;
+    left: 592px;
+    top: 0px;
+    background: #FFFFFF;
 }
 
-.LoginLogo {
+.layoutRight-image {
     position: absolute;
-    width: 170px;
-    height: 136px;
-    left: 208px;
-    top: 82px;
+    width: 605px;
+    height: 614.06px;
+    left: 84px;
+    top: 112.94px;
+}
+
+.TextHT {
+    position: absolute;
+    width: 165px;
+    height: 48px;
+    left: 448px;
+    top: 372px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 51px;
+    text-align: center;
+    color: #FF7506;
+
+}
+
+.TextQL {
+    position: absolute;
+    width: 450px;
+    height: 54px;
+    left: 420px;
+    top: 418px;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 54px;
+    text-align: center;
+    color: #FF7506;
 }
