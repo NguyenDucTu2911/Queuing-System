@@ -1,0 +1,165 @@
+.menuapp {
+    position: relative;
+    width: 200px;
+    height: 810px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(219, 219, 219, 0.5);
+    border-radius: 16px 0px 0px 16px;
+}
+
+.logoNav {
+    position: absolute;
+    width: 80px;
+    height: 64px;
+    left: 60px;
+    top: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.navText {
+    width: 80px;
+    height: 24px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    /* color: var(--color-text); */
+    flex: none;
+    order: 1;
+    margin: 0 0;
+}
+
+.navLink {
+    position: absolute;
+    width: 200px;
+    height: 48px;
+    left: 0px;
+    cursor: pointer;
+}
+
+.dashboard {
+    position: absolute;
+    width: 200px;
+    height: 48px;
+    left: 0px;
+    top: 150px;
+    cursor: pointer;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* padding: 12px 12px 12px 4px; */
+    gap: 8px;
+    position: absolute;
+    width: calc(100% - 10px);
+    height: 48px;
+    /* left: 12px; */
+    top: 0px;
+    /* border-radius: 8px; */
+    padding-left: 10px;
+    text-decoration: none;
+    color: var(--color-text);
+
+}
+
+.icon {
+    /* position: absolute; */
+    width: 20px;
+    height: 20px;
+    /* left: 0px;
+    top: 0px; */
+}
+
+.active {
+    /* position: absolute;
+    width: 200px;
+    height: 48px;
+    left: 0px;
+    top: 150px; */
+    background: #FF7506;
+    color: #FFFFFF;
+}
+
+.device {
+    position: absolute;
+    width: 200px;
+    height: 48px;
+    left: 0px;
+    top: 204px;
+}
+
+.Service {
+    position: absolute;
+    width: 200px;
+    height: 48px;
+    left: 0px;
+    top: 258px;
+}
+
+.number {
+    position: absolute;
+    width: 200px;
+    height: 48px;
+    left: 0px;
+    top: 312px;
+}
+
+.report {
+    position: absolute;
+    width: 200px;
+    height: 48px;
+    left: 0px;
+    top: 366px;
+}
+
+.setting {
+    position: absolute;
+    width: 200px;
+    height: 48px;
+    left: 0px;
+    top: 420px;
+}
+
+.close {
+    position: absolute;
+    width: 200px;
+    height: 46px;
+    left: 0px;
+    top: 732px;
+}
+
+.close-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    gap: 12px;
+
+    position: absolute;
+    width: 176px;
+    height: 48px;
+    left: 12px;
+    top: 0px;
+
+    background: #FFF2E7;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.close-text {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-origin);
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.close-btn:hover {
+    background-color: var(--color-origin);
+    color: #FFF2E7;
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./FormResetPassword.css"
 import { Input } from '../../../container/Input/Input';
 import { Button } from '../../../container/Button/Button';
-import { user } from '../../../../redux/Slices/authSlice';
+import { forgotPass } from '../../../../redux/Slices/authSlice';
 
 interface FormResetPasswordProps { }
 
@@ -10,8 +10,8 @@ interface FormResetPasswordProps { }
 
 const FormResetPassword: React.FC<FormResetPasswordProps> = (props) => {
     const [showpass, setShowpass] = useState(false)
-    const [Password, setPassword] = useState<Partial<user>>({});
-    const [PasswordError, setPasswordError] = useState<Partial<user>>({});
+    const [Password, setPassword] = useState<Partial<forgotPass>>({});
+    const [PasswordError, setPasswordError] = useState<Partial<forgotPass>>({});
     console.log(Password)
 
     const togglePassword = () => {
@@ -32,7 +32,7 @@ const FormResetPassword: React.FC<FormResetPasswordProps> = (props) => {
         const lowercaseChars = /[a-z]/;
         const numbers = /[0-9]/;
 
-        const errors: Partial<user> = {};
+        const errors: Partial<forgotPass> = {};
 
         if (!Password.NewPassword) {
             errors.NewPassword = "Vui lòng nhập mật khẩu"
@@ -44,9 +44,9 @@ const FormResetPassword: React.FC<FormResetPasswordProps> = (props) => {
         ) {
             errors.NewPassword = "mật khẩu chứ ký tự hoa thường ít nhất 8 ký tự "
         }
-        if (Password.NewPassword !== Password.reviewPassword) {
+        if (Password.NewPassword !== Password.password) {
             errors.NewPassword = "mật khẩu khác nhau"
-            errors.reviewPassword = "mật khẩu khác nhau"
+            errors.password = "mật khẩu khác nhau"
         }
 
         console.log("ádiasd", Password.NewPassword)
@@ -73,7 +73,7 @@ const FormResetPassword: React.FC<FormResetPasswordProps> = (props) => {
                 </div>
                 <div className="EnterPassWord">
                     <label htmlFor="reviewPassword" className='ResetPassWord-LB'>Nhập lại mật khẩu </label>
-                    {PasswordError.reviewPassword && <span className='error-sp'>{PasswordError.reviewPassword}</span>}
+                    {PasswordError.password && <span className='error-sp'>{PasswordError.password}</span>}
                     <Input type={showpass ? 'text' : 'password'} className='ResetPassWord-IP' name='reviewPassword' id='reviewPassword' placeholder='Nhập lại mật khẩu'
                         handleChange={handleInputChange}
                     ></Input>

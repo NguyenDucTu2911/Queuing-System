@@ -1,0 +1,56 @@
+.Header {
+    position: absolute;
+    width: 1240px;
+    height: 88px;
+    left: 200px;
+    top: 0px;
+}
+
+.Header-info {
+    position: absolute;
+    width: 172px;
+    height: 42px;
+    left: 1004px;
+    top: 24px;
+}
+
+.info-avata {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 132px;
+    top: 0px;
+    border-radius: 48px;
+}
+
+.info-name {
+    position: absolute;
+    width: 150px;
+    height: 42px;
+    left: 48px;
+    top: 0px;
+}
+
+.info_TopText {
+    position: absolute;
+    width: 72px;
+    height: 18px;
+    right: 77px;
+    top: 0px;
+    font-weight: var(--fontWeight-nunito-regular);
+    font-size: 12px;
+    line-height: 18px;
+    color: #7E7D88;
+}
+
+.info_NameText {
+    position: absolute;
+    width: 150px;
+    height: 24px;
+    right: 0px;
+    top: 18px;
+    font-weight: var(--fontWeight-nunito-bold);
+    font-size: 16px;
+    line-height: 24px;
+    color: #535261;
+}

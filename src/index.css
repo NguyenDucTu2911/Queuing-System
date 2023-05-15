@@ -4,6 +4,8 @@ body {
   font-family: var(--fontFamily-nunito);
 }
 
+@import 'bootstrap/dist/css/bootstrap.css';
+/* @import '~bootstrap/scss/bootstrap.scss'; */
 @import url(https://allfont.net/allfont.css?fonts=nunito-regular);
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -19,4 +21,5 @@ body {
   /* --fontFamily-nunito: 'Nunito', sans-serif;*/
   --fontFamily-nunito: 'Nunito-Regular', arial;
   --color-origin: #FF9138;
+  --color-text: #7E7D88;
 }

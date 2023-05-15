@@ -12,4 +12,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+//o
+export const dbRef = firebase.database().ref();
+//db
 export const db = firebase.firestore();

@@ -1,0 +1,17 @@
+.Dashboard {
+    position: relative;
+    width: 1440px;
+    height: 810px;
+    background: #F7F7F7;
+    border-radius: 16px;
+    border: 1px solid;
+}
+
+.charts {
+    position: absolute;
+    width: 791px;
+    height: 484px;
+    left: 224px;
+    border: 1px solid;
+    bottom: 30px;
+}

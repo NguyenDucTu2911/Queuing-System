@@ -1,7 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ThunkAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth';
-import { db } from "../../Firebase/config";
+import { db, dbRef } from "../../Firebase/config";
+import { RootState } from "../store";
 
 export interface user {
     UserName: string,
@@ -11,47 +12,51 @@ export interface user {
     Phone: string
     Email: string
     Role: string
-
-    //neww pass
-    NewPassword: any,
-    reviewPassword: any
+    id: string,
+    createdAt: any
 }
 
-export interface Users {
+export interface SingInData {
     email: string;
-    displayName?: string;
+    password: string
+}
+export interface forgotPass {
+    password: string
+    NewPassword: string
 }
 
 interface DataState {
+    data: SingInData | null;
+    authenticated: boolean,
     loading: boolean;
     error: string | null;
-    data: Users | null;
+    needVerfication: boolean,
+
 }
 
 const initialState: DataState = {
     loading: false,
     error: null,
     data: null,
+    needVerfication: false,
+    authenticated: false,
+
 };
 
 
-
-export const fetchlogin = createAsyncThunk<Users, { email: string; password: string }>(
+export const login = createAsyncThunk(
     'auth/login',
-    async ({ email, password }, { rejectWithValue }) => {
+    async (user: SingInData, { rejectWithValue }) => {
+        console.log(user.email, user.password)
         try {
-            const response = await firebase.auth().signInWithEmailAndPassword(email, password);
-            console.log(response.user)
-
-            const user: Users = {
-                email: response.user?.email ?? '',
-                displayName: response.user?.displayName ?? "",
-            };
-            return user;
+            const response = await firebase
+                .auth()
+                .signInWithEmailAndPassword(user.email, user.password);
+            return response.user;
         } catch (error) {
             return rejectWithValue('Invalid credentials.');
         }
-    }
+    },
 );
 
 const authSlice = createSlice({
@@ -64,17 +69,19 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchlogin.pending, (state) => {
+            .addCase(login.pending, (state) => {
                 state.loading = true;
-                state.error = null;
+                state.authenticated = false;
             })
-            .addCase(fetchlogin.fulfilled, (state, action) => {
+            .addCase(login.fulfilled, (state, action) => {
                 state.loading = false;
-                state.data = action.payload;
+                state.authenticated = true;
+                // state.data = [action.payload];
             })
-            .addCase(fetchlogin.rejected, (state, action) => {
+            .addCase(login.rejected, (state, action) => {
                 state.loading = false
-                state.error = "Invalid credentials"
+                state.error = "sai tài khoản mật khẩu";
+                state.authenticated = false;
             })
     },
 })

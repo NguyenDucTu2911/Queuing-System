@@ -4,11 +4,12 @@ import { Button } from '../../container/Button/Button';
 
 import "./FormLogin.css"
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../redux/hooks';
-import { fetchlogin, Users } from '../../../redux/Slices/authSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { login, SingInData } from '../../../redux/Slices/authSlice';
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth';
+import { RootState } from '../../../redux/store';
 
 
 
@@ -31,8 +32,9 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
         password: "",
         errors: {},
     });
+    const authenticated = useAppSelector((state: RootState) => state.auth.authenticated);
 
-    console.log(loginState)
+    console.log(authenticated)
 
     const dispatch = useAppDispatch()
 
@@ -88,8 +90,13 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
         if (!errors.username && !errors.password) {
             const email = loginState.username;
             const password = loginState.password
-            console.log(email, password)
-            dispatch(fetchlogin({ email, password }))
+            dispatch(login({ email, password }))
+            if (authenticated === false) {
+                navigate("/Dashboard")
+            } else {
+                errors.password = "sai tai khoan mat khau"
+                // sai tai khoan mat khau
+            }
         } else {
             setLoginState({ ...loginState, errors });
         }
