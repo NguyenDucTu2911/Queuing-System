@@ -5,7 +5,7 @@ import { Button } from '../../container/Button/Button';
 import "./FormLogin.css"
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { login, SingInData } from '../../../redux/Slices/authSlice';
+import { login } from '../../../redux/Slices/authSlice';
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth';
@@ -33,6 +33,8 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
         errors: {},
     });
     const authenticated = useAppSelector((state: RootState) => state.auth.authenticated);
+    const error = useAppSelector((state: RootState) => state.auth.error);
+    console.log(error)
 
     console.log(authenticated)
 
@@ -45,6 +47,17 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
 
     const togglePassword = () => {
         setShowpass(!showpass)
+    }
+
+    useEffect(() => {
+        LoginSucset()
+    }, [authenticated])
+
+    const LoginSucset = () => {
+        console.log("hello")
+        if (authenticated === true) {
+            navigate("/Dashboard")
+        }
     }
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +89,7 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
         });
     }
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         let errors = { ...loginState.errors };
         if (!loginState.username) {
@@ -88,15 +101,15 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
 
         // Submit form if there are no errors
         if (!errors.username && !errors.password) {
-            const email = loginState.username;
-            const password = loginState.password
-            dispatch(login({ email, password }))
-            if (authenticated === false) {
-                navigate("/Dashboard")
-            } else {
+            try {
+                const email = loginState.username;
+                const password = loginState.password
+                await dispatch(login({ email, password }))
+            } catch (error) {
                 errors.password = "sai tai khoan mat khau"
-                // sai tai khoan mat khau
+
             }
+
         } else {
             setLoginState({ ...loginState, errors });
         }
@@ -109,7 +122,7 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
                 <div className="LoginName">
                     <label htmlFor="username" className='LB'>Tên đăng nhập *</label>
                     {loginState.errors.username && <span className='error-sp'>{loginState.errors.username}</span>}
-                    <Input type='text' className={loginState.errors.username ? "input-error" : 'IP'} placeholder='Tên Đăng Nhập' name='username' id='username'
+                    <Input type='text' className={loginState.errors.username || error ? "input-error" : 'IP'} placeholder='Tên Đăng Nhập' name='username' id='username'
                         handleChange={handleInputChange}
                     />
                 </div>
@@ -117,7 +130,7 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
                     <label htmlFor="password" className='LB'>Mật khẩu *</label>
                     {loginState.errors.password && <span className='error-sp'>{loginState.errors.password}</span>}
                     <Input type={showpass ? 'text' : 'password'}
-                        className={loginState.errors.password ? "input-error" : 'IP'}
+                        className={loginState.errors.password || error ? "input-error" : 'IP'}
                         placeholder='Mật Khẩu' name='password' id='password'
                         handleChange={handleInputChange}
                     />
@@ -128,7 +141,7 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
                                 <i className="fa-regular fa-eye-slash"></i>
                         }
                     </div>
-
+                    {error && <span className='error-message'>{error}</span>}
                 </div>
                 <div className="ForgotPassWord" onClick={handleForgotPassWord}>
                     Quên mật khẩu?

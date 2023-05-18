@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./ReportCharts.scss"
 import { Line } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
     LinearScale, LineElement, CategoryScale, PointElement
 } from 'chart.js';
+import Dropdown from '../dropdown/Dropdown';
+import { fetchReports, Report } from '../../../redux/Slices/reportSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { RootState } from '../../../redux/store';
+import { addReport } from '../../../redux/Slices/reportSlice';
+import Item from 'antd/es/list/Item';
 
 ChartJS.register(
     LinearScale, LineElement, CategoryScale, PointElement
@@ -13,12 +19,30 @@ ChartJS.register(
 interface ReportchartsProps { }
 
 const ReportCharts: React.FC<ReportchartsProps> = (props) => {
+    const reports = useAppSelector((state: RootState) => state.reports.reports)
+    const dispatch = useAppDispatch()
+
+
+    useEffect(() => {
+        addReport(reports)
+    }, [])
+
+    const option = [
+        { value: 'N', label: 'Ngày' },
+        { value: 'T', label: 'Tuần' },
+        { value: 'TT', label: 'Tháng' },
+    ];
+
+    const handleOptionSelect = (value: string) => {
+        console.log('Selected option:', value);
+        dispatch(fetchReports(value))
+    };
     const data = {
         labels: ['01', '03', '19', '20', '31'],
         datasets: [
             {
-                label: 'Sales of the',
-                data: [0, 1000, 2000, 1500, 4000],
+                // label: 'Sales of the',
+                data: [0, 1000, 2000, 6000, 4000],
                 fill: false,
                 borderColor: 'rgba(75,192,192,1)',
                 tension: 0.1
@@ -37,14 +61,10 @@ const ReportCharts: React.FC<ReportchartsProps> = (props) => {
     return (
         <>
             <div className="ReportCharts">
-                <div className="ReportCharts-textdate">Bảng thống kê theo ngày</div>
+                <div className="ReportCharts-textdate" >Bảng số liệu theo ngày</div>
+
                 <div className="ReportCharts-dropdown">
-                    Xem Theo:{" "}
-                    <select name="daytime" id="daytime">
-                        <option value="day">Ngày</option>
-                        <option value="month">Tháng</option>
-                        <option value="year">Năm</option>
-                    </select>
+                    <Dropdown options={option} onSelect={handleOptionSelect} />
                 </div>
                 <div className="ReportCharts-body">
                     <Line data={data} options={options} />

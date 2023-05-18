@@ -2,15 +2,19 @@ import React from 'react';
 import Logo from "../../../assets/image/Logoalta.png"
 import { NavLink, useNavigate } from 'react-router-dom'
 import "./navbar.css"
+import { useAppDispatch } from '../../../redux/hooks';
+import { logout } from '../../../redux/Slices/authSlice';
 interface NavbarProps { }
 
 const Navbar: React.FC<NavbarProps> = (props) => {
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
     const hendleClose = () => {
+        dispatch(logout())
         navigate("/")
     }
-    
+
     return (
         <>
             <div className="menuapp">

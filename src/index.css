@@ -6,7 +6,7 @@ body {
 
 @import 'bootstrap/dist/css/bootstrap.css';
 /* @import '~bootstrap/scss/bootstrap.scss'; */
-@import url(https://allfont.net/allfont.css?fonts=nunito-regular);
+@import url('https://fonts.cdnfonts.com/css/nunito');
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
 body {
@@ -18,8 +18,8 @@ body {
   --fontWeight-nunito-light: 300;
   --fontWeight-nunito-regular: 400;
   --fontWeight-nunito-bold: 700;
-  /* --fontFamily-nunito: 'Nunito', sans-serif;*/
-  --fontFamily-nunito: 'Nunito-Regular', arial;
+  --fontFamily-nunito: 'Nunito', sans-serif;
   --color-origin: #FF9138;
+  --color-origin-Text: #FF7506;
   --color-text: #7E7D88;
 }

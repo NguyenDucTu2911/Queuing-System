@@ -1,0 +1,71 @@
+.NumberLVCharts {
+    position: absolute;
+    width: 790px;
+    height: 128px;
+    left: 224px;
+    top: 156px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+
+    .NumberLVCharts-item {
+        position: relative;
+        width: 186px;
+        height: 120px;
+        box-shadow: 2px 2px 15px rgba(70, 64, 67, 0.1);
+        border-radius: 12px;
+        background: #FFFFFF;
+        cursor: pointer;
+
+        .NumberLVCharts_text {
+            position: absolute;
+            width: 108px;
+            height: 45px;
+            left: 12px;
+            top: 68px;
+            font-weight: var(--fontWeight-nunito-bold);
+            font-size: 30px;
+            line-height: 45px;
+            color: #535261;
+        }
+
+        .item-top {
+            position: absolute;
+            width: 120.02px;
+            height: 48px;
+            left: 12px;
+            top: 8px;
+
+            .item_icon {
+                box-sizing: border-box;
+                position: absolute;
+                width: 48px;
+                height: 48px;
+                left: 0px;
+                top: 0px;
+                // opacity: 0.15;
+                border: 1px solid #DADADA;
+                border-radius: 50%;
+
+                .num-icon {
+                    position: absolute;
+                    top: 10px;
+                    left: 13px;
+                    font-size: 24px;
+                }
+            }
+
+            .item_text {
+                position: absolute;
+                width: 85px;
+                height: 36px;
+                left: 60.02px;
+                top: 5px;
+                font-weight: var(--fontWeight-nunito-bold);
+                font-size: 14px;
+                line-height: 18px;
+                color: #535261;
+            }
+        }
+    }
+}

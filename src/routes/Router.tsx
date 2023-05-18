@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../pages/LoginPage/Login";
-import App from "../App";
 import ErrorPage from "../components/container/404ErrorPage/ErrorPage";
 import ForgotPassWord from "../pages/LoginPage/ForgotPassWord";
 import ResetPassWord from "../pages/LoginPage/ResetPassWord";
@@ -9,6 +8,7 @@ import Device from "../pages/DevicePage/device";
 import Numberlevel from "../pages/NumberlevelPage/Numberlevel";
 import Report from "../pages/ReportPage/report";
 import Service from "../pages/ServicePage/Service";
+import Info from "../components/container/Layout/info/info";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -29,6 +29,9 @@ const router = createBrowserRouter([
         path: "/Dashboard",
         element: <Dashboard />,
         errorElement: <ErrorPage />,
+        // children: [
+        //     { path: "id" },
+        // ],
 
     },
     {
@@ -50,7 +53,13 @@ const router = createBrowserRouter([
         path: "/Service",
         element: <Service />,
         errorElement: <ErrorPage />,
-    }
+    },
+    {
+        path: "/profile",
+        element: <Info />,
+        errorElement: <ErrorPage />,
+    },
+
 ]);
 
 export default router;

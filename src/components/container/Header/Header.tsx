@@ -1,28 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Header.css"
 import Logo from "../../../assets/image/Logoalta.png"
 import avata from "../../../assets/image/avata.png"
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../../../redux/hooks';
+import { RootState } from '../../../redux/store';
+import useLocalStorage from '../../customHook/useLocalStorage';
+import { SignInData } from '../../../redux/Slices/authSlice';
+import { useLocation } from 'react-router-dom';
+import { Breadcrumb } from 'antd';
 interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = (props) => {
 
-    const navigate = useNavigate()
+    const userSelector = useAppSelector((state: RootState) => state.auth.data)
+    const navigate = useNavigate();
 
-    const hendleClose = () => {
-        navigate("/")
+    const [user, setUser] = useLocalStorage<Partial<SignInData>>("user", {})
+    const location = useLocation()
+
+
+    useEffect(() => {
+        if (userSelector) {
+            setUser(userSelector)
+        }
+    }, [userSelector])
+    const handleInfo = () => {
+        navigate("/profile")
     }
+
+
 
     return (
         <>
             <div className="Header">
+                <nav aria-label="breadcrumb">
+                    <Breadcrumb
+                        items={[
+                            {
+                                title: <a className='breadcrumb-item' href={location.pathname}>Dashboard</a>,
+                            },
+                        ]}
+                    />
+                </nav>
                 <div className="Header-info">
                     <div className="info-avata" style={{ backgroundImage: `url(${avata})` }}>
 
                     </div>
-                    <div className="info-name">
+                    <div className="info-name" onClick={handleInfo}>
                         <div className="info_TopText">Xin Chào</div>
-                        <div className="info_NameText">Lê Quỳnh Ái Vân</div>
+                        <div className="info_NameText">{user.name}</div>
                     </div>
                 </div>
             </div>

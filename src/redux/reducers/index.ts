@@ -1,11 +1,13 @@
 import { combineReducers } from "redux";
 import authSlice from "../Slices/authSlice";
+import reportSlice from "../Slices/reportSlice";
+import deviceSlice from "../Slices/deviceSlice";
 
 
 const reducers = combineReducers({
     auth: authSlice,
-    // events: eventSlice,
-    // pay: paySlice,
+    reports: reportSlice,
+    device: deviceSlice,
 })
 
 export type State = ReturnType<typeof reducers>

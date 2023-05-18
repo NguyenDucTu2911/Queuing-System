@@ -1,0 +1,111 @@
+.devices {
+    position: relative;
+    width: 1440px;
+    height: 810px;
+    background: #F7F7F7;
+    border-radius: 16px;
+
+    .devices-action {
+        position: absolute;
+        width: 300px;
+        height: 72px;
+        left: 224px;
+        top: 156px;
+
+    }
+
+    .device-Time {
+        position: absolute;
+        width: 300px;
+        height: 72px;
+        left: 548px;
+        top: 156px;
+
+    }
+
+    .device-search {
+        position: absolute;
+        width: 300px;
+        height: 72px;
+        left: 1036px;
+        top: 156px;
+
+        .search-item {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px 10px 12px;
+            gap: 10px;
+            position: absolute;
+            width: 300px;
+            height: 44px;
+            background: #FFFFFF;
+            border: 1.5px solid #D4D4D7;
+            border-radius: 8px;
+        }
+
+        .btn-search {
+            position: absolute;
+            right: 10px;
+            top: 36px;
+            cursor: pointer;
+
+            &:hover {
+                color: #8889b6;
+            }
+        }
+
+    }
+
+    .Table {
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
+        position: absolute;
+        width: 1112px;
+        height: 490px;
+        left: 224px;
+        top: 244px;
+        filter: drop-shadow(2px 2px 8px rgba(232, 239, 244, 0.8));
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: #FFFFFF;
+
+        .Table-title {
+            color: #FFFFFF;
+            background-color: #FF9138;
+        }
+    }
+}
+
+.breadcrumb-item {
+    position: absolute;
+    top: 22px;
+    left: 24px;
+    width: 102px;
+    height: 30px;
+    font-weight: var(--fontWeight-nunito-bold);
+    font-size: 25px;
+    text-decoration: none;
+    line-height: 30px;
+    color: #FF9138 !important;
+    flex: none;
+    flex-grow: 0;
+    order: 1;
+    flex-grow: 0;
+}
+
+td,
+th {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+tr:nth-child(even) {
+    background-color: #FFF2E7;
+}

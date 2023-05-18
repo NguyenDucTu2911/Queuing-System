@@ -20,36 +20,12 @@
     }
 
     .ReportCharts-dropdown {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 0px;
-        gap: 8px;
         position: absolute;
-        left: 73.7%;
+        left: 82.7%;
         right: 2.03%;
         top: 4.96%;
         bottom: 86.36%;
 
-        #daytime {
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 12px;
-            gap: 24px;
-            width: 106px;
-            height: 42px;
-            background: #FFFFFF;
-            border: 1.5px solid #D4D4D7;
-            border-radius: 8px;
-            flex: none;
-            flex-grow: 0;
-            order: 1;
-            flex-grow: 0;
-        }
     }
 
     .ReportCharts-body {

@@ -49,7 +49,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 10px 270px 10px 12px;
+    padding: 10px 27px 10px 12px;
     gap: 10px;
     width: 400px;
     height: 44px;
@@ -115,4 +115,10 @@
 
 .input-error {
     border: 1px solid red;
+}
+
+.error-message {
+    top: 78px;
+    color: red;
+    position: absolute;
 }

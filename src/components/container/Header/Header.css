@@ -4,6 +4,7 @@
     height: 88px;
     left: 200px;
     top: 0px;
+    z-index: 1;
 }
 
 .Header-info {
@@ -12,6 +13,7 @@
     height: 42px;
     left: 1004px;
     top: 24px;
+    cursor: pointer;
 }
 
 .info-avata {
@@ -53,4 +55,21 @@
     font-size: 16px;
     line-height: 24px;
     color: #535261;
+}
+
+.breadcrumb-item {
+    position: absolute;
+    top: 22px;
+    left: 24px;
+    width: 102px;
+    height: 30px;
+    font-weight: var(--fontWeight-nunito-bold);
+    font-size: 25px;
+    text-decoration: none;
+    line-height: 30px;
+    color: #FF9138 !important;
+    flex: none;
+    flex-grow: 0;
+    order: 1;
+    flex-grow: 0;
 }
