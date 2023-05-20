@@ -17,7 +17,7 @@
     flex-grow: 0;
 
     .dropdown-header {
-        width: 80px;
+        min-width: 80px;
         position: absolute;
 
         .dropdown-icon {

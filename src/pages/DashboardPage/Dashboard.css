@@ -5,6 +5,7 @@
     background: #F7F7F7;
     border-radius: 16px;
     border: 1px solid;
+    overflow: hidden;
 }
 
 .charts {
@@ -128,4 +129,45 @@
     font-size: 24px;
     line-height: 36px;
     color: var(--color-origin-Text);
+}
+
+.menubar-chart{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 16px;
+    top: 11px;
+}
+
+.textMenubar{
+    position: absolute;
+    width: 64px;
+    height: 36px;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 36px;
+    color: #535261
+}
+
+.menubar-Number_icon,
+.menubar-Service_icon,
+.menubar-device_icon{
+    position: absolute;
+    width: 81px;
+    height: 21px;
+    left: 2px;
+    top: 33px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #FF7506;
+}
+
+
+.menubar-Service_icon{
+    color:#4277FF ;
+}
+
+.menubar-Number_icon{
+    color: #35C75A;
 }

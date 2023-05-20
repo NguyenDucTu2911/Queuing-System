@@ -3,14 +3,17 @@ import './Dropdown.scss'
 interface DropdownOption {
     value: string;
     label: string;
+
 }
 
 interface DropdownProps {
     options: DropdownOption[];
+    className?: string;
+    style?: any;
     onSelect: (value: string) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
+const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, className, style }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<DropdownOption | null>(null);
 

@@ -9,6 +9,9 @@ import Numberlevel from "../pages/NumberlevelPage/Numberlevel";
 import Report from "../pages/ReportPage/report";
 import Service from "../pages/ServicePage/Service";
 import Info from "../components/container/Layout/info/info";
+import FormAddDevice from "../components/form/formdevice/formAddDevice";
+import DeviceDetail from "../pages/DevicePage/deviceDetail/deviceDetail";
+import DeviceEdit from "../pages/DevicePage/deviceEdit/deviceEdit";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -29,15 +32,28 @@ const router = createBrowserRouter([
         path: "/Dashboard",
         element: <Dashboard />,
         errorElement: <ErrorPage />,
-        // children: [
-        //     { path: "id" },
-        // ],
+
 
     },
     {
         path: "/device",
         element: <Device />,
         errorElement: <ErrorPage />,
+        // children: [
+        //     {
+        //         path: "/device/add",
+        //         element: <FormAddDevice />,
+        //         errorElement: <ErrorPage />,
+        //         children: [
+        //             {
+        //                 path: ":id",
+        //                 element: <FormAddDevice />,
+        //                 errorElement: <ErrorPage />,
+        //             }
+        //         ]
+
+        //     },
+        // ],
     },
     {
         path: "/capso",
@@ -59,6 +75,21 @@ const router = createBrowserRouter([
         element: <Info />,
         errorElement: <ErrorPage />,
     },
+    {
+        path: "/device/add",
+        element: <FormAddDevice />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/device/:id",
+        element: <DeviceDetail />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/device/Edit/:id",
+        element: <DeviceEdit />,
+        errorElement: <ErrorPage />,
+    }
 
 ]);
 
