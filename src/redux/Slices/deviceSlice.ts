@@ -31,13 +31,13 @@ export interface AddDevice{
 interface DeviceState{
     Device: Devices[],
     loading: boolean,
-    error: string | undefined
+    error: string | null
 }
 
 const initialState : DeviceState = {
     Device: [],
     loading: false,
-    error: undefined
+    error: null
 }
 
 //all device
@@ -46,34 +46,18 @@ export const fetchDevice = createAsyncThunk(
     async () => {
         try {
            let ALLData = await db.collection("device").get()
-           console.log(ALLData.docs.map((doc) => ({ id: doc.id }) as AddDevice))
-            return ALLData.docs.map((doc) => ({id: doc.id,...doc.data() }) as AddDevice)
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
-    }
-);
-
-export const fetchDevice1 = createAsyncThunk(
-    'Device/fetchDevice',
-    async (id: string) => {
-        try {
-            const querySnapshot = await db
-                .collection('device')
-                .where('Action', '==', id)
-                .get();
-
-            const Devices: Devices[] = [];
-            querySnapshot.forEach((doc) => {
-                const report = doc.data() as Devices;
-                Devices.push({
-                    ...Devices,
-                    id: report.id
+            if(ALLData){
+            const Device: AddDevice[] = [];
+            ALLData.docs.map((doc) => {
+                const data = ({id: doc.id,...doc.data() }) as AddDevice;
+                Device.push({
+                    ...data,
                 });
             });
-
-            return Devices;
+            return Device;
+           }else{
+                throw new Error ("không tìm thấy data")
+           }
         } catch (error) {
             console.error(error);
             throw error;
@@ -128,9 +112,6 @@ const deviceSlice = createSlice({
     name: "Device",
     initialState,
     reducers: {
-        addReport: (state, action) => {
-            state.Device.push(action.payload);
-        },
         clearReports: (state) => {
             state.Device = [];
         },
@@ -139,33 +120,33 @@ const deviceSlice = createSlice({
         builder
             .addCase(fetchDevice.pending , (state)=>{
                 state.loading = true;
-                state.error = undefined;
+                state.error = null;
             })
             .addCase(fetchDevice.fulfilled, (state, action)=>{
                 state.loading = false;
-                state.error = undefined;
+                state.error = null;
                 state.Device = action.payload;
             })
             .addCase(fetchDevice.rejected, (state, action)=>{
-                state.error = "lỗi dữ liệu"
+                state.error = action.error.message ?? 'Error fetching Devices';
                 state.loading = false;
             })
             .addCase(AddDevices.pending, (state) => {
                 state.loading = true;
-                state.error = undefined;
+                state.error = null;
             })
             .addCase(AddDevices.fulfilled, (state, action) => {
-                state.error = undefined
+                state.error = null
                 state.loading = false;
                 state.Device.push(action.payload)
             })
             .addCase(AddDevices.rejected, (state, action) => {
-              state.error = action.error.message; 
+              state.error = action.error.message ?? 'Error fetching Devices';
               state.loading = false;
             })
             .addCase(UpdateDevices.pending, (state) => {
                 state.loading = true;
-                state.error = undefined;
+                state.error = null;
             })
             .addCase(UpdateDevices.fulfilled, (state, action) => {
                 state.loading = false;
@@ -177,12 +158,12 @@ const deviceSlice = createSlice({
                 });
               })
             .addCase(UpdateDevices.rejected, (state, action) => {
-              state.error = action.error.message; 
+              state.error = action.error.message ?? 'Error fetching Devices';
               state.loading = false;
             });
     }
 })
 
-export const { addReport, clearReports } = deviceSlice.actions;
+export const {clearReports } = deviceSlice.actions;
 export default deviceSlice.reducer;
 

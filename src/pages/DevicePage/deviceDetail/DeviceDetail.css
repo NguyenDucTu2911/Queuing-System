@@ -1,0 +1,163 @@
+.DeviceDetail {
+  position: relative;
+  width: 1440px;
+  height: 810px;
+  background: #F7F7F7;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.DeviceDetail .deviceDetail-form {
+  position: absolute;
+  width: 1112px;
+  height: 604px;
+  left: 224px;
+  top: 156px;
+  /* White */
+  background: #FFFFFF;
+  /* Shadowbox */
+  box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
+  border-radius: 16px;
+}
+.DeviceDetail .deviceDetail-form .deviceDetail-textForm {
+  position: absolute;
+  width: 160px;
+  height: 30px;
+  left: 24px;
+  top: 16px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FF7506;
+}
+.DeviceDetail .deviceDetail-form .deviceDetail-maid {
+  position: absolute;
+  width: 178px;
+  height: 24px;
+  left: 24px;
+  top: 66px;
+}
+.DeviceDetail .deviceDetail-form .deviceDetail-name {
+  position: absolute;
+  width: 163px;
+  height: 24px;
+  left: 24px;
+  top: 106px;
+}
+.DeviceDetail .deviceDetail-form .deviceDetail-address {
+  position: absolute;
+  width: 218px;
+  height: 24px;
+  left: 24px;
+  top: 146px;
+}
+.DeviceDetail .deviceDetail-form .deviceDetail-service {
+  position: absolute;
+  width: 795px;
+  height: 56px;
+  left: 24px;
+  top: 186px;
+}
+.DeviceDetail .deviceDetail-form .deviceDetail-typeDevice {
+  position: absolute;
+  width: 197px;
+  height: 24px;
+  left: 568px;
+  top: 66px;
+}
+.DeviceDetail .deviceDetail-form .deviceDetail-userLogin {
+  position: absolute;
+  width: 243px;
+  height: 24px;
+  left: 568px;
+  top: 106px;
+}
+.DeviceDetail .deviceDetail-form .deviceDetail-pass {
+  position: absolute;
+  width: 193px;
+  height: 24px;
+  left: 568px;
+  top: 146px;
+}
+.DeviceDetail .btn-update {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 4px;
+  gap: 4px;
+  position: absolute;
+  width: 80px;
+  height: 94px;
+  right: 0px;
+  top: 156px;
+  background: #FFF2E7;
+  box-shadow: 0px 0px 6px #E7E9F2;
+  border-radius: 8px 0px 0px 8px;
+  cursor: pointer;
+}
+.DeviceDetail .btn-update:hover {
+  background: rgba(235, 123, 11, 0.1);
+}
+.DeviceDetail .btn-update .btn-icon {
+  position: absolute;
+  left: 38.33%;
+  right: 8.33%;
+  top: 19.33%;
+  bottom: 8.33%;
+  color: #FF9138;
+  font-size: 25px;
+}
+.DeviceDetail .btn-update .btn-text {
+  position: absolute;
+  top: 44px;
+  width: 72px;
+  height: 38px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+  color: #FF7506;
+  flex: none;
+  flex-grow: 0;
+  order: 1;
+}
+
+.deviceDetail_lable {
+  width: 130px;
+  height: 24px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #282739;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.deviceDetail-b {
+  position: absolute;
+  width: 39px;
+  height: 24px;
+  left: 153px;
+  top: 0px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #535261;
+}
+
+.deviceDetail-b_DV {
+  position: absolute;
+  width: 795px;
+  height: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #535261;
+}/*# sourceMappingURL=DeviceDetail.css.map */

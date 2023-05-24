@@ -1,0 +1,103 @@
+.ProgressionModal {
+
+    .modal-overlay {
+        z-index: 9999;
+        width: 1440px;
+        height: 810px;
+        position: absolute;
+        top: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-box {
+        position: relative;
+        width: 469px;
+        height: 385px;
+
+        background: #FFFFFF;
+        border-radius: 24px;
+        overflow: hidden;
+
+
+        .modal-header {
+            position: absolute;
+            top: 10px;
+            z-index: 1;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            position: absolute;
+            width: 279px;
+            height: 48px;
+            left: 95px;
+            top: 48px;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 48px;
+            color: #535261;
+        }
+
+        .Modal-number {
+            position: absolute;
+            width: 236px;
+            height: 60px;
+            left: 117px;
+            top: 120px;
+            font-weight: 800;
+            font-size: 56px;
+            line-height: 60px;
+            color: #FF7506;
+            text-align: center;
+        }
+
+        .modal-dv {
+            position: absolute;
+            width: 321px;
+            height: 27px;
+            left: 74px;
+            top: 204px;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 27px;
+            color: #282739;
+            text-align: center;
+        }
+
+        .footer {
+            position: absolute;
+            width: 469px;
+            height: 110px;
+            left: 0px;
+            top: 275px;
+            background: #FF9138;
+
+            .modal-hsd,
+            .modal-time {
+                width: 469px;
+                height: 33px;
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 33px;
+                color: #FFFFFF;
+                flex: none;
+                flex-grow: 0;
+                order: 0;
+                flex-grow: 0;
+                position: absolute;
+                top: 19px;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .modal-hsd {
+                top: 60px;
+            }
+        }
+    }
+}

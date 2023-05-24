@@ -46,7 +46,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
                 </div>
 
                 <div className="number">
-                    <NavLink to="/capso"
+                    <NavLink to="/Progression"
                         className={({ isActive }) => (isActive ? "active item" : "item")}>
                         <i className="fa-solid fa-table-columns icon"></i>
                         <p className='navText'>Cấp số</p>

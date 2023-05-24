@@ -1,0 +1,214 @@
+.Progression {
+    position: relative;
+    width: 1440px;
+    height: 810px;
+    background: #F7F7F7;
+    border-radius: 16px;
+    overflow: hidden;
+
+    .Progression-name {
+        position: absolute;
+        width: 154px;
+        height: 72px;
+        left: 224px;
+        top: 156px;
+    }
+
+    .Progression-active {
+        position: absolute;
+        width: 154px;
+        height: 72px;
+        left: 402px;
+        top: 156px;
+    }
+
+    .Progression-power {
+        position: absolute;
+        width: 154px;
+        height: 72px;
+        left: 580px;
+        top: 156px;
+    }
+
+    .Progression-Time {
+        position: absolute;
+        width: 320px;
+        height: 72px;
+        left: 758px;
+        top: 156px;
+
+        .Progression-next {
+            position: absolute;
+            text-align: center;
+            top: 48px;
+            left: 155px;
+            font-size: 16px;
+        }
+
+        .Progression-date-Start {
+            position: absolute;
+            left: 0%;
+            right: 53.12%;
+            top: 48%;
+            bottom: 0%;
+        }
+
+        .Progression-date-end {
+            position: absolute;
+            left: 51.12%;
+            right: 0%;
+            top: 48%;
+            bottom: 0%;
+        }
+    }
+
+    .Progression-Search {
+        position: absolute;
+        width: 240px;
+        height: 72px;
+        left: 1096px;
+        top: 156px;
+
+        .Progression-item {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 36px 10px 12px;
+            gap: 10px;
+            position: absolute;
+            width: 240px;
+            height: 44px;
+            top: 33px;
+            background: #FFFFFF;
+            border: 1.5px solid #D4D4D7;
+            border-radius: 8px;
+        }
+
+        .btn-search {
+            position: absolute;
+            right: 8px;
+            top: 40px;
+            font-size: 23px;
+            cursor: pointer;
+        }
+    }
+
+    .Progression-add {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 4px;
+        gap: 4px;
+        position: absolute;
+        width: 80px;
+        height: 94px;
+        left: 1360px;
+        top: 244px;
+        background: #FFF2E7;
+        box-shadow: 0px 0px 6px #E7E9F2;
+        border-radius: 8px 0px 0px 8px;
+        cursor: pointer;
+
+        .icon-add {
+            position: absolute;
+            border-radius: 5px;
+            width: 23px;
+            height: 23px;
+            text-align: center;
+            line-height: 23px;
+            color: #fff;
+            top: 20px;
+            background: #FF9138;
+        }
+
+        .textAdd {
+            position: absolute;
+            width: 71px;
+            height: 38px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+            text-align: center;
+            color: #FF7506;
+            flex: none;
+            flex-grow: 0;
+            order: 1;
+            flex-grow: 0;
+            top: 46px;
+        }
+    }
+
+    .Table {
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
+        position: absolute;
+        width: 1112px;
+        height: 490px;
+        left: 224px;
+        top: 244px;
+        filter: drop-shadow(2px 2px 8px rgba(232, 239, 244, 0.8));
+        overflow: hidden;
+        border-radius: 12px;
+        background-color: #FFFFFF;
+
+        .Table-title {
+            color: #FFFFFF;
+            background-color: #FF9138;
+            // display: inherit;
+        }
+
+        // .table-body {
+        //     display: flex;
+        //     justify-content: center;
+        // }
+    }
+}
+
+.Progression-LB {
+    position: absolute;
+    width: 127px;
+    height: 24px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #282739;
+}
+
+.Progression-ip {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    gap: 24px;
+
+    position: absolute;
+    width: 154px;
+    height: 44px;
+    top: 34px;
+    background: #FFFFFF;
+
+    border: 1.5px solid #D4D4D7;
+    border-radius: 8px;
+}
+
+td,
+th {
+    height: 74px !important;
+    min-width: 108px !important;
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+tr:nth-child(even) {
+    background-color: #FFF2E7;
+}

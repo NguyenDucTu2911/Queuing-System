@@ -1,0 +1,222 @@
+.DeviceEdit {
+  position: relative;
+  width: 1440px;
+  height: 810px;
+  background: #F7F7F7;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.DeviceEdit .DeviceEdit-title {
+  position: absolute;
+  width: 169px;
+  height: 36px;
+  left: 232px;
+  top: 104px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  color: #FF7506;
+}
+.DeviceEdit .DeviceEdit-form {
+  position: absolute;
+  width: 1152px;
+  height: 556px;
+  left: 224px;
+  top: 156px;
+  background: #FFFFFF;
+  box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
+  border-radius: 16px;
+}
+.DeviceEdit .DeviceEdit-form .DeviceEdit-text {
+  position: absolute;
+  width: 160px;
+  height: 30px;
+  left: 24px;
+  top: 16px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FF7506;
+}
+.DeviceEdit .DeviceEdit-form .DeviceEdit-maid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  position: absolute;
+  width: 540px;
+  height: 76px;
+  left: 24px;
+  top: 66px;
+}
+.DeviceEdit .DeviceEdit-form .DeviceEdit-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  position: absolute;
+  width: 540px;
+  height: 76px;
+  left: 24px;
+  top: 158px;
+}
+.DeviceEdit .DeviceEdit-form .DeviceEdit-address {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  position: absolute;
+  width: 540px;
+  height: 76px;
+  left: 24px;
+  top: 250px;
+}
+.DeviceEdit .DeviceEdit-form .DeviceEdit-service {
+  position: absolute;
+  width: 1104px;
+  height: 112px;
+  left: 24px;
+  top: 342px;
+}
+.DeviceEdit .DeviceEdit-form .DeviceEdit-type {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  position: absolute;
+  width: 540px;
+  height: 76px;
+  left: 588px;
+  top: 66px;
+}
+.DeviceEdit .DeviceEdit-form .DeviceEdit-namelogin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  position: absolute;
+  width: 540px;
+  height: 76px;
+  left: 588px;
+  top: 158px;
+}
+.DeviceEdit .DeviceEdit-form .DeviceEdit-pass {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  position: absolute;
+  width: 540px;
+  height: 76px;
+  left: 588px;
+  top: 250px;
+}
+.DeviceEdit .DeviceEdit-form .DeviceEdit-bb {
+  position: absolute;
+  width: 232px;
+  height: 24px;
+  left: 24px;
+  top: 466px;
+}
+.DeviceEdit .btn-closes {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  gap: 8px;
+  position: absolute;
+  width: 115px;
+  height: 48px;
+  left: 444px;
+  bottom: -72px;
+  background: #FFF2E7;
+  border: 1.5px solid #FF9138;
+  box-shadow: 0px 0px 6px #E7E9F2;
+  border-radius: 8px;
+}
+.DeviceEdit .btn-update {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  gap: 8px;
+  position: absolute;
+  width: 120px;
+  height: 48px;
+  left: 592px;
+  bottom: -72px;
+  background: #FF9138;
+  box-shadow: 0px 0px 6px #E7E9F2;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.DeviceEdit-Lb {
+  width: 130px;
+  height: 24px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #282739;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.input-error,
+.DeviceEdit-ip {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 270px 10px 12px;
+  gap: 10px;
+  width: 540px;
+  height: 44px;
+  background: #FFFFFF;
+  border: 1.5px solid #D4D4D7;
+  border-radius: 8px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.input-error-dv,
+.DeviceEdit-ip_DV {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 270px 10px 12px;
+  gap: 10px;
+  position: absolute;
+  width: 1104px;
+  height: 80px;
+  left: 0px;
+  top: 32px;
+  background: #FFFFFF;
+  border: 1.5px solid #FFAC6A;
+  border-radius: 8px;
+}
+
+.input-error-dv,
+.input-error {
+  border: 1px solid red;
+}
+
+.textError {
+  position: absolute;
+  right: 0px;
+  color: red;
+}/*# sourceMappingURL=DeviceEdit.css.map */

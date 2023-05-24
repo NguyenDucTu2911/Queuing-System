@@ -2,10 +2,17 @@
 
 body {
   font-family: var(--fontFamily-nunito);
+  -moz-user-select: none !important;
+  -webkit-touch-callout: none!important;
+  -webkit-user-select: none!important;
+  -khtml-user-select: none!important;
+  -moz-user-select: none!important;
+  -ms-user-select: none!important;
+  user-select: none!important;
 }
 
 @import 'bootstrap/dist/css/bootstrap.css';
-/* @import '~bootstrap/scss/bootstrap.scss'; */
+/* @import 'bootstrap/scss/bootstrap.scss'; */
 @import url('https://fonts.cdnfonts.com/css/nunito');
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -23,3 +30,5 @@ body {
   --color-origin-Text: #FF7506;
   --color-text: #7E7D88;
 }
+
+/* btn next */

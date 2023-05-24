@@ -1,0 +1,124 @@
+.ProgressionAdd {
+    position: relative;
+    width: 1440px;
+    height: 810px;
+    background: #F7F7F7;
+    border-radius: 16px;
+    overflow: hidden;
+
+    .ProgressionAdd-title {
+        position: absolute;
+        width: 163px;
+        height: 36px;
+        left: 224px;
+        top: 104px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #FF7506;
+    }
+
+    .ProgressionAdd-form {
+        position: absolute;
+        width: 1192px;
+        height: 604px;
+        left: 224px;
+        top: 164px;
+        background: #FFFFFF;
+        box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
+        border-radius: 16px;
+
+        .ProgressionAdd-form_title {
+            position: absolute;
+            width: 143px;
+            height: 36px;
+            left: 525px;
+            top: 16px;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 36px;
+            color: #FF7506;
+        }
+
+        .ProgressionAdd-form_DV {
+            position: absolute;
+            width: 265px;
+            height: 30px;
+            left: 464px;
+            top: 92px;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            color: #535261;
+        }
+
+        .ProgressionAdd-form-ip {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            gap: 24px;
+
+            position: absolute;
+            width: 400px;
+            height: 44px;
+            left: 396px;
+            top: 134px;
+            background: #FFFFFF;
+            border: 1.5px solid #D4D4D7;
+            border-radius: 8px;
+        }
+
+        .ProgressionAdd-form_btn {
+            position: absolute;
+            width: 262px;
+            height: 48px;
+            left: 465px;
+            top: 258px;
+
+            .btn-closes {
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 10px 24px;
+                gap: 8px;
+
+                position: absolute;
+                width: 115px;
+                height: 48px;
+                left: 0px;
+                top: 0px;
+                background: #FFF2E7;
+                border: 1.5px solid #FF9138;
+                box-shadow: 0px 0px 6px #E7E9F2;
+                border-radius: 8px;
+                color: #FF9138;
+            }
+
+            .btn-print {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 10px 24px;
+                gap: 8px;
+
+                position: absolute;
+                width: 115px;
+                height: 48px;
+                left: 147px;
+                top: 0px;
+                background: #FF9138;
+                box-shadow: 0px 0px 6px #E7E9F2;
+                border-radius: 8px;
+                color: #FFFFFF;
+                cursor: pointer;
+            }
+        }
+    }
+
+}

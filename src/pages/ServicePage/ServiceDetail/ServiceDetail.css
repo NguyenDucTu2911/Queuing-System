@@ -1,0 +1,322 @@
+.ServiceDetail {
+  position: relative;
+  width: 1440px;
+  height: 810px;
+  background: #F7F7F7;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.ServiceDetail .ServiceDetail-title {
+  position: absolute;
+  width: 171px;
+  height: 36px;
+  left: 224px;
+  top: 104px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  color: #FF7506;
+}
+.ServiceDetail .ServiceDetail-formLeft {
+  position: absolute;
+  width: 370px;
+  height: 606px;
+  left: 224px;
+  top: 172px;
+  background: #FFFFFF;
+  box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
+  border-radius: 12px;
+}
+.ServiceDetail .ServiceDetail-formLeft .ServiceDetail-formLeft_title {
+  position: absolute;
+  width: 175px;
+  height: 30px;
+  left: 16px;
+  top: 16px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FF7506;
+}
+.ServiceDetail .ServiceDetail-formLeft .ServiceDetail-formLef_maid {
+  position: absolute;
+  width: 296px;
+  height: 24px;
+  left: 16px;
+  top: 58px;
+}
+.ServiceDetail .ServiceDetail-formLeft .ServiceDetail-formLef_NAME {
+  position: absolute;
+  width: 221px;
+  height: 24px;
+  left: 16px;
+  top: 94px;
+}
+.ServiceDetail .ServiceDetail-formLeft .ServiceDetail-formLef_Des {
+  position: absolute;
+  width: 296px;
+  height: 24px;
+  left: 16px;
+  top: 130px;
+}
+.ServiceDetail .ServiceDetail-formLeft .ServiceDetail-formLeft_titleNumber {
+  position: absolute;
+  width: 136px;
+  height: 30px;
+  left: 16px;
+  top: 170px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FF7506;
+}
+.ServiceDetail .ServiceDetail-formLeft .ServiceDetail-formLeft_AutoNumber {
+  position: absolute;
+  width: 276px;
+  height: 44px;
+  left: 16px;
+  top: 212px;
+  line-height: 42px;
+}
+.ServiceDetail .ServiceDetail-formLeft .ServiceDetail-formLeft_Prefix {
+  position: absolute;
+  width: 172px;
+  height: 44px;
+  left: 16px;
+  top: 268px;
+}
+.ServiceDetail .ServiceDetail-formLeft .ServiceDetail-formLeft_Reset {
+  position: absolute;
+  width: 172px;
+  height: 44px;
+  left: 16px;
+  top: 338px;
+}
+.ServiceDetail .ServiceDetail-form-right {
+  position: absolute;
+  width: 718px;
+  height: 606px;
+  left: 618px;
+  top: 172px;
+  background: #FFFFFF;
+  box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
+  border-radius: 12px;
+}
+.ServiceDetail .ServiceDetail-form-right .ServiceDetail-active {
+  position: absolute;
+  width: 160px;
+  height: 72px;
+  left: 24px;
+  top: 16px;
+}
+.ServiceDetail .ServiceDetail-form-right .ServiceDetail-time {
+  position: absolute;
+  width: 280px;
+  height: 72px;
+  left: 196px;
+  top: 16px;
+  display: flex;
+}
+.ServiceDetail .ServiceDetail-form-right .ServiceDetail-search {
+  position: absolute;
+  width: 206px;
+  height: 72px;
+  left: 488px;
+  top: 16px;
+}
+.ServiceDetail .ServiceDetail-form-right .ServiceDetail-search .ServiceDetail-search_item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px 10px 12px;
+  gap: 10px;
+  position: absolute;
+  width: 206px;
+  height: 44.15px;
+  background: #FFFFFF;
+  border: 1.5px solid #D4D4D7;
+  border-radius: 8px;
+  top: 25px;
+}
+.ServiceDetail .ServiceDetail-form-right .ServiceDetail-search .btn-search {
+  position: absolute;
+  right: 10px;
+  top: 36px;
+  cursor: pointer;
+}
+.ServiceDetail .ServiceDetail-form-right .ServiceDetail-search .btn-search:hover {
+  color: #8889b6;
+}
+.ServiceDetail .ServiceDetail-form-right .ServiceDetail-table {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  position: absolute;
+  width: 669px;
+  height: 441px;
+  left: 25px;
+  top: 104px;
+  border-radius: 12px;
+}
+.ServiceDetail .ServiceDetail-form-right .ServiceDetail-table .Table {
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  position: absolute;
+  width: 669px;
+  height: 441px;
+  filter: drop-shadow(2px 2px 8px rgba(232, 239, 244, 0.8));
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+}
+.ServiceDetail .ServiceDetail-form-right .ServiceDetail-table .Table .Table-title {
+  color: #FFFFFF;
+  background-color: #FF9138;
+}
+.ServiceDetail .ServiceDetail-form_btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  position: absolute;
+  width: 80px;
+  height: 170px;
+  left: 1360px;
+  top: 172px;
+  filter: drop-shadow(0px 0px 6px #E7E9F2);
+  border-radius: 8px 0px 0px 8px;
+}
+.ServiceDetail .ServiceDetail-form_btn .btn-Back,
+.ServiceDetail .ServiceDetail-form_btn .btn-update {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 4px;
+  gap: 4px;
+  width: 80px;
+  height: 94px;
+  background: #FFF2E7;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
+}
+.ServiceDetail .ServiceDetail-form_btn .btn-Back {
+  top: 260px;
+  border-top: 1px solid #FFE3CD;
+}
+.ServiceDetail .ServiceDetail-form_btn .btn-iconUpdate,
+.ServiceDetail .ServiceDetail-form_btn .btn-icon {
+  position: absolute;
+  left: 34.33%;
+  right: 35.33%;
+  top: 63.33%;
+  bottom: 22.33%;
+  background: #FF7506;
+  text-align: center;
+  line-height: 24px;
+  color: #fff;
+  border-radius: 5px;
+}
+.ServiceDetail .ServiceDetail-form_btn .btn-iconUpdate {
+  top: 9.33%;
+  bottom: 76.33%;
+}
+.ServiceDetail .ServiceDetail-form_btn .btn-text {
+  position: relative;
+  top: 19px;
+  width: 72px;
+  height: 38px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: #FF7506;
+  flex: none;
+  flex-grow: 0;
+  order: 1;
+  flex-grow: 0;
+}
+
+.ServiceDetail-formLef_lb {
+  position: absolute;
+  width: 127px;
+  height: 24px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #282739;
+}
+
+.ServiceDetail-formLef_text {
+  position: absolute;
+  width: 235px;
+  height: 24px;
+  left: 98px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #535261;
+}
+
+.ServiceDetail-formLeft_item {
+  position: absolute;
+  width: 165px;
+  height: 44px;
+  left: 127px;
+  display: flex;
+}
+
+.ServiceDetail-formLef_ResetIp {
+  position: absolute;
+  width: 120px;
+  height: 24px;
+  top: 23px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #282739;
+}
+
+.ServiceDetail-formLeft_timeip,
+.ServiceDetail-formLeft_IP {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  gap: 24px;
+  position: relative;
+  width: 150px;
+  height: 44px;
+  left: -11px;
+  top: 25px;
+  background: #FFFFFF;
+  border: 1.5px solid #FFAC6A;
+  border-radius: 8px;
+  margin: 0 10px;
+}
+
+.ServiceDetail-formLeft_timeip {
+  width: 132px;
+}
+
+.ServiceDetail-next {
+  position: absolute;
+  text-align: center;
+  top: 37px;
+  left: 124px;
+  font-size: 24px;
+}/*# sourceMappingURL=ServiceDetail.css.map */

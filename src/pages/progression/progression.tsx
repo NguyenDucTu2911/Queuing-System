@@ -1,40 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/container/nav/navbar';
-import "./device.scss"
 import Header from '../../components/container/Header/Header';
+import "./Progression.scss"
 import { Input } from '../../components/container/Input/Input';
-import { Devices, fetchDevice } from '../../redux/Slices/deviceSlice';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { RootState } from '../../redux/store';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { fetchProgressions, Progressions } from '../../redux/Slices/ProgressionSlice';
+import { RootState } from '../../redux/store';
 
 
-
-
-interface DeviceProps {
-}
-
-const Device: React.FC<DeviceProps> = (props) => {
-
-    const device = useAppSelector((state: RootState) => state.device.Device)
+const Progression: React.FC = () => {
+    const { Progression } = useAppSelector((state: RootState) => state.Progression)
     const [currentPage, setCurrentPage] = useState(1);
     const [searchKeyword, setSearchKeyword] = useState('');
-    const [filteredData, setFilteredData] = useState<Devices[]>([]);
+    const [filteredData, setFilteredData] = useState<Progressions[]>([]);
     const [searchErrorMessage, setSearchErrorMessage] = useState(false)
-    const navigate = useNavigate()
+
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
 
     useEffect(() => {
-        getCurrentPageData()
-        dispatch(fetchDevice())
+        dispatch(fetchProgressions())
     }, [])
 
-    const handleAddDevice = () => {
-        navigate('/device/add');
-    }
-
-    const devicessss = device.concat(device).concat(device).concat(device).concat(device).concat(device).concat(device).concat(device).concat(device)
-        .concat(device).concat(device).concat(device).concat(device).concat(device).concat(device).concat(device).concat(device)
+    let data = Progression.concat(Progression).concat(Progression).concat(Progression).concat(Progression)
 
     // table
     const itemsPerPage = 5;
@@ -42,7 +32,7 @@ const Device: React.FC<DeviceProps> = (props) => {
     const totalPages =
         filteredData && filteredData.length > 0
             ? Math.ceil(filteredData.length / itemsPerPage)
-            : Math.ceil(devicessss.length / itemsPerPage);
+            : Math.ceil(data.length / itemsPerPage);
 
     // Lấy dữ liệu của trang hiện tại
     const getCurrentPageData = () => {
@@ -53,7 +43,7 @@ const Device: React.FC<DeviceProps> = (props) => {
             return filteredData.slice(startIndex, endIndex);
         }
 
-        return devicessss.slice(startIndex, endIndex);
+        return data.slice(startIndex, endIndex);
     };
     // Xử lý sự kiện khi nhấn nút chuyển trang
     const handlePageChange = (pageNumber: number) => {
@@ -100,12 +90,17 @@ const Device: React.FC<DeviceProps> = (props) => {
         return pageNumbers;
     };
 
+
+    const handleAddProgression = () => {
+        navigate("/Progression/ProgressionAdd")
+    }
+
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const keyword = event.target.value;
         setSearchKeyword(keyword);
         if (keyword.length > 0) {
-            const filteredData = devicessss.filter((item) =>
-                item && item.MaID && item.MaID.toLowerCase().includes(keyword.toLowerCase())
+            const filteredData = data.filter((item) =>
+                item && item.Name && item.Name.toLowerCase().includes(keyword.toLowerCase())
             );
             setFilteredData(filteredData);
             setCurrentPage(1);
@@ -119,8 +114,8 @@ const Device: React.FC<DeviceProps> = (props) => {
 
     const handleSearchBtn = () => {
         if (searchKeyword.length > 0) {
-            const filteredData = devicessss.filter((item) =>
-                item && item.MaID && item.MaID.toLowerCase().includes(searchKeyword.toLowerCase())
+            const filteredData = data.filter((item) =>
+                item && item.Name && item.Name.toLowerCase().includes(searchKeyword.toLowerCase())
             );
             if (filteredData.length === 0) {
                 setSearchErrorMessage(true)
@@ -136,27 +131,39 @@ const Device: React.FC<DeviceProps> = (props) => {
         }
     }
 
-    const changeSelectActive = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const changeSelectDV = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        // const value = event.target.value;
         const { value, name } = event.target;
         let searchErrorMessage = false;
-        let filteredData: Devices[] = [];
-        if (name === "Active") {
-            const validValues = ["Đang Hoạt Động", "Ngưng Hoạt Động", "ALL"];
+        let filteredData: Progressions[] = [];
+        console.log(name)
+
+        if (name === "NameDV") {
+            const validValues = [
+                "Khám sản Phụ khoa",
+                "Khám răng hàm mặt",
+                "Khám tai mũi họng",
+                "Khám Tim Mạch",
+                "ALL"
+            ];
 
             if (validValues.includes(value)) {
-                filteredData = devicessss.filter(item => item.Active === value);
+                filteredData = data.filter(item => item?.NameDV === value);
                 searchErrorMessage = filteredData.length === 0 && value !== "ALL";
             }
-        } else {
-            const validValues = ["Kết Nối", "Mất Kết Nối", "ALL"];
+        } else if (name === "Active") {
+            const validValues = ["Đang chờ", "Đã Sử Dụng", "Bỏ Qua", "ALL"];
 
             if (validValues.includes(value)) {
-                filteredData = devicessss.filter(item => item.Connect === value);
+                filteredData = data.filter(item => item?.Active === value);
                 searchErrorMessage = filteredData.length === 0 && value !== "ALL";
             }
+        } else if (value === "Kiosk" || value === "Hệ Thống" || value === "ALL") {
+            filteredData = data.filter(item => item?.power === value);
+            searchErrorMessage = filteredData.length === 0 && value !== "ALL";
         }
-        console.log(searchErrorMessage)
 
+        console.log(searchErrorMessage)
         setFilteredData(filteredData);
         setSearchErrorMessage(searchErrorMessage);
         setCurrentPage(1);
@@ -164,60 +171,80 @@ const Device: React.FC<DeviceProps> = (props) => {
 
     return (
         <>
-            <div className="devices">
-                <Navbar />
+            <div className="Progression">
                 <Header />
-                <b className="title">
-                    Quản lý dịch vụ
-                </b>
-                <div className="device-add" onClick={handleAddDevice}>
-                    <i className="fa-solid fa-plus icon-add"></i>
-                    <b className='textAdd'>Thêm Thiết Bị</b>
-
-                </div>
-                <div className="devices-action">
-                    <label className='devices-lb' htmlFor="Active">Trạng Thái Hoạt động</label>
-                    {/* <Dropdown options={options} onSelect={handleSelect} /> */}
-                    <select className='devices-ip' name='Active' id='Active' placeholder='chọn toại thiết bị'
-                        onChange={changeSelectActive}>
+                <Navbar />
+                <div className="Progression-name">
+                    <label className='Progression-LB'>Tên Dịch Vụ</label>
+                    <select className='Progression-ip' name='NameDV' id='NameDV' placeholder='chọn toại thiết bị'
+                        onChange={changeSelectDV}
+                    >
                         <option value="ALL">Tất Cả</option>
-                        <option value="Đang Hoạt Động">Đang Hoạt Động </option>
-                        <option value="Ngưng Hoạt Động">Ngưng Hoạt Động</option>
+                        <option value="Khám sản Phụ khoa">Khám sản - Phụ khoa</option>
+                        <option value="Khám răng hàm mặt">Khám răng hàm mặt</option>
+                        <option value="Khám tai mũi họng">Khám tai mũi họng</option>
+                        <option value="Khám Tim Mạch">Khám Tim Mạch</option>
                     </select>
                 </div>
-                <div className="device-Time">
-                    <label htmlFor="Connect">Trạng Thái Kết nối</label>
-                    {/* <Dropdown options={options} onSelect={handleSelect} /> */}
-                    <select className='devices-ip' name='Connect' id='Connect' placeholder='chọn toại thiết bị'
-                        onChange={changeSelectActive}>
+                <div className="Progression-active">
+                    <label className='Progression-LB'>Tình Trạng</label>
+                    <select className='Progression-ip' name='Active' id='Active' placeholder='chọn toại thiết bị'
+                        onChange={changeSelectDV}
+                    >
                         <option value="ALL">Tất Cả</option>
-                        <option value="Kết Nối">Kết Nối </option>
-                        <option value="Mất Kết Nối">Mất Kết Nối</option>
+                        <option value="Đang chờ">Đang chờ</option>
+                        <option value="Đã Sử Dụng">Đã Sử Dụng</option>
+                        <option value="Bỏ Qua">Bỏ Qua</option>
                     </select>
                 </div>
-                <div className="device-search">
-                    <label htmlFor="search">Từ Khóa</label>
-                    <Input name='search' className='search-item' handleChange={handleSearchChange} placeholder='Tìm Kiếm'></Input>
+                <div className="Progression-power">
+                    <label className='Progression-LB'>Nguồn Cấp</label>
+                    <select className='Progression-ip' name='power' id='power' placeholder='chọn toại thiết bị'
+                        onChange={changeSelectDV}
+                    >
+                        <option value="ALL">Tất Cả</option>
+                        <option value="Kiosk">Kiosk</option>
+                        <option value="Hệ Thống">Hệ Thống</option>
+                    </select>
+                </div>
+                <div className="Progression-Time">
+                    <label className='Progression-LB'>Chọn Thời Gian</label>
+                    <Input className='Progression-date-Start Progression-ip' type='date' />
+                    <i className="fa-solid fa-caret-right Progression-next"></i>
+                    <Input className='Progression-date-end Progression-ip' type='date' />
+                </div>
+                <div className="Progression-Search">
+                    <label className='Progression-LB'>Từ Khóa</label>
+                    <Input name='search' className='Progression-item' handleChange={handleSearchChange} placeholder='Nhập Từ Khóa'></Input>
                     <div className="btn-search" onClick={handleSearchBtn}>
                         <i className="fa-solid fa-magnifying-glass search-icon" style={{ color: "#FF7506" }}></i>
                     </div>
                 </div>
+
+                <div className="Progression-add"
+                    onClick={handleAddProgression}
+                >
+                    <i className="fa-solid fa-plus icon-add"></i>
+                    <b className='textAdd'>Cấp Số Mới</b>
+
+                </div>
+
                 <table className="Table">
                     <thead className='Table-title'>
                         <tr >
-                            <th>Mã Thiết Bị</th>
-                            <th >Tên Thiết Bị</th>
-                            <th >Địa chỉ Ip</th>
-                            <th >Trạng Thái Hoạt Động</th>
-                            <th >Trạng Thái Kết Nối</th>
-                            <th >Dịch Vụ Sủ Dụng</th>
-                            <th ></th>
+                            <th>STT</th>
+                            <th >Tên Khách Hàng</th>
+                            <th >Tên Dịch Vụ</th>
+                            <th >Thời Gian Cấp</th>
+                            <th >Hạn Sử Dụng</th>
+                            <th >Trạng Thái</th>
+                            <th >Nguồn Cấp</th>
                             <th ></th>
                         </tr>
                     </thead>
                     {
                         searchErrorMessage ?
-                            <tbody>
+                            <tbody className='table-body'>
                                 <tr>
                                     <td colSpan={18} style={{ textAlign: "center", fontSize: "24px" }}>Không có Dữ Liệu
                                         <i className="fa-regular fa-calendar-xmark" style={{ color: "#d12e2e", paddingLeft: "5px" }}></i>
@@ -225,25 +252,22 @@ const Device: React.FC<DeviceProps> = (props) => {
                                 </tr>
                             </tbody>
                             :
-                            <tbody>
+                            <tbody className='table-body'>
                                 {getCurrentPageData().map((item: any, index: number) => (
                                     <tr key={index}>
-                                        <td>{item.MaID}</td>
+                                        <td>{item.STT}</td>
                                         <td>{item.Name}</td>
-                                        <td>{item.Address}</td>
-                                        {item && item.Active === "Đang Hoạt Động" ? <td><b className='tickGreen'>.</b>{item.Active}</td>
+                                        <td>{item.NameDV}</td>
+                                        <td>{item.Time}</td>
+                                        <td>{item.HSD}</td>
+                                        {item && item.Active === "Đang chờ" ? <td><b className='tickGreen'>.</b>{item.Active}</td>
                                             : <td><b className='tickRed'>.</b> {item.Active}</td>}
-                                        {item && item.Connect === "Kết Nối" ? <td><b className='tickGreen'>.</b>{item.Connect}</td>
-                                            : <td><b className='tickRed'>.</b> {item.Connect}</td>}
-                                        <td>{item.Service}</td>
-                                        <td><a onClick={() => navigate(`/device/${item.id}`)}>Chi Tiết</a></td>
-                                        <td><a onClick={() => navigate(`/device/Edit/${item.id}`)} >Cập Nhật</a></td>
+                                        <td>{item.power}</td>
+                                        <td><a onClick={() => navigate(`/Progression/ProgressionDetail/${item.id}`)}>Chi Tiết</a></td>
                                     </tr>
                                 ))}
                             </tbody>
                     }
-
-
                 </table>
                 <div className="nextPage-device">
                     <button className='btn-device-back' onClick={handlePrevPage} disabled={currentPage === 1}>
@@ -266,11 +290,9 @@ const Device: React.FC<DeviceProps> = (props) => {
                         <i className="fa-solid fa-caret-right"></i>
                     </button>
                 </div>
-
             </div>
-
         </>
     );
 };
 
-export default Device;
+export default Progression;

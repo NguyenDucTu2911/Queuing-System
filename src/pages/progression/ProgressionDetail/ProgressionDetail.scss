@@ -1,0 +1,164 @@
+.ProgressionDetail {
+    position: relative;
+    width: 1440px;
+    height: 810px;
+    background: #F7F7F7;
+    border-radius: 16px;
+    overflow: hidden;
+
+    .ProgressionDetail-Title {
+        position: absolute;
+        width: 180px;
+        height: 36px;
+        left: 232px;
+        top: 104px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #FF7506;
+    }
+
+
+    .ProgressionDetail-form {
+        position: absolute;
+        width: 1112px;
+        height: 604px;
+        left: 224px;
+        top: 164px;
+        background: #FFFFFF;
+        box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
+        border-radius: 16px;
+
+        .ProgressionDetail-form_title {
+            position: absolute;
+            width: 180px;
+            height: 30px;
+            left: 24px;
+            top: 16px;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            color: #FF7506;
+        }
+
+        .ProgressionDetail-form_name {
+            position: absolute;
+            width: 253px;
+            height: 24px;
+            left: 24px;
+            top: 66px;
+        }
+
+        .ProgressionDetail-form_nameDv {
+            position: absolute;
+            width: 238px;
+            height: 24px;
+            left: 24px;
+            top: 106px;
+        }
+
+        .ProgressionDetail-form_number {
+            position: absolute;
+            width: 194px;
+            height: 24px;
+            left: 24px;
+            top: 146px;
+        }
+
+        .ProgressionDetail-form_TimeStart {
+            position: absolute;
+            width: 269px;
+            height: 24px;
+            left: 24px;
+            top: 186px;
+        }
+
+        .ProgressionDetail-form_HSD {
+            position: absolute;
+            width: 269px;
+            height: 24px;
+            left: 24px;
+            top: 226px;
+        }
+
+        .ProgressionDetail-form_power {
+            position: absolute;
+            width: 162px;
+            height: 24px;
+            left: 568px;
+            top: 66px;
+        }
+
+        .ProgressionDetail-form_Active {
+            position: absolute;
+            width: 204px;
+            height: 24px;
+            left: 568px;
+            top: 106px;
+        }
+
+        .ProgressionDetail-form_SDT {
+            position: absolute;
+            width: 219px;
+            height: 24px;
+            left: 568px;
+            top: 146px;
+        }
+
+        .ProgressionDetail-form_Email {
+            position: absolute;
+            width: 301px;
+            height: 24px;
+            left: 568px;
+            top: 186px;
+        }
+
+    }
+
+    .ProgressionDetail-btnBack {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 4px;
+        gap: 4px;
+        position: absolute;
+        width: 80px;
+        height: 75px;
+        left: 1360px;
+        top: 164px;
+        background: #FFF2E7;
+        box-shadow: 0px 0px 6px #E7E9F2;
+        border-radius: 8px 0px 0px 8px;
+        cursor: pointer;
+        color: #FF7506;
+    }
+
+
+}
+
+.ProgressionDetail-form_LB {
+    position: absolute;
+    width: 111px;
+    height: 24px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #282739;
+}
+
+.ProgressionDetail-form_IP {
+    position: absolute;
+    width: 200px;
+    height: 24px;
+    left: 150px;
+    // top: 66px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #535261;
+}

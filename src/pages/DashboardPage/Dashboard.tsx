@@ -20,6 +20,10 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     const handleService = () => {
         navigate("/Service")
     }
+    const handleProgression = () => {
+        navigate("/Progression")
+    }
+
 
     const sum = Number((3779 / 4009 * 100).toFixed(2));
 
@@ -86,7 +90,7 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="menuBar-botton menuBar-item">
+                    <div className="menuBar-botton menuBar-item" onClick={handleProgression}>
                         <div className="menubar-chart">
                             <Progress type="circle" percent={sum} size="small" strokeColor={{ '100%': '#35C75A' }} />
                         </div>

@@ -1,0 +1,35 @@
+.ReportCharts {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  background: #FFFFFF;
+  border-radius: 12px;
+}
+.ReportCharts .ReportCharts-textdate {
+  position: absolute;
+  left: 3.03%;
+  right: 66.64%;
+  top: 4.96%;
+  bottom: 88.84%;
+  font-weight: var(--fontWeight-nunito-bold);
+  font-size: 20px;
+  line-height: 30px;
+  color: #282739;
+}
+.ReportCharts .ReportCharts-dropdown {
+  position: absolute;
+  left: 82.7%;
+  right: 2.03%;
+  top: 4.96%;
+  bottom: 86.36%;
+}
+.ReportCharts .ReportCharts-body {
+  position: absolute;
+  width: 754px;
+  height: 373px;
+  left: 24px;
+  top: 78px;
+  border-radius: 8px;
+}/*# sourceMappingURL=ReportCharts.css.map */

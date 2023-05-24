@@ -1,0 +1,42 @@
+.reports {
+    position: relative;
+    width: 1440px;
+    height: 810px;
+    background: #F7F7F7;
+    border-radius: 16px;
+    overflow: hidden;
+
+    .report-save {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 4px;
+        gap: 4px;
+
+        position: absolute;
+        width: 80px;
+        height: 75px;
+        left: 1360px;
+        top: 192px;
+        background: #FFF2E7;
+        box-shadow: 0px 0px 6px #E7E9F2;
+        border-radius: 8px 0px 0px 8px;
+        color: #FF7506;
+        cursor: pointer;
+    }
+
+    .report-form {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
+        position: absolute;
+        width: 1112px;
+        height: 539px;
+        left: 224px;
+        top: 192px;
+        filter: drop-shadow(2px 2px 8px rgba(232, 239, 244, 0.8));
+        border-radius: 12px;
+    }
+}

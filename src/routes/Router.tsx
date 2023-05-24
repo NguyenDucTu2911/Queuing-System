@@ -5,13 +5,19 @@ import ForgotPassWord from "../pages/LoginPage/ForgotPassWord";
 import ResetPassWord from "../pages/LoginPage/ResetPassWord";
 import Dashboard from "../pages/DashboardPage/Dashboard";
 import Device from "../pages/DevicePage/device";
-import Numberlevel from "../pages/NumberlevelPage/Numberlevel";
 import Report from "../pages/ReportPage/report";
 import Service from "../pages/ServicePage/Service";
 import Info from "../components/container/Layout/info/info";
 import FormAddDevice from "../components/form/formdevice/formAddDevice";
 import DeviceDetail from "../pages/DevicePage/deviceDetail/deviceDetail";
 import DeviceEdit from "../pages/DevicePage/deviceEdit/deviceEdit";
+import ServiceAdd from "../pages/ServicePage/ServiceAdd/ServiceAdd";
+import ServiceDetail from "../pages/ServicePage/ServiceDetail/ServiceDetail";
+import ServiceEdit from "../pages/ServicePage/ServiceEdit/ServiceEdit";
+import Progression from "../pages/progression/progression";
+import ProgressionAdd from "../pages/progression/ProgressionAdd/ProgressionAdd";
+import ProgressionDetail from "../pages/progression/ProgressionDetail/ProgressionDetail";
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -56,8 +62,8 @@ const router = createBrowserRouter([
         // ],
     },
     {
-        path: "/capso",
-        element: <Numberlevel />,
+        path: "/Progression",
+        element: <Progression />,
         errorElement: <ErrorPage />,
     },
     {
@@ -88,6 +94,31 @@ const router = createBrowserRouter([
     {
         path: "/device/Edit/:id",
         element: <DeviceEdit />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/Service/Add",
+        element: <ServiceAdd />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/Service/:id",
+        element: <ServiceDetail />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/Service/edit/:id",
+        element: <ServiceEdit />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/Progression/ProgressionDetail/:id",
+        element: <ProgressionDetail />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/Progression/ProgressionAdd",
+        element: <ProgressionAdd />,
         errorElement: <ErrorPage />,
     }
 

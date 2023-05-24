@@ -1,0 +1,221 @@
+.ServiceAdd {
+  position: relative;
+  width: 1440px;
+  height: 810px;
+  background: #F7F7F7;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.ServiceAdd .ServiceAdd-title {
+  position: absolute;
+  width: 171px;
+  height: 36px;
+  left: 224px;
+  top: 104px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  color: #FF7506;
+}
+.ServiceAdd .ServiceAdd-form {
+  position: absolute;
+  width: 1178px;
+  height: 534px;
+  left: 224px;
+  top: 172px;
+  background: #FFFFFF;
+  box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
+  border-radius: 16px;
+}
+.ServiceAdd .ServiceAdd-form .ServiceAdd-form_title {
+  position: absolute;
+  width: 190px;
+  height: 30px;
+  left: 24px;
+  top: 16px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FF7506;
+}
+.ServiceAdd .ServiceAdd-form .ServiceAdd-form_maid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  position: absolute;
+  width: 553px;
+  height: 76px;
+  left: 24px;
+  top: 58px;
+}
+.ServiceAdd .ServiceAdd-form .ServiceAdd-form_Name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  position: absolute;
+  width: 553px;
+  height: 76px;
+  left: 24px;
+  top: 146px;
+}
+.ServiceAdd .ServiceAdd-form .ServiceAdd-form_des {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  position: absolute;
+  width: 553px;
+  height: 164px;
+  left: 601px;
+  top: 58px;
+}
+.ServiceAdd .ServiceAdd-form .ServiceAdd-form_QT {
+  position: absolute;
+  width: 136px;
+  height: 30px;
+  left: 24px;
+  top: 238px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FF7506;
+}
+.ServiceAdd .ServiceAdd-numbernext {
+  position: absolute;
+  width: 337px;
+  height: 44px;
+  left: 24px;
+  top: 280px;
+  display: flex;
+}
+.ServiceAdd .ServiceAdd-Prefix {
+  position: absolute;
+  width: 224px;
+  height: 44px;
+  left: 24px;
+  display: flex;
+  top: 336px;
+}
+.ServiceAdd .ServiceAdd-Surfix {
+  position: absolute;
+  width: 224px;
+  height: 44px;
+  left: 24px;
+  top: 392px;
+  display: flex;
+}
+.ServiceAdd .ServiceAdd-reset {
+  position: absolute;
+  width: 141px;
+  height: 24px;
+  left: 24px;
+  top: 448px;
+  display: flex;
+}
+.ServiceAdd .btnform-exit {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  gap: 8px;
+  position: absolute;
+  width: 147px;
+  height: 48px;
+  left: 410px;
+  bottom: -78px;
+  background: #FFF2E7;
+  border: 1.5px solid #FF9138;
+  box-shadow: 0px 0px 6px #E7E9F2;
+  border-radius: 8px;
+  color: #FF9138;
+}
+.ServiceAdd .btnform-add {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  gap: 8px;
+  position: absolute;
+  width: 147px;
+  height: 48px;
+  left: 592px;
+  bottom: -78px;
+  border: none;
+  background: #FF9138;
+  color: #F7F7F7;
+  box-shadow: 0px 0px 6px #E7E9F2;
+  border-radius: 8px;
+}
+
+.ServiceAdd-form_lb {
+  width: 100px;
+  height: 24px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #282739;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.ServiceAdd-form_IP {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 270px 10px 12px;
+  gap: 10px;
+  width: 553px;
+  height: 44px;
+  background: #FFFFFF;
+  border: 1.5px solid #D4D4D7;
+  border-radius: 8px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.ServiceAdd-form_IPdes {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px 270px 10px 12px;
+  gap: 10px;
+  width: 553px;
+  height: 132px;
+  background: #FFFFFF;
+  border: 1.5px solid #D4D4D7;
+  border-radius: 8px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.ServiceAdd-numbernext_IP {
+  width: 61px;
+  height: 44px;
+  background: #FFFFFF;
+  border: 1.5px solid #D4D4D7;
+  border-radius: 8px;
+  margin: 0 10px;
+  box-sizing: border-box;
+  padding: 5px 5px;
+  text-align: center;
+  gap: 10px;
+}
+
+.ServiceAdd-numbernext_lb {
+  width: 141px;
+}/*# sourceMappingURL=ServiceAdd.css.map */
