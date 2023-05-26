@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from "../../../assets/image/Logoalta.png"
 import { NavLink, useNavigate } from 'react-router-dom'
 import "./navbar.css"
@@ -9,7 +9,11 @@ interface NavbarProps { }
 const Navbar: React.FC<NavbarProps> = (props) => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+    const [showDropdown, setShowDropdown] = useState(false);
 
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
     const hendleClose = () => {
         dispatch(logout())
         navigate("/")
@@ -62,9 +66,39 @@ const Navbar: React.FC<NavbarProps> = (props) => {
                     </NavLink>
                 </div>
 
-                <div className="setting">
-
+                <div className={`setting item'`}>
+                    <div className="setting-item" onClick={toggleDropdown}>
+                        <i className="fa-solid fa-gear"></i>
+                        <p className="navText">Cài đặt hệ thống</p>
+                        <i className="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                    {showDropdown && (
+                        <div className="dropdown-content">
+                            {/* <div className="dropdown-content_item">
+                                
+                            </div> */}
+                            <NavLink
+                                to="/RoleManagement"
+                                className={({ isActive }) => (isActive ? "active dropdown-a item" : "dropdown-a item")}
+                            >
+                                <p className="navText">Quản lý vai trò</p>
+                            </NavLink>
+                            <NavLink
+                                to="/RoleManagement12121"
+                                className={({ isActive }) => (isActive ? "active dropdown-a item" : "dropdown-a item")}
+                            >
+                                <p className="navText">Quản lý tài khoản</p>
+                            </NavLink>
+                            <NavLink
+                                to="/RoleManagement1231231"
+                                className={({ isActive }) => (isActive ? "active dropdown-a item" : "dropdown-a item")}
+                            >
+                                <p className="navText">Nhật ký người dùng</p>
+                            </NavLink>
+                        </div>
+                    )}
                 </div>
+
 
                 <div className="close" onClick={hendleClose}>
                     <div className="close-btn close-text">

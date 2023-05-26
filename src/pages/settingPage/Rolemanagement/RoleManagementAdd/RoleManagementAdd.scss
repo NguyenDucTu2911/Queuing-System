@@ -1,0 +1,267 @@
+.RoleManagementAdd {
+    position: relative;
+    width: 1440px;
+    height: 810px;
+    background: #F7F7F7;
+    border-radius: 16px;
+    overflow: hidden;
+
+    .RoleManagementAdd-title {
+        position: absolute;
+        width: 193px;
+        height: 36px;
+        left: 224px;
+        top: 104px;
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #FF7506;
+    }
+
+    .RoleManagementAdd-form {
+        position: absolute;
+        width: 1192px;
+        height: 534px;
+        left: 224px;
+        top: 172px;
+        background: #FFFFFF;
+        box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
+        border-radius: 16px;
+
+        .RoleManagementAdd-form_title {
+            position: absolute;
+            width: 154px;
+            height: 30px;
+            left: 24px;
+            top: 16px;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            color: #FF7506;
+        }
+
+        .RoleManagementAdd-form_name {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 8px;
+
+            position: absolute;
+            width: 400px;
+            height: 76px;
+            left: 24px;
+            top: 58px;
+
+
+
+            .RoleManagementAdd-form_IPName {
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 10px 12px;
+                gap: 10px;
+
+                width: 560px;
+                height: 44px;
+                background: #FFFFFF;
+                border: 1.5px solid #D4D4D7;
+                border-radius: 8px;
+                flex: none;
+                order: 1;
+                flex-grow: 0;
+            }
+        }
+
+        .RoleManagementAdd-form_des {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 8px;
+
+            position: absolute;
+            width: 560px;
+            height: 192px;
+            left: 24px;
+            top: 146px;
+
+            .RoleManagementAdd-form_IPDes {
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                padding: 10px 12px;
+                gap: 10px;
+
+                width: 560px;
+                height: 160px;
+                background: #FFFFFF;
+                border: 1.5px solid #D4D4D7;
+                border-radius: 8px;
+                flex: none;
+                order: 1;
+                flex-grow: 0;
+            }
+        }
+
+        .RoleManagementAdd-form_role {
+            position: absolute;
+            width: 560px;
+            height: 420px;
+            left: 608px;
+            top: 90px;
+            background: #FFF2E7;
+            border-radius: 8px;
+
+            .role-b {
+                position: absolute;
+                top: 191px;
+            }
+
+            .role-Title {
+                position: absolute;
+                width: 177px;
+                height: 30px;
+                left: 24px;
+                top: 16px;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 30px;
+                color: #FF7506;
+            }
+
+            .role-itemAll {
+                position: absolute;
+                width: 72px;
+                height: 24px;
+                left: 24px;
+                top: 58px;
+            }
+
+            .role-itemX {
+                position: absolute;
+                width: 119px;
+                height: 24px;
+                left: 24px;
+                top: 94px;
+            }
+
+            .role-itemY {
+                position: absolute;
+                width: 119px;
+                height: 24px;
+                left: 24px;
+                top: 130px;
+            }
+
+            .role-itemZ {
+                position: absolute;
+                width: 119px;
+                height: 24px;
+                left: 24px;
+                top: 166px;
+            }
+
+
+        }
+    }
+
+    .RoleManagementAdd-form_LB {
+        width: 190px;
+        height: 24px;
+        font-family: "Nunito";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        color: #282739;
+        flex: none;
+        flex-grow: 0;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    .errorStart {
+        position: relative;
+        top: 10px;
+        padding: 0 4px;
+        color: red;
+    }
+
+    .RoleManagementAdd-form_role-LB {
+        position: absolute;
+        top: 56px;
+        right: 397px;
+    }
+
+    .CheckBox {
+        box-sizing: border-box;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #FFFFFF;
+        border: 1.5px solid #4277FF;
+        border-radius: 4px;
+    }
+
+    .role-item_text {
+        position: absolute;
+        left: 26px;
+        width: 130px;
+        height: 24px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        color: #535261;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+    }
+
+    .btnform-exit {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 24px;
+        gap: 8px;
+        position: absolute;
+        width: 147px;
+        height: 48px;
+        left: 383px;
+        top: 563px;
+        background: #FFF2E7;
+        border: 1.5px solid #FF9138;
+        box-shadow: 0px 0px 6px #E7E9F2;
+        border-radius: 8px;
+        color: #FF7506;
+    }
+
+    .btnform-add {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 24px;
+        gap: 8px;
+        position: absolute;
+        width: 147px;
+        height: 48px;
+        left: 563px;
+        top: 563px;
+        background: #FF9138;
+        box-shadow: 0px 0px 6px #E7E9F2;
+        border-radius: 8px;
+        color: #fff;
+    }
+}

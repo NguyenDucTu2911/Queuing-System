@@ -260,8 +260,10 @@ const Progression: React.FC = () => {
                                         <td>{item.NameDV}</td>
                                         <td>{item.Time}</td>
                                         <td>{item.HSD}</td>
-                                        {item && item.Active === "Đang chờ" ? <td><b className='tickGreen'>.</b>{item.Active}</td>
-                                            : <td><b className='tickRed'>.</b> {item.Active}</td>}
+                                        {item && item.Active === "Đang chờ" ? <td><b className='tickBlue'>.</b>{item.Active}</td>
+                                            : item.Active === "Đã sử dụng" ? <td><b className='tickGray'>.</b> {item.Active}</td> :
+                                                <td><b className='tickRed'>.</b> {item.Active}</td>
+                                        }
                                         <td>{item.power}</td>
                                         <td><a onClick={() => navigate(`/Progression/ProgressionDetail/${item.id}`)}>Chi Tiết</a></td>
                                     </tr>

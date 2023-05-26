@@ -1,4 +1,4 @@
-.reports {
+.RoleManagement {
     position: relative;
     width: 1440px;
     height: 810px;
@@ -6,32 +6,63 @@
     border-radius: 16px;
     overflow: hidden;
 
-    .report-Time {
+    .RoleManagement-title {
         position: absolute;
-        width: 320px;
-        height: 72px;
+        width: 193px;
+        height: 36px;
         left: 224px;
         top: 104px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #FF7506;
+    }
 
-        .report-LB {
+    .RoleManagement-search {
+        position: absolute;
+        width: 240px;
+        height: 72px;
+        left: 1096px;
+        top: 104px;
+
+        .RoleManagement-LB {
             position: absolute;
-            width: 118px;
-            height: 24px;
+            width: 62px;
+            height: 23.96px;
             font-weight: 600;
             font-size: 16px;
             line-height: 24px;
             color: #282739;
         }
 
-        .report-Time_item {
+        .RoleManagement-IP {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px 10px 12px;
+            gap: 10px;
+
             position: absolute;
-            width: 320px;
+            top: 27px;
+            width: 240px;
             height: 44px;
-            top: 34px;
+            background: #FFFFFF;
+            border: 1.5px solid #D4D4D7;
+            border-radius: 8px;
+        }
+
+        .iconSearch {
+            position: absolute;
+            right: 9px;
+            top: 42px;
+            color: #fe8829;
+            cursor: pointer;
         }
     }
 
-    .report-save {
+    .RoleManagement-add {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -41,14 +72,20 @@
 
         position: absolute;
         width: 80px;
-        height: 75px;
+        height: 94px;
         left: 1360px;
         top: 192px;
         background: #FFF2E7;
         box-shadow: 0px 0px 6px #E7E9F2;
         border-radius: 8px 0px 0px 8px;
+
         color: #FF7506;
+        text-align: center;
         cursor: pointer;
+
+        .iconPlus {
+            font-size: 28px;
+        }
     }
 
     .Table {
@@ -57,7 +94,7 @@
         padding: 0px;
         position: absolute;
         width: 1112px;
-        height: 539px;
+        height: 343px;
         left: 224px;
         top: 192px;
         filter: drop-shadow(2px 2px 8px rgba(232, 239, 244, 0.8));

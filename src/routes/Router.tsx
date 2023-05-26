@@ -17,6 +17,9 @@ import ServiceEdit from "../pages/ServicePage/ServiceEdit/ServiceEdit";
 import Progression from "../pages/progression/progression";
 import ProgressionAdd from "../pages/progression/ProgressionAdd/ProgressionAdd";
 import ProgressionDetail from "../pages/progression/ProgressionDetail/ProgressionDetail";
+import RoleManagement from "../pages/settingPage/Rolemanagement/Rolemanagement";
+import RoleManagementAdd from "../pages/settingPage/Rolemanagement/RoleManagementAdd/RoleManagementAdd";
+import RoleManagementUpdate from "../pages/settingPage/Rolemanagement/RoleManagementUpdate/RoleManagementUpdate";
 
 const router = createBrowserRouter([
     {
@@ -119,6 +122,21 @@ const router = createBrowserRouter([
     {
         path: "/Progression/ProgressionAdd",
         element: <ProgressionAdd />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/RoleManagement",
+        element: <RoleManagement />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/RoleManagementAdd",
+        element: <RoleManagementAdd />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/RoleManagement/RoleManagementUpdate/:id",
+        element: <RoleManagementUpdate />,
         errorElement: <ErrorPage />,
     }
 
