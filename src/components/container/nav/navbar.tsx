@@ -84,13 +84,13 @@ const Navbar: React.FC<NavbarProps> = (props) => {
                                 <p className="navText">Quản lý vai trò</p>
                             </NavLink>
                             <NavLink
-                                to="/RoleManagement12121"
+                                to="/AccountManagement"
                                 className={({ isActive }) => (isActive ? "active dropdown-a item" : "dropdown-a item")}
                             >
                                 <p className="navText">Quản lý tài khoản</p>
                             </NavLink>
                             <NavLink
-                                to="/RoleManagement1231231"
+                                to="/ActivityLog"
                                 className={({ isActive }) => (isActive ? "active dropdown-a item" : "dropdown-a item")}
                             >
                                 <p className="navText">Nhật ký người dùng</p>

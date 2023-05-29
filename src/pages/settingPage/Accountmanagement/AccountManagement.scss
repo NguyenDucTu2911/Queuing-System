@@ -1,0 +1,124 @@
+.AccountManagement {
+    position: relative;
+    width: 1440px;
+    height: 810px;
+    background: #F7F7F7;
+    border-radius: 16px;
+    overflow: hidden;
+
+    .AccountManagement-title {
+        position: absolute;
+        width: 260px;
+        height: 36px;
+        left: 224px;
+        top: 104px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #FF7506;
+    }
+
+    .AccountManagement-Role {}
+
+    .AccountManagement-search {
+        position: absolute;
+        width: 300px;
+        height: 72px;
+        left: 1036px;
+        top: 156px;
+
+        .RoleManagement-LB {
+            position: absolute;
+            width: 62px;
+            height: 23.96px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #282739;
+        }
+
+        .RoleManagement-IP {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px 10px 12px;
+            gap: 10px;
+            position: absolute;
+            width: 300px;
+            height: 44px;
+            top: 27px;
+            background: #FFFFFF;
+            border: 1.5px solid #D4D4D7;
+            border-radius: 8px;
+        }
+
+        .icon-search {
+            position: absolute;
+            right: 8px;
+            top: 31px;
+            font-size: 24px;
+            color: #FF7506;
+            cursor: pointer;
+        }
+    }
+
+    .AccountManagement-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 4px;
+        gap: 4px;
+
+        position: absolute;
+        width: 80px;
+        height: 94px;
+        left: 1360px;
+        top: 244px;
+        background: #FFF2E7;
+        box-shadow: 0px 0px 6px #E7E9F2;
+        border-radius: 8px 0px 0px 8px;
+        color: #FF7506;
+        text-align: center;
+        cursor: pointer;
+
+        .iconPlus {
+            font-size: 28px;
+        }
+    }
+
+    .AccountManagement-form {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
+
+        position: absolute;
+        width: 1112px;
+        height: 490px;
+        left: 224px;
+        top: 244px;
+        filter: drop-shadow(2px 2px 8px rgba(232, 239, 244, 0.8));
+        border-radius: 12px;
+
+        .Table {
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 0px;
+            position: absolute;
+            width: 1112px;
+            height: 490px;
+            filter: drop-shadow(2px 2px 8px rgba(232, 239, 244, 0.8));
+            overflow: hidden;
+            border-radius: 12px;
+            background-color: #FFFFFF;
+
+            .Table-title {
+                color: #FFFFFF;
+                background-color: #FF9138;
+            }
+        }
+    }
+}

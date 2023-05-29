@@ -20,6 +20,10 @@ import ProgressionDetail from "../pages/progression/ProgressionDetail/Progressio
 import RoleManagement from "../pages/settingPage/Rolemanagement/Rolemanagement";
 import RoleManagementAdd from "../pages/settingPage/Rolemanagement/RoleManagementAdd/RoleManagementAdd";
 import RoleManagementUpdate from "../pages/settingPage/Rolemanagement/RoleManagementUpdate/RoleManagementUpdate";
+import AccountManagement from "../pages/settingPage/Accountmanagement/AccountManagement";
+import AccountManagementUpdate from "../pages/settingPage/Accountmanagement/AccountmanagementUpdate/AccountManagementUpdate";
+import AccountManagementAdd from "../pages/settingPage/Accountmanagement/AccountManagementAdd/AccountManagementAdd";
+import ActivityLog from "../pages/settingPage/ActivityLog/ActivityLog";
 
 const router = createBrowserRouter([
     {
@@ -138,6 +142,27 @@ const router = createBrowserRouter([
         path: "/RoleManagement/RoleManagementUpdate/:id",
         element: <RoleManagementUpdate />,
         errorElement: <ErrorPage />,
+    },
+    {
+        path: "/AccountManagement",
+        element: <AccountManagement />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/AccountManagementAdd",
+        element: <AccountManagementAdd />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/AccountManagement/AccountManagementUpdate/:id",
+        element: <AccountManagementUpdate />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/ActivityLog",
+        element: <ActivityLog />,
+        errorElement: <ErrorPage />,
+
     }
 
 ]);
