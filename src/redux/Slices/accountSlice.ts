@@ -29,11 +29,11 @@ export interface User {
 }
 
 export interface ActivityLogs {
-  id: string;
-  IP: string;
-  Time: string;
-  Name: string;
-  Active: string;
+  id?: string;
+  IP?: string;
+  Time?: string;
+  Name?: string;
+  Active?: string;
 }
 
 interface AccountState {

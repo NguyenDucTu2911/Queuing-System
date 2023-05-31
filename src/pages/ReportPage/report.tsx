@@ -10,7 +10,10 @@ import { Input } from '../../components/container/Input/Input';
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 import formatDate from '../../components/container/format/formatDate';
 import moment from 'moment';
-
+interface SearchDate {
+    firstDay: string;
+    endDay: string;
+}
 interface ReportProps { }
 
 const Report: React.FC<ReportProps> = (props) => {
@@ -19,6 +22,7 @@ const Report: React.FC<ReportProps> = (props) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [filteredData, setFilteredData] = useState<Progressions[]>([]);
+    const [searchDate, setSearchDate] = useState<Partial<SearchDate>>({});
     const [searchErrorMessage, setSearchErrorMessage] = useState(false)
     //test
     const [searchStartDate, setSearchStartDate] = useState('');
@@ -99,7 +103,7 @@ const Report: React.FC<ReportProps> = (props) => {
 
         return pageNumbers;
     };
-   
+
     useEffect(() => {
         handleSearch();
     }, [searchStartDate, searchEndDate]);
@@ -118,6 +122,52 @@ const Report: React.FC<ReportProps> = (props) => {
 
         // Do something with the filtered data
         console.log(filteredData);
+    };
+
+    const handleInputChangefirstDay = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const firstDay = e.target.value;
+        setSearchDate((prevSearchDate) => ({
+            ...prevSearchDate,
+            firstDay: firstDay,
+        }));
+    }
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const endDay = e.target.value;
+        setSearchDate((prevSearchDate) => ({
+            ...prevSearchDate,
+            endDay: endDay,
+        }));
+
+        if (!data || !searchDate.firstDay || !endDay) {
+            setFilteredData([]);
+            setSearchErrorMessage(false);
+            setCurrentPage(1);
+            return;
+        }
+
+        const startDate = new Date(searchDate.firstDay);
+        const endDate = new Date(endDay);
+
+        const filteredData = data.filter((item) => {
+            const itemTime = item?.Time;
+            if (!itemTime) {
+                return false;
+            }
+
+            const itemDateParts = itemTime.split(' ')[1].split('-');
+            const itemDate = new Date(
+                parseInt(itemDateParts[2]),
+                parseInt(itemDateParts[1]) - 1,
+                parseInt(itemDateParts[0])
+            );
+
+            return itemDate > startDate && itemDate < endDate;
+        });
+
+        setFilteredData(filteredData);
+        setSearchErrorMessage(filteredData.length === 0);
+        setCurrentPage(1);
     };
 
     return (
@@ -139,10 +189,22 @@ const Report: React.FC<ReportProps> = (props) => {
                 <div className="report-Time">
                     <label htmlFor="Time" className='report-LB'>Chọn Thời Gian</label>
                     <div className="report-Time_item">
-                        <Input type='date' className='report-IP' value={searchStartDate}
-                            handleChange={(e) => setSearchStartDate(e.target.value)} />
-                        <Input type='date' className='report-IP' value={searchEndDate}
-                            handleChange={(e) => setSearchEndDate(e.target.value)} />
+                        <Input
+                            className='Progression-date-Start '
+                            type='date'
+                            name='firstDay'
+                            value={searchDate.firstDay}
+                            // handleChange={handleInputChange}
+                            handleChange={handleInputChangefirstDay}
+                        />
+                        <i className="fa-solid fa-caret-right Progression-next"></i>
+                        <Input
+                            className='Progression-date-end'
+                            type='date'
+                            name='endDay'
+                            value={searchDate.endDay}
+                            handleChange={handleInputChange}
+                        />
                     </div>
                 </div>
 

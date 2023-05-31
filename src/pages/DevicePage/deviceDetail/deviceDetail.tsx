@@ -27,6 +27,7 @@ const DeviceDetail: React.FC = () => {
             <div className="DeviceDetail">
                 <Header />
                 <Navbar />
+                <div className="DeviceDetail-title">Quản lý thiết bị</div>
                 <div className="deviceDetail-form">
                     <div className="deviceDetail-textForm">
                         Thông tin thiết bị

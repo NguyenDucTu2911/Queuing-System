@@ -13,9 +13,46 @@
         left: 224px;
         top: 104px;
 
-        .ActivityLog-time_date {
+        .Progression-date-Start {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+            gap: 8px;
             position: absolute;
-            top: 24px;
+            left: 0%;
+            right: 53.12%;
+            top: 41%;
+            bottom: 0%;
+            background: #FFFFFF;
+            border: 1.5px solid #D4D4D7;
+            border-radius: 8px;
+        }
+
+        .Progression-next {
+            position: absolute;
+            right: 144px;
+            top: 41px;
+        }
+
+        .Progression-date-end {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+            gap: 8px;
+            position: absolute;
+            left: 56.12%;
+            right: 0%;
+            top: 41%;
+            bottom: 0%;
+            background: #FFFFFF;
+            border: 1.5px solid #D4D4D7;
+            border-radius: 8px;
         }
     }
 
@@ -26,12 +63,12 @@
         left: 1096px;
         top: 104px;
 
-        .icon-search {
+        .icon-searchProgression {
             position: absolute;
             right: 8px;
             font-size: 24px;
             color: #ff9138;
-            top: 29px;
+            top: 33px;
         }
 
         .ActivityLog-IP {

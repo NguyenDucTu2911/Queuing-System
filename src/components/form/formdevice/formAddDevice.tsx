@@ -13,11 +13,11 @@ const FormAddDevice: React.FC<FormAddDeviceProps> = (props) => {
 
     const [formData, setFormData] = useState<Partial<AddDevice>>({});
     const [formErrors, setFormErrors] = useState<Partial<AddDevice>>({});
-    console.log("check", formData)
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const error = useAppSelector((state: RootState) => state.device.error)
+    console.log("check", error)
 
     // onchange form
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -160,7 +160,7 @@ const FormAddDevice: React.FC<FormAddDeviceProps> = (props) => {
                         </div>
                         <div className="FormAddDevice-NameLogin">
                             <label className='FormAddDevice-Lb' htmlFor="NameLogin">Tên Đăng Nhập:<span style={{ color: "red", paddingLeft: "1px" }}>*</span></label>
-                            <Input className={formErrors.NameLogin || error !== undefined ? "input-error" : 'FormAddDevice-ip'} name='NameLogin' id='NameLogin' placeholder='Nhập Tên Đăng Nhập'
+                            <Input className={formErrors.NameLogin || error !== null ? "input-error" : 'FormAddDevice-ip'} name='NameLogin' id='NameLogin' placeholder='Nhập Tên Đăng Nhập'
                                 handleChange={handleInputChange} />
                             {formErrors.NameLogin && <span className='textError'>{formErrors.NameLogin}</span>}
                             {error !== undefined && <span className='textError'>{error}</span>}

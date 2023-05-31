@@ -122,7 +122,7 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
                 <div className="LoginName">
                     <label htmlFor="username" className='LB'>Tên đăng nhập *</label>
                     {loginState.errors.username && <span className='error-sp'>{loginState.errors.username}</span>}
-                    <Input type='text' className={loginState.errors.username || error ? "input-error" : 'IP'} placeholder='Tên Đăng Nhập' name='username' id='username'
+                    <Input type='text' className={loginState.errors.username || error ? "input-errorLogin" : 'IP'} placeholder='Tên Đăng Nhập' name='username' id='username'
                         handleChange={handleInputChange}
                     />
                 </div>
@@ -130,7 +130,7 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
                     <label htmlFor="password" className='LB'>Mật khẩu *</label>
                     {loginState.errors.password && <span className='error-sp'>{loginState.errors.password}</span>}
                     <Input type={showpass ? 'text' : 'password'}
-                        className={loginState.errors.password || error ? "input-error" : 'IP'}
+                        className={loginState.errors.password || error ? "input-errorLogin" : 'IP'}
                         placeholder='Mật Khẩu' name='password' id='password'
                         handleChange={handleInputChange}
                     />

@@ -168,7 +168,7 @@ const Device: React.FC<DeviceProps> = (props) => {
                 <Navbar />
                 <Header />
                 <b className="title">
-                    Quản lý dịch vụ
+                    Danh sách thiết bị
                 </b>
                 <div className="device-add" onClick={handleAddDevice}>
                     <i className="fa-solid fa-plus icon-add"></i>

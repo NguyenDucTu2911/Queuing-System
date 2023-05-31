@@ -1,22 +1,25 @@
-import React from 'react';
+import { Link } from "react-router-dom";
+import useBreadcrumbs from "use-react-router-breadcrumbs";
+import "./Breadcrumbs.scss"
+const routes = [
+    { path: "/Dashboard", breadcrumb: "Dashboard" },
+    { path: "/device", breadcrumb: "Thiết Bị" },
+    { path: "/device/:id", breadcrumb: "Chi Tiết Thiết Bị" },
+    { path: "/device/Edit/:id", Breadcrumb: "Cập Nhật Thiết Bị" }
+];
 
-interface BreadcrumbProps {
-    items: string[];
-}
+// map & render your breadcrumb components however you want.
+const Breadcrumbs = () => {
+    const breadcrumbs = useBreadcrumbs(routes);
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
     return (
-        <nav>
-            <ul className="breadcrumb">
-                {items.map((item, index) => (
-                    <li key={index} className="breadcrumb-item">
-                        {index !== 0 && <span className="separator">/</span>}
-                        {item}
-                    </li>
-                ))}
-            </ul>
-        </nav>
+        <div className="breadcrumb">
+            {breadcrumbs.map(({ match, breadcrumb }) => (
+                <Link className="breadcrumb-item" key={match.pathname} to={match.pathname}>
+                    {breadcrumb}
+                </Link>
+            ))}
+        </div>
     );
 };
-
-export default Breadcrumb;
+export default Breadcrumbs;

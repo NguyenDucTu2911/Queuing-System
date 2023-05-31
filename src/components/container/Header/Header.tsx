@@ -8,7 +8,8 @@ import { RootState } from '../../../redux/store';
 import useLocalStorage from '../../customHook/useLocalStorage';
 import { SignInData } from '../../../redux/Slices/authSlice';
 import { useLocation } from 'react-router-dom';
-import { Breadcrumb } from 'antd';
+// import { Breadcrumb } from 'antd';
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -35,13 +36,14 @@ const Header: React.FC<HeaderProps> = (props) => {
         <>
             <div className="Header">
                 <nav aria-label="breadcrumb">
-                    <Breadcrumb
+                    {/* <Breadcrumb
                         items={[
                             {
                                 title: <a className='breadcrumb-item' href={location.pathname}>Dashboard</a>,
                             },
                         ]}
-                    />
+                    /> */}
+                    <Breadcrumb />
                 </nav>
                 <div className="Header-info">
                     <div className="info-avata" style={{ backgroundImage: `url(${avata})` }}>

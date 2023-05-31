@@ -4,17 +4,17 @@ import Navbar from '../../../components/container/nav/navbar';
 import "./ProgressionAdd.scss"
 import { Button } from '../../../components/container/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import formatDate from '../../../components/container/format/formatDate';
+import formatDate, { formatDateMon } from '../../../components/container/format/formatDate';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { RootState } from '../../../redux/store';
 import ProgressionModal from '../../../components/container/modal/ProgressionModal';
 import useSessionStorage from '../../../components/customHook/useSessionStorage';
 import { addProgressions, Progressions } from '../../../redux/Slices/ProgressionSlice';
+import useLocalStorage from '../../../components/customHook/useLocalStorage';
 interface ProgressionAddProps { }
 
 const ProgressionAdd: React.FC<ProgressionAddProps> = (props) => {
-  const [Progression, setProgression] = useSessionStorage<Partial<Progressions>>("newStt", {})
-  const stt = useAppSelector((state: RootState) => state.Progression.Progression)
+  const [Progression, setProgression] = useLocalStorage<Partial<Progressions>>("newStt", {})
   const [isOpen, setisOpen] = useState(false);
 
 
@@ -22,16 +22,17 @@ const ProgressionAdd: React.FC<ProgressionAddProps> = (props) => {
   const navigate = useNavigate()
 
 
-  useEffect(() => {
-    fetchSTT()
-  }, [stt])
+  // useEffect(() => {
+  //   fetchSTT()
+  // }, [stt])
 
-  const fetchSTT = () => {
-    const sttValues = stt.map((item) => item.STT);
-    const largestNumber = Math.max(...sttValues.map(Number));
-    const STTS = (largestNumber + 1)
-    setProgression({ ...Progression, STT: STTS })
-  };
+  // const fetchSTT = () => {
+  //   const sttValues = stt.map((item) => item.STT);
+  //   const largestNumber = Math.max(...sttValues.map(Number));
+  //   const STTS = (largestNumber + 1)
+  //   setProgression({ ...Progression, STT: STTS })
+  // };
+
 
   const changeSelectDV = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.target;
@@ -39,22 +40,53 @@ const ProgressionAdd: React.FC<ProgressionAddProps> = (props) => {
     setProgression({ ...Progression, NameDV: value })
   }
 
-  const DateTime = () => {
-    const Time = new Date();
-    const HSD = new Date(Time.setDate(Time.getDate() + 1));
+  // const DateTime = () => {
+  //   const Time = new Date();
+  //   const HSD = new Date(Time.setDate(Time.getDate() + 1));
+  //   setProgression({ ...Progression, Time: formatDate(Time), HSD: formatDateMon(HSD), Active: "Đang chờ", power: "Kiosk" });
+  // }
 
-    setProgression({ ...Progression, Time: formatDate(Time), HSD: formatDate(HSD), Active: "Đang chờ", power: "Kiosk" });
+  const fetchSTTs = () => {
+    let currentSTT = 2010000; // Biến lưu trữ STT hiện tại
 
-  }
+    if (Progression && Progression?.STT) {
+      const previousDateFormatted = Progression.Time;
+
+      const currentDate = new Date();
+      const currentDateFormatted = formatDate(currentDate); // Hàm formatDate để định dạng ngày theo mong muốn (hh:mm dd-mm-yyyy)
+
+      if (previousDateFormatted === currentDateFormatted) {
+        currentSTT = Progression.STT + 1; // Nếu ngày hiện tại trùng với ngày trước đó, tăng STT lên 1
+      }
+    }
+
+    const currentDate = new Date();
+    const HSD = new Date(currentDate.setDate(currentDate.getDate() + 1));
+    const currentDateFormatted = formatDate(currentDate); // Hàm formatDate để định dạng ngày theo mong muốn (hh:mm dd-mm-yyyy)
+
+    // Cập nhật trạng thái của Progression
+    const updatedProgression = {
+      STT: currentSTT,
+      Time: currentDateFormatted,
+      HSD: formatDateMon(HSD),
+      Active: "Đang chờ",
+      power: "Kiosk"
+    };
+
+    setProgression({ ...Progression, ...updatedProgression });
+  };
+
+
 
   const handleAdd = () => {
-    DateTime()
+    // DateTime()
+    fetchSTTs()
+    console.log(Progression)
     if (Progression && Progression.HSD && Progression.NameDV
       && Progression.STT && Progression.Time) {
       setisOpen(!isOpen);
-      dispatch(addProgressions(Progression as Progressions))
+      // dispatch(addProgressions(Progression as Progressions))
     }
-
   }
 
   const toggle = () => {

@@ -7,18 +7,24 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchProgressions, Progressions } from '../../redux/Slices/ProgressionSlice';
 import { RootState } from '../../redux/store';
-
+import formatDate from '../../components/container/format/formatDate';
+interface SearchDate {
+    firstDay: string;
+    endDay: string;
+}
 
 const Progression: React.FC = () => {
     const { Progression } = useAppSelector((state: RootState) => state.Progression)
     const [currentPage, setCurrentPage] = useState(1);
     const [searchKeyword, setSearchKeyword] = useState('');
+    const [searchDate, setSearchDate] = useState<Partial<SearchDate>>({});
     const [filteredData, setFilteredData] = useState<Progressions[]>([]);
     const [searchErrorMessage, setSearchErrorMessage] = useState(false)
 
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
+    console.log(searchDate)
 
     useEffect(() => {
         dispatch(fetchProgressions())
@@ -169,6 +175,91 @@ const Progression: React.FC = () => {
         setCurrentPage(1);
     };
 
+    // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const { name, value } = e.target;
+    //     setSearchDate((prevSearchDate) => ({
+    //         ...prevSearchDate,
+    //         [name]: value,
+    //     }));
+
+    //     console.log(searchDate)
+    //     if (!data || !searchDate.firstDay || !searchDate.endDay) {
+    //         setFilteredData([]);
+    //         setSearchErrorMessage(false);
+    //         setCurrentPage(1);
+    //         return;
+    //     }
+
+    //     const startDate = new Date(searchDate.firstDay);
+    //     const endDate = new Date(searchDate.endDay);
+
+    //     const filteredData = data.filter((item) => {
+    //         const itemTime = item?.Time;
+    //         if (!itemTime) {
+    //             return false;
+    //         }
+
+    //         const itemDateParts = itemTime.split(' ')[1].split('-');
+    //         const itemDate = new Date(
+    //             parseInt(itemDateParts[2]),
+    //             parseInt(itemDateParts[1]) - 1,
+    //             parseInt(itemDateParts[0])
+    //         );
+
+    //         return itemDate > startDate && itemDate < endDate;
+    //     });
+
+    //     setFilteredData(filteredData);
+    //     setSearchErrorMessage(filteredData.length === 0);
+    //     setCurrentPage(1);
+    // };
+
+    const handleInputChangefirstDay = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const firstDay = e.target.value;
+        setSearchDate((prevSearchDate) => ({
+            ...prevSearchDate,
+            firstDay: firstDay,
+        }));
+    }
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const endDay = e.target.value;
+        setSearchDate((prevSearchDate) => ({
+            ...prevSearchDate,
+            endDay: endDay,
+        }));
+
+        if (!data || !searchDate.firstDay || !endDay) {
+            setFilteredData([]);
+            setSearchErrorMessage(false);
+            setCurrentPage(1);
+            return;
+        }
+
+        const startDate = new Date(searchDate.firstDay);
+        const endDate = new Date(endDay);
+
+        const filteredData = data.filter((item) => {
+            const itemTime = item?.Time;
+            if (!itemTime) {
+                return false;
+            }
+
+            const itemDateParts = itemTime.split(' ')[1].split('-');
+            const itemDate = new Date(
+                parseInt(itemDateParts[2]),
+                parseInt(itemDateParts[1]) - 1,
+                parseInt(itemDateParts[0])
+            );
+
+            return itemDate > startDate && itemDate < endDate;
+        });
+
+        setFilteredData(filteredData);
+        setSearchErrorMessage(filteredData.length === 0);
+        setCurrentPage(1);
+    };
+
     return (
         <>
             <div className="Progression">
@@ -209,14 +300,27 @@ const Progression: React.FC = () => {
                 </div>
                 <div className="Progression-Time">
                     <label className='Progression-LB'>Chọn Thời Gian</label>
-                    <Input className='Progression-date-Start Progression-ip' type='date' />
+                    <Input
+                        className='Progression-date-Start Progression-ip'
+                        type='date'
+                        name='firstDay'
+                        value={searchDate.firstDay}
+                        // handleChange={handleInputChange}
+                        handleChange={handleInputChangefirstDay}
+                    />
                     <i className="fa-solid fa-caret-right Progression-next"></i>
-                    <Input className='Progression-date-end Progression-ip' type='date' />
+                    <Input
+                        className='Progression-date-end Progression-ip'
+                        type='date'
+                        name='endDay'
+                        value={searchDate.endDay}
+                        handleChange={handleInputChange}
+                    />
                 </div>
                 <div className="Progression-Search">
                     <label className='Progression-LB'>Từ Khóa</label>
                     <Input name='search' className='Progression-item' handleChange={handleSearchChange} placeholder='Nhập Từ Khóa'></Input>
-                    <div className="btn-search" onClick={handleSearchBtn}>
+                    <div className="btn-searchProgression" onClick={handleSearchBtn}>
                         <i className="fa-solid fa-magnifying-glass search-icon" style={{ color: "#FF7506" }}></i>
                     </div>
                 </div>

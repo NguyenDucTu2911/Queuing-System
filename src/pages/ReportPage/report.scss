@@ -28,6 +28,42 @@
             width: 320px;
             height: 44px;
             top: 34px;
+
+            .Progression-date-Start {
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 8px 16px;
+                gap: 8px;
+                position: absolute;
+                left: 0%;
+                right: 53.12%;
+                top: 0%;
+                bottom: 0%;
+                background: #FFFFFF;
+                border: 1.5px solid #D4D4D7;
+                border-radius: 8px;
+            }
+
+            .Progression-date-end {
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 8px 16px;
+                gap: 8px;
+                position: absolute;
+                left: 53.12%;
+                right: 0%;
+                top: 0%;
+                bottom: 0%;
+                background: #FFFFFF;
+                border: 1.5px solid #D4D4D7;
+                border-radius: 8px;
+            }
         }
     }
 

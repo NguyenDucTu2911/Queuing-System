@@ -137,7 +137,7 @@ const AccountManagement: React.FC<AccountmanagementProps> = (props) => {
                 <div className="AccountManagement-search">
                     <label htmlFor="search" className='RoleManagement-LB'>Từ Khóa</label>
                     <Input id='search' className='RoleManagement-IP' handleChange={handleSearchChange} />
-                    <div className="icon-search" onClick={handleSearchBtn}>
+                    <div className="icon-searchAccountManagement" onClick={handleSearchBtn}>
                         <i className="fa-solid fa-magnifying-glass "></i>
                     </div>
                 </div>

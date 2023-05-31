@@ -133,7 +133,7 @@ const ServiceAdd: React.FC<ServiceAddProps> = (props) => {
 
                         <div className="ServiceAdd-reset"></div>
                         <Button className='btnform-exit' onclick={() => navigate("/Service")}>Hủy Bỏ</Button>
-                        <Button type='submit' className='btnform-add'>Thêm thiết bị</Button>
+                        <Button type='submit' className='btnform-add'>Thêm dịch vụ</Button>
                     </form>
                 </div >
             </div >

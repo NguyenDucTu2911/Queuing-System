@@ -12,18 +12,18 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 interface ActivityLogProps { }
-
-dayjs.extend(customParseFormat);
-
-const { RangePicker } = DatePicker;
-
-const dateFormat = 'YYYY-MM-DD';
+interface SearchDate {
+    firstDay: string;
+    endDay: string;
+}
 
 const ActivityLog: React.FC<ActivityLogProps> = (props) => {
     const navigate = useNavigate()
     const [searchErrorMessage, setSearchErrorMessage] = useState(false)
     const ActivityLogData = useAppSelector((state: RootState) => state.account.Account)
-    const [filteredData, setFilteredData] = useState<(Account | User | ActivityLogs)[]>([]);
+    const [filteredData, setFilteredData] = useState<ActivityLogs[]>([]);
+    const [searchDate, setSearchDate] = useState<Partial<SearchDate>>({});
+
     const [currentPage, setCurrentPage] = useState(1);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [size, setSize] = useState<SizeType>("large");
@@ -135,6 +135,53 @@ const ActivityLog: React.FC<ActivityLogProps> = (props) => {
             setCurrentPage(1);
         }
     }
+
+    const handleInputChangefirstDay = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const firstDay = e.target.value;
+        setSearchDate((prevSearchDate) => ({
+            ...prevSearchDate,
+            firstDay: firstDay,
+        }));
+    }
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const endDay = e.target.value;
+        setSearchDate((prevSearchDate) => ({
+            ...prevSearchDate,
+            endDay: endDay,
+        }));
+
+        if (!ActivityLogData || !searchDate.firstDay || !endDay) {
+            setFilteredData([]);
+            setSearchErrorMessage(false);
+            setCurrentPage(1);
+            return;
+        }
+
+        const startDate = new Date(searchDate.firstDay);
+        const endDate = new Date(endDay);
+
+        const filteredData = ActivityLogData.filter((item) => {
+            if ('Time' in item) {
+                const itemTime = item.Time;
+                if (itemTime) {
+                    const itemDateParts = itemTime.split(' ')[1].split('-');
+                    const itemDate = new Date(
+                        parseInt(itemDateParts[2]),
+                        parseInt(itemDateParts[1]) - 1,
+                        parseInt(itemDateParts[0])
+                    );
+                    return itemDate > startDate && itemDate < endDate;
+                }
+            }
+            return false;
+        });
+        console.log(filteredData)
+        setFilteredData(filteredData);
+        setSearchErrorMessage(filteredData.length === 0);
+        setCurrentPage(1);
+    };
+
     return (
         <>
             <div className="ActivityLog">
@@ -142,19 +189,29 @@ const ActivityLog: React.FC<ActivityLogProps> = (props) => {
                 <Header />
                 <div className="ActivityLog-time">
                     <label htmlFor="Time" className='ActivityLog-LB'>Chọn thời gian</label>
-                    <div className="ActivityLog-time_date">
-                        <RangePicker
-                            size={size}
-                            defaultValue={[dayjs('2023-09-03', dateFormat), dayjs('2023-11-22', dateFormat)]}
-                            disabled={[false, true]}
-                        />
-                    </div>
+
+                    <Input
+                        className='Progression-date-Start '
+                        type='date'
+                        name='firstDay'
+                        value={searchDate.firstDay}
+                        // handleChange={handleInputChange}
+                        handleChange={handleInputChangefirstDay}
+                    />
+                    <i className="fa-solid fa-caret-right Progression-next"></i>
+                    <Input
+                        className='Progression-date-end'
+                        type='date'
+                        name='endDay'
+                        value={searchDate.endDay}
+                        handleChange={handleInputChange}
+                    />
 
                 </div>
                 <div className="ActivityLog-search">
                     <label htmlFor="search" className='ActivityLog-LB'>Từ Khóa</label>
                     <Input id='search' className='ActivityLog-IP' handleChange={handleSearchChange} />
-                    <div className="icon-search" onClick={handleSearchBtn}>
+                    <div className="icon-searchProgression" onClick={handleSearchBtn}>
                         <i className="fa-solid fa-magnifying-glass "></i>
                     </div>
                 </div>

@@ -6,18 +6,26 @@
     border-radius: 16px;
     overflow: hidden;
 
+
+    .DeviceDetail-title {
+        position: absolute;
+        width: 169px;
+        height: 36px;
+        left: 232px;
+        top: 104px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #FF7506;
+    }
+
     .deviceDetail-form {
         position: absolute;
         width: 1112px;
         height: 604px;
         left: 224px;
         top: 156px;
-
-        /* White */
-
         background: #FFFFFF;
-        /* Shadowbox */
-
         box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
         border-radius: 16px;
 
