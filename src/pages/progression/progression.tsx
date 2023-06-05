@@ -20,6 +20,7 @@ const Progression: React.FC = () => {
     const [searchDate, setSearchDate] = useState<Partial<SearchDate>>({});
     const [filteredData, setFilteredData] = useState<Progressions[]>([]);
     const [searchErrorMessage, setSearchErrorMessage] = useState(false)
+    console.log(searchKeyword)
 
     const dispatch = useAppDispatch()
     const navigate = useNavigate()

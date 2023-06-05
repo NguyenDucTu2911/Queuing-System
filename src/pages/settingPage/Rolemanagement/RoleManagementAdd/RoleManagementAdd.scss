@@ -50,12 +50,10 @@
             gap: 8px;
 
             position: absolute;
-            width: 400px;
+            width: 561px;
             height: 76px;
             left: 24px;
             top: 58px;
-
-
 
             .RoleManagementAdd-form_IPName {
                 box-sizing: border-box;
@@ -73,7 +71,13 @@
                 flex: none;
                 order: 1;
                 flex-grow: 0;
+
+                &.error {
+                    border: 2px solid red;
+                }
             }
+
+
         }
 
         .RoleManagementAdd-form_des {
@@ -84,7 +88,7 @@
             gap: 8px;
 
             position: absolute;
-            width: 560px;
+            width: 561px;
             height: 192px;
             left: 24px;
             top: 146px;
@@ -97,7 +101,7 @@
                 padding: 10px 12px;
                 gap: 10px;
 
-                width: 560px;
+                width: 561px;
                 height: 160px;
                 background: #FFFFFF;
                 border: 1.5px solid #D4D4D7;
@@ -105,7 +109,12 @@
                 flex: none;
                 order: 1;
                 flex-grow: 0;
+
+                &.error {
+                    border: 2px solid red;
+                }
             }
+
         }
 
         .RoleManagementAdd-form_role {
@@ -168,6 +177,16 @@
 
 
         }
+
+        .CheckBox {
+            box-sizing: border-box;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #FFFFFF;
+            border: 1.5px solid #4277FF;
+            border-radius: 4px;
+        }
     }
 
     .RoleManagementAdd-form_LB {
@@ -200,15 +219,8 @@
         right: 397px;
     }
 
-    .CheckBox {
-        box-sizing: border-box;
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background: #FFFFFF;
-        border: 1.5px solid #4277FF;
-        border-radius: 4px;
-    }
+
+
 
     .role-item_text {
         position: absolute;

@@ -9,8 +9,7 @@ import Dropdown from '../dropdown/Dropdown';
 import { fetchReports, Report } from '../../../redux/Slices/reportSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { RootState } from '../../../redux/store';
-import { addReport } from '../../../redux/Slices/reportSlice';
-import Item from 'antd/es/list/Item';
+import useLocalStorage from '../../customHook/useLocalStorage';
 
 ChartJS.register(
     LinearScale, LineElement, CategoryScale, PointElement
@@ -20,12 +19,20 @@ interface ReportchartsProps { }
 
 const ReportCharts: React.FC<ReportchartsProps> = (props) => {
     const reports = useAppSelector((state: RootState) => state.reports.reports)
+    const [report, setReport] = useState<Partial<Report>>({})
     const dispatch = useAppDispatch()
 
-
     useEffect(() => {
-        addReport(reports)
-    }, [])
+        if (reports.length > 0) {
+            setReport(reports[0]);
+        }
+    }, [reports]);
+
+    const handleOptionSelect = (value: string) => {
+        console.log('Selected option:', value);
+        dispatch(fetchReports(value))
+
+    };
 
     const option = [
         { value: 'N', label: 'Ngày' },
@@ -33,16 +40,12 @@ const ReportCharts: React.FC<ReportchartsProps> = (props) => {
         { value: 'TT', label: 'Tháng' },
     ];
 
-    const handleOptionSelect = (value: string) => {
-        console.log('Selected option:', value);
-        dispatch(fetchReports(value))
-    };
     const data = {
-        labels: ['01', '03', '19', '20', '31'],
+        labels: report.date,
         datasets: [
             {
                 // label: 'Sales of the',
-                data: [0, 1000, 2000, 6000, 4000],
+                data: report.data,
                 fill: false,
                 borderColor: 'rgba(75,192,192,1)',
                 tension: 0.1
@@ -57,7 +60,7 @@ const ReportCharts: React.FC<ReportchartsProps> = (props) => {
             }
         }
     };
-
+    console.log(report)
     return (
         <>
             <div className="ReportCharts">

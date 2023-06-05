@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../../components/container/Header/Header';
 import Navbar from '../../../components/container/nav/navbar';
 import { Input } from '../../../components/container/Input/Input';
-import { useAppSelector } from '../../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { RootState } from '../../../redux/store';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useActionData } from 'react-router-dom';
 import { Services } from '../../../redux/Slices/serviceSlice';
 import "./ServiceDetail.scss"
 import useSessionStorage from '../../../components/customHook/useSessionStorage';
+import { Progressions, fetchProgressionsId } from '../../../redux/Slices/ProgressionSlice';
 
 
 interface ServiceDetailProps { }
@@ -16,12 +17,27 @@ const ServiceDetail: React.FC<ServiceDetailProps> = (props) => {
 
     const DetailDataSelector = useAppSelector((state: RootState) => state.service.Service)
     const [DetailData, setDetailData] = useSessionStorage<Partial<Services>>("Service", {})
+    const Progression = useAppSelector((state: RootState) => state.Progression.Progression)
+    const [filteredData, setFilteredData] = useState<Progressions[]>([]);
+    const [searchErrorMessage, setSearchErrorMessage] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchKeyword, setSearchKeyword] = useState('');
+
     const { id } = useParams()
     const navigate = useNavigate();
+    const dispatch = useAppDispatch()
 
+    console.log("check", Progression)
     useEffect(() => {
         fetchData(id)
     }, [id, DetailDataSelector])
+
+    useEffect(() => {
+        const MaDV = DetailData.MaDV
+        if (MaDV) {
+            dispatch(fetchProgressionsId(MaDV))
+        }
+    }, [DetailData.MaDV])
 
     const fetchData = (id: any) => {
         const DetailData = DetailDataSelector.find((item) => item.id === id)
@@ -33,53 +49,120 @@ const ServiceDetail: React.FC<ServiceDetailProps> = (props) => {
 
     const changeSelectActive = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value;
-        // console.log(value)
-        // if (value === "Đang Hoạt Động" || value === "Ngưng Hoạt Động") {
-        //     const filteredData = devicessss.filter(
-        //         (item) => item && item.Active && item.Active === value
-        //     );
-        //     setFilteredData(filteredData);
-        // } else {
-        //     setFilteredData([]);
-        // }
-        // setCurrentPage(1);
+        let searchErrorMessage = false;
+        let filteredData: Progressions[] = [];
+        const validValues = ["Đang chờ", "Đã Sử Dụng", "Bỏ Qua", "ALL"];
+
+        if (validValues.includes(value)) {
+            console.log(value)
+            filteredData = Progression.filter(item => item?.Active === value);
+            searchErrorMessage = filteredData.length === 0 && value !== "ALL";
+        }
+        console.log(searchErrorMessage)
+        setFilteredData(filteredData);
+        setSearchErrorMessage(searchErrorMessage);
+        setCurrentPage(1);
     };
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const keyword = event.target.value;
-        // setSearchKeyword(keyword);
-        // if (keyword.length > 0) {
-        //     const filteredData = data.filter((item) =>
-        //         item && item && item.Maid.toLowerCase().includes(keyword.toLowerCase())
-        //     );
-        //     setFilteredData(filteredData);
-        //     setCurrentPage(1);
-        // } else {
-        //     setSearchKeyword('');
-        //     setSearchErrorMessage(false)
-        //     setFilteredData([])
-        //     setCurrentPage(1);
-        // }
+        setSearchKeyword(keyword);
+        if (keyword.length > 0) {
+            const filteredData = Progression.filter((item) =>
+                item && item.STT && item.STT.toString().toLowerCase().includes(keyword.toLowerCase())
+            );
+            setFilteredData(filteredData);
+            setCurrentPage(1);
+        } else {
+            setSearchKeyword('');
+            setSearchErrorMessage(false)
+            setFilteredData([])
+            setCurrentPage(1);
+        }
     };
 
     const handleSearchBtn = () => {
-        // if (searchKeyword.length > 0) {
-        //     const filteredData = data.filter((item) =>
-        //         item && item.Maid && item.Maid.toLowerCase().includes(searchKeyword.toLowerCase())
-        //     );
-        //     if (filteredData.length === 0) {
-        //         setSearchErrorMessage(true)
-        //     } else {
-        //         setSearchErrorMessage(false)
-        //         setFilteredData(filteredData);
-        //         setCurrentPage(1);
-        //     }
-        // } else {
-        //     setSearchKeyword('');
-        //     setFilteredData([])
-        //     setCurrentPage(1);
-        // }
+        if (searchKeyword.length > 0) {
+            const filteredData = Progression.filter((item) =>
+                item && item.STT && item.STT.toString().includes(searchKeyword.toLowerCase())
+            );
+            if (filteredData.length === 0) {
+                setSearchErrorMessage(true)
+            } else {
+                setSearchErrorMessage(false)
+                setFilteredData(filteredData);
+                setCurrentPage(1);
+            }
+        } else {
+            setSearchKeyword('');
+            setFilteredData([])
+            setCurrentPage(1);
+        }
     }
+
+    // table
+    const itemsPerPage = 5;
+    // Tính số lượng trang dựa trên dữ liệu và số lượng dòng mỗi trang
+    const totalPages =
+        filteredData && filteredData.length > 0
+            ? Math.ceil(filteredData.length / itemsPerPage)
+            : Math.ceil(Progression.length / itemsPerPage);
+
+    // Lấy dữ liệu của trang hiện tại
+    const getCurrentPageData = () => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        if (filteredData && filteredData.length >= endIndex) {
+            return filteredData.slice(startIndex, endIndex);
+        }
+
+        return Progression.slice(startIndex, endIndex);
+    };
+    // Xử lý sự kiện khi nhấn nút chuyển trang
+    const handlePageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // Xử lý sự kiện khi nhấn nút quay lại
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage((prevPage) => prevPage - 1);
+        }
+    };
+
+    // Xử lý sự kiện khi nhấn nút tiếp theo
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage((prevPage) => prevPage + 1);
+        }
+    };
+
+    const generatePageNumbers = () => {
+        const pageNumbers = [];
+
+        if (totalPages <= 5) {
+            for (let i = 1; i <= totalPages; i++) {
+                pageNumbers.push(i);
+            }
+        } else {
+            if (currentPage <= 3) {
+                for (let i = 1; i <= 5; i++) {
+                    pageNumbers.push(i);
+                }
+            } else if (currentPage >= totalPages - 2) {
+                for (let i = totalPages - 4; i <= totalPages; i++) {
+                    pageNumbers.push(i);
+                }
+            } else {
+                for (let i = currentPage - 2; i <= currentPage + 2; i++) {
+                    pageNumbers.push(i);
+                }
+            }
+        }
+
+        return pageNumbers;
+    };
 
     return (
         <>
@@ -138,9 +221,9 @@ const ServiceDetail: React.FC<ServiceDetailProps> = (props) => {
                         <select className='ServiceDetail-formLeft_IP' name='TypeDevice' id='TypeDevice' placeholder='chọn toại thiết bị'
                             onChange={changeSelectActive}>
                             <option value="ALL">Tất Cả</option>
-                            <option value="D">Đã Hoàn Thành</option>
-                            <option value="A">Đã Thực Hiện</option>
-                            <option value="V">Vắng</option>
+                            <option value="Đang chờ">Đang chờ</option>
+                            <option value="Đã Sử Dụng">Đã Sử Dụng</option>
+                            <option value="Bỏ Qua">Bỏ Qua</option>
                         </select>
                     </div>
                     <div className="ServiceDetail-time">
@@ -166,28 +249,26 @@ const ServiceDetail: React.FC<ServiceDetailProps> = (props) => {
                                 </tr>
                             </thead>
                             {
-                                // searchErrorMessage ?
-                                <tbody>
-                                    <tr>
-                                        <td colSpan={18} style={{ textAlign: "center", fontSize: "24px" }}>Không có Dữ Liệu
-                                            <i className="fa-regular fa-calendar-xmark" style={{ color: "#d12e2e", paddingLeft: "5px" }}></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                // :
-                                // <tbody>
-                                //     {getCurrentPageData().map((item: any, index: number) => (
-                                //         <tr key={index}>
-                                //             <td>{item.Maid}</td>
-                                //             <td>{item.Name}</td>
-                                //             <td>{item.description}</td>
-                                //             {item && item.Active === "Đang Hoạt Động" ? <td><b className='tickGreen'>.</b>{item.Active}</td>
-                                //                 : <td><b className='tickRed'>.</b> {item.Active}</td>}
-                                //             <td><a onClick={() => navigate(`/Service/${item.id}`)}>Chi Tiết</a></td>
-                                //             <td><a onClick={() => navigate(`/device/Edit/${item.id}`)} >Cập Nhật</a></td>
-                                //         </tr>
-                                //     ))}
-                                // </tbody>
+                                searchErrorMessage ?
+                                    <tbody>
+                                        <tr>
+                                            <td colSpan={18} style={{ textAlign: "center", fontSize: "24px" }}>Không có Dữ Liệu
+                                                <i className="fa-regular fa-calendar-xmark" style={{ color: "#d12e2e", paddingLeft: "5px" }}></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    :
+                                    <tbody>
+                                        {getCurrentPageData().map((item: any, index: number) => (
+                                            <tr key={index}>
+                                                <td>{item.STT}</td>
+                                                {item && item.Active === "Đang chờ" ? <td><b className='tickBlue'>.</b>{item.Active}</td>
+                                                    : item.Active === "Đã sử dụng" ? <td><b className='tickGray'>.</b> {item.Active}</td> :
+                                                        <td><b className='tickRed'>.</b> {item.Active}</td>
+                                                }
+                                            </tr>
+                                        ))}
+                                    </tbody>
                             }
 
 

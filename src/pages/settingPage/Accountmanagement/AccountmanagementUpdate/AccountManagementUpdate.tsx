@@ -7,21 +7,46 @@ import { Button } from '../../../../components/container/Button/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { RootState } from '../../../../redux/store';
-import { Account, User, updateUser } from '../../../../redux/Slices/accountSlice';
+import { Account, User, fetchPosition, updateUser } from '../../../../redux/Slices/accountSlice';
+import { Select } from 'antd';
+import { SizeType } from 'antd/es/config-provider/SizeContext';
+
+
 interface AccountManagementUpdateProps { }
 
 const AccountManagementUpdate: React.FC<AccountManagementUpdateProps> = (props) => {
     const [showpass, setShowpass] = useState(false)
     const Users = useAppSelector((state: RootState) => state.account.Account)
+    const Position = useAppSelector((state: RootState) => state.account.Account)
+
     const [UserData, setUserData] = useState<Partial<User>>({})
     const [errors, setErrors] = useState<Partial<User>>({})
+    const [size, setSize] = useState<SizeType>("large");
+    const error = useAppSelector((state: RootState) => state.account.error)
+
     const { id } = useParams()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         fetchRole(id)
+        dispatch(fetchPosition());
     }, [id])
+
+    useEffect(() => {
+        checkData()
+    }, [error, navigate]);
+
+    const checkData = () => {
+        if (UserData && UserData.Name && UserData.Action && UserData.Role &&
+            UserData.SDT && UserData.UserName && UserData.email &&
+            UserData.password
+        ) {
+            if (!error) {
+                navigate("/AccountManagement")
+            }
+        }
+    }
 
     const fetchRole = (id: any) => {
         const data = Users.find((item) => item && item.id === id)
@@ -35,6 +60,29 @@ const AccountManagementUpdate: React.FC<AccountManagementUpdateProps> = (props) 
     const togglePassword = () => {
         setShowpass(!showpass)
     }
+
+    const changeSelectActive = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const { value, name } = event.target;
+        setUserData({
+            ...UserData,
+            [name]: value
+        })
+
+        if (name === "Action") {
+            setErrors(prevErrors => ({
+                ...prevErrors,
+                Action: value.trim() ? "" : 'Vui lòng chọn trạng thái',
+            }));
+        }
+    };
+
+    const handleChange = (value: { value: string; label: React.ReactNode }) => {
+        setUserData({
+            ...UserData,
+            Role: value.value
+        })
+        setErrors({ ...errors, Role: "" });
+    };
 
     const validateEmail = (email: string): boolean => {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -59,7 +107,13 @@ const AccountManagementUpdate: React.FC<AccountManagementUpdateProps> = (props) 
             setErrors((prevState) => ({
                 ...prevState,
                 SDT: value.trim() ? '' : 'Vui lòng nhập Số Điện Thoại',
-            }));
+            }))
+            if (!/^\d{10}$/.test(value)) {
+                setErrors((prevState) => ({
+                    ...prevState,
+                    SDT: 'Số Điện Thoại không hợp lệ',
+                }));
+            };
         } else if (name === 'email') {
             setErrors((prevState) => ({
                 ...prevState,
@@ -84,7 +138,7 @@ const AccountManagementUpdate: React.FC<AccountManagementUpdateProps> = (props) 
     }
 
     const isFormValid = (): boolean => {
-        const { Name, SDT, email, UserName, password, reviewPassword } = UserData;
+        const { Name, SDT, email, UserName, password, reviewPassword, Role } = UserData;
         let isValid = true;
 
         // Kiểm tra tính hợp lệ của các trường
@@ -143,6 +197,14 @@ const AccountManagementUpdate: React.FC<AccountManagementUpdateProps> = (props) 
             isValid = false;
         }
 
+        if (!Role) {
+            setErrors((prevState) => ({
+                ...prevState,
+                Role: "Vui lòng chọn vai trò.",
+            }));
+            isValid = false;
+        }
+
         // if (reviewPassword !== undefined && !reviewPassword.trim()) {
         //     setErrors((prevState) => ({
         //         ...prevState,
@@ -160,9 +222,9 @@ const AccountManagementUpdate: React.FC<AccountManagementUpdateProps> = (props) 
         if (isFormValid()) {
             console.log(Users)
             dispatch(updateUser(UserData as User))
-            navigate("/AccountManagement")
+            // navigate("/AccountManagement")
         } else {
-            throw new Error("Cập Nhật Không Thành công")
+            console.log("Cập Nhật Không Thành công")
         }
     };
     return (
@@ -186,6 +248,7 @@ const AccountManagementUpdate: React.FC<AccountManagementUpdateProps> = (props) 
                             />
                             {errors.Name && <p className='errorMessage'>{errors.Name}</p>}
                         </div>
+
                         <div className="AccountManagementUpdate-form_SDT">
                             <label className='AccountManagementUpdate-form_LB'>Số Điện Thoại
                                 <p className='errorStart'>*</p>
@@ -197,17 +260,38 @@ const AccountManagementUpdate: React.FC<AccountManagementUpdateProps> = (props) 
                             {errors.SDT && <p className='errorMessage'>{errors.SDT}</p>}
 
                         </div>
+
                         <div className="AccountManagementUpdate-form_email">
                             <label className='AccountManagementUpdate-form_LB'>Email
                                 <p className='errorStart'>*</p>
                             </label>
-                            <Input className={errors.email ? "errorIp" : 'AccountManagementUpdate-form_Ip'} placeholder='Nhập Email' name='email'
+                            <Input className={errors.email || error !== null ? "errorIp" : 'AccountManagementUpdate-form_Ip'} placeholder='Nhập Email' name='email'
                                 value={UserData.email}
                                 handleChange={handleInputChange}
                             />
                             {errors.email && <p className='errorMessage'>{errors.email}</p>}
+                            {error !== undefined && <span className='errorMessage'>{error}</span>}
+
                         </div>
-                        <div className="AccountManagementUpdate-form_Role"></div>
+
+                        <div className="AccountManagementUpdate-form_Role">
+                            <label className='AccountManagementUpdate-form_LB'>Vai trò
+                                <p className='errorStart'>*</p>
+                            </label>
+                            {/* <Input data={position}/> */}
+                            <Select
+                                className={errors.Role ? "errorIp" : ''}
+                                labelInValue
+                                value={UserData.Role ? { value: UserData.Role, label: UserData.Role } : undefined}
+                                // defaultValue={{ value: Object.values(Position)[0].Name, label: Object.values(Position)[0].Name }}
+                                style={{ width: 560 }}
+                                size={size}
+                                onChange={handleChange}
+                                options={Position}
+                            />
+                            {errors.Role && <p className='errorMessage'>{errors.Role}</p>}
+                        </div>
+
                         <div className="AccountManagementUpdate-form_userName">
                             <label className='AccountManagementUpdate-form_LB'>Tên Đăng Nhập
                                 <p className='errorStart'>*</p>
@@ -252,7 +336,20 @@ const AccountManagementUpdate: React.FC<AccountManagementUpdateProps> = (props) 
                                 }
                             </div>
                         </div>
-                        <div className="AccountManagementUpdate-form_Action"></div>
+                        <div className="AccountManagementUpdate-form_Action">
+                            <label className='AccountManagementUpdate-form_LB' htmlFor="Action">Tình trạng
+                                <p className='errorStart'>*</p>
+                            </label>
+
+                            <select className={errors.Action ? "errorIp" : 'AccountManagementUpdate-form_Ip'} name='Action' id='Action'
+                                value={UserData.Action}
+                                onChange={changeSelectActive}>
+                                <option value="">Tất Cả</option>
+                                <option value="Hoạt Động">Hoạt Động</option>
+                                <option value="Ngưng Hoạt Động">Ngưng Hoạt Động</option>
+                            </select>
+                            {errors.Action && <p className='errorMessage'>{errors.Action}</p>}
+                        </div>
                         <Button className='btnform-exit' onclick={() => navigate("/AccountManagement")}>Hủy Bỏ</Button>
                         <Button type='submit' className='btnform-add'>Cập Nhật</Button>
                     </div>

@@ -44,7 +44,7 @@ const DeviceEdit: React.FC<DeviceEditProps> = (props) => {
                 errors.Address = value.length < 5 ? "Vui lòng nhập lại ip" : undefined;
                 break;
             case "service":
-                errors.Service = value.length < 1 ? "Nhập dịch vụ" : undefined;
+                errors.Service = value.length < 1 ? ["Nhập dịch vụ"] : undefined;
                 break;
             case "TypeDevice":
                 errors.TypeDevice = !value ? "Chọn thiết bị" : undefined;
@@ -94,7 +94,7 @@ const DeviceEdit: React.FC<DeviceEditProps> = (props) => {
             errors.Address = "Bạn chưa nhập Địa Chỉ IP";
         }
         if (!device.Service) {
-            errors.Service = "Bạn chưa nhập dịch vụ";
+            errors.Service = ["Bạn chưa nhập dịch vụ"];
         }
         if (!device.TypeDevice) {
             errors.TypeDevice = "Bạn chưa chọn gói";
@@ -123,6 +123,15 @@ const DeviceEdit: React.FC<DeviceEditProps> = (props) => {
 
     }
 
+    const handleServiceDelete = (index: number) => {
+        const updatedService = device.Service ? [...device.Service] : [];
+        updatedService.splice(index, 1);
+        setdevice({
+            ...device,
+            Service: updatedService
+        });
+    };
+
     return (
         <>
             <div className="DeviceEdit">
@@ -150,8 +159,31 @@ const DeviceEdit: React.FC<DeviceEditProps> = (props) => {
                         </div>
                         <div className="DeviceEdit-service">
                             <label className='DeviceEdit-Lb' htmlFor="Service">Dịch vụ sử dụng:<span style={{ color: "red", paddingLeft: "1px" }}>*</span></label>
-                            <Input className={formErrors.Service ? "input-error-dv" : 'DeviceEdit-ip_DV'} name='Service' id='Service' placeholder='Nhập Dịch Vụ Sử dụng'
-                                value={device.Service} handleChange={handleInputChange} />
+                            <div className={formErrors.Service ? "input-error-dv" : 'DeviceEdit-ip_DV'} id='Service'
+                            // placeholder='Nhập Dịch Vụ Sử dụng'
+                            // value={device.Service}
+                            // value={device.Service ? device.Service.join(", ") : ""}
+                            // handleChange={handleInputChange}
+                            >
+                                {device.Service &&
+                                    device.Service.map((service, index) => (
+                                        <div key={index} className='DeviceEdit-service_item'>
+                                            <div>{service}</div>
+                                            <i className="fa-solid fa-xmark service_item_icon" onClick={() => handleServiceDelete(index)}></i>
+                                        </div>
+                                    ))}
+                            </div>
+                            {/* <div className="Service-item">
+                                {device.Service &&
+                                    device.Service.map((service, index) => (
+                                        <div key={index} className='DeviceEdit-service_item'>
+                                            <div>{service}</div>
+                                            <i className="fa-solid fa-xmark service_item_icon" onClick={() => handleServiceDelete(index)}></i>
+                                        </div>
+                                    ))}
+                            </div> */}
+
+
                         </div>
                         <div className="DeviceEdit-type">
                             <label className='DeviceEdit-Lb' htmlFor="TypeDevice">Loại Thiết Bị:<span style={{ color: "red", paddingLeft: "1px" }}>*</span></label>

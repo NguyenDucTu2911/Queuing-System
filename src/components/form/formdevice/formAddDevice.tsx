@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./FormAddDevice.scss"
 import { Input } from '../../container/Input/Input';
 import Header from '../../container/Header/Header';
@@ -19,6 +19,19 @@ const FormAddDevice: React.FC<FormAddDeviceProps> = (props) => {
     const error = useAppSelector((state: RootState) => state.device.error)
     console.log("check", error)
 
+    useEffect(() => {
+        checkData()
+    }, [error, navigate]);
+
+    const checkData = () => {
+        if (formData.MaID && formData.Name && formData.Address && formData.Service
+            && formData.TypeDevice && formData.NameLogin && formData.pass) {
+            if (!error) {
+                navigate("/device")
+            }
+        }
+    }
+
     // onchange form
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -35,7 +48,7 @@ const FormAddDevice: React.FC<FormAddDeviceProps> = (props) => {
                 errors.Address = value.length < 5 ? "Vui lòng nhập lại ip" : undefined;
                 break;
             case "service":
-                errors.Service = value.length < 1 ? "Nhập dịch vụ" : undefined;
+                errors.Service = value.length < 1 ? ["Nhập dịch vụ"] : undefined;
                 break;
             case "TypeDevice":
                 errors.TypeDevice = !value ? "Chọn thiết bị" : undefined;
@@ -62,7 +75,12 @@ const FormAddDevice: React.FC<FormAddDeviceProps> = (props) => {
 
     const changeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value;
-        setFormData({ ...formData, TypeDevice: value })
+        setFormData({
+            ...formData,
+            TypeDevice: value,
+            Active: "Đang Hoạt Động",
+            Connect: "Kết Nối"
+        })
     }
 
     // submit form 
@@ -80,7 +98,7 @@ const FormAddDevice: React.FC<FormAddDeviceProps> = (props) => {
             errors.Address = "Bạn chưa nhập Địa Chỉ IP";
         }
         if (!formData.Service) {
-            errors.Service = "Bạn chưa nhập dịch vụ";
+            errors.Service = ["Bạn chưa nhập dịch vụ"];
         }
         if (!formData.TypeDevice) {
             errors.TypeDevice = "Bạn chưa chọn gói";
@@ -99,7 +117,7 @@ const FormAddDevice: React.FC<FormAddDeviceProps> = (props) => {
             try {
                 console.log(formData)
                 dispatch(AddDevices(formData as AddDevice))
-                navigate("/device")
+                // navigate("/device")
             } catch (error) {
                 console.log(error)
             }
@@ -109,6 +127,13 @@ const FormAddDevice: React.FC<FormAddDeviceProps> = (props) => {
         }
 
     }
+
+    const handleInputChangeArray = (service: string[]) => {
+        setFormData((prevDevice) => ({
+            ...prevDevice,
+            Service: service,
+        }));
+    };
 
     return (
         <>
@@ -143,7 +168,11 @@ const FormAddDevice: React.FC<FormAddDeviceProps> = (props) => {
                         <div className="FormAddDevice-service">
                             <label className='FormAddDevice-Lb' htmlFor="Service">Dịch vụ sử dụng:<span style={{ color: "red", paddingLeft: "1px" }}>*</span></label>
                             <Input className={formErrors.Service ? "input-error-dv" : 'FormAddDevice-ip_DV'} name='Service' id='Service' placeholder='Nhập Dịch Vụ Sử dụng'
-                                handleChange={handleInputChange} />
+                                handleChange={(e) => {
+                                    const inputArray: string[] = e.target.value.split(",").map((value) => value.trim());
+                                    handleInputChangeArray(inputArray);
+                                }} />
+
                             {formErrors.Service && <span className='textError'>{formErrors.Service}</span>}
 
                         </div>

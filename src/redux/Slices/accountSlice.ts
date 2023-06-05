@@ -19,7 +19,7 @@ export interface Account {
 export interface User {
   id?: string;
   Action?: string;
-  Name?: string;
+  Name: string;
   Role?: string;
   SDT?: string;
   UserName?: string;
@@ -32,12 +32,19 @@ export interface ActivityLogs {
   id?: string;
   IP?: string;
   Time?: string;
-  Name?: string;
+  Name: string;
   Active?: string;
 }
 
+export interface position {
+  id: string;
+  Name: string;
+  label: string;
+  value: string;
+}
+
 interface AccountState {
-  Account: (Account | User | ActivityLogs)[];
+  Account: (Account | User | ActivityLogs | position)[];
   error: null | string;
   loading: boolean;
 }
@@ -196,6 +203,31 @@ export const fetchActivityLog = createAsyncThunk(
   }
 );
 
+export const fetchPosition = createAsyncThunk(
+  "account/fetchPosition",
+  async () => {
+    try {
+      const data = await db.collection("Role").get();
+
+      if (!data.empty) {
+        const dataPositions: position[] = data.docs.map((doc) => ({
+          id: doc.data().id,
+          Name: doc.data().Name,
+          label: doc.data().Name,
+          value: doc.data().Name,
+        }));
+
+        console.log(dataPositions);
+        return dataPositions;
+      } else {
+        throw new Error("Không có data");
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
+);
+
 const AccountSlice = createSlice({
   name: "account",
   initialState,
@@ -285,6 +317,18 @@ const AccountSlice = createSlice({
         state.loading = false;
       })
       .addCase(fetchActivityLog.rejected, (state, action) => {
+        state.error = action.error.message ?? "error data";
+        state.loading = false;
+      })
+      .addCase(fetchPosition.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchPosition.fulfilled, (state, action) => {
+        state.Account = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchPosition.rejected, (state, action) => {
         state.error = action.error.message ?? "error data";
         state.loading = false;
       });

@@ -37,19 +37,18 @@ const ServiceEdit: React.FC<ServiceEditProps> = (props) => {
         return DetailData;
     }
 
-
-
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-
         setEditData({
             ...EditData,
-            [name]: value
-        })
-    }
+            [name]: value,
+        });
+    };
 
-    const handleCheckboxChange = (event: any) => {
-        setAutoIncrement(event.target.checked);
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const checkboxName = event.target.name;
+        const isChecked = event.target.checked;
+        setEditData({ ...EditData, [checkboxName]: isChecked, });
     };
 
     const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -98,60 +97,89 @@ const ServiceEdit: React.FC<ServiceEditProps> = (props) => {
                                 <span style={{ color: "red", paddingLeft: "1px" }}>*</span>
                             </label>
                             <Input className={formErrors.Maid ? "inputError" : 'ServiceAdd-form_IP'} placeholder='Nhập Mã Dịch Vụ' name='Maid' id='MaID'
-                                value={EditData.Maid} handleChange={handleInputChange} />
+                                value={EditData.Name}
+                                handleChange={handleInputChange} />
                             {formErrors.Maid && <span className='messageError'>{formErrors.Maid}</span>}
-
                         </div>
                         <div className="ServiceAdd-form_Name">
                             <label htmlFor="name" className='ServiceAdd-form_lb'>Tên Dịch Vụ:
                                 <span style={{ color: "red", paddingLeft: "1px" }}>*</span>
                             </label>
-                            <Input className={formErrors.Name ? "inputError" : 'ServiceAdd-form_IP'} placeholder='Tên Dịch Vụ' name='Name' id='name'
-                                value={EditData.Name} handleChange={handleInputChange} />
+                            <Input className={formErrors.Maid ? "inputError" : 'ServiceAdd-form_IP'} placeholder='Tên Dịch Vụ' name='Name' id='name'
+                                value={EditData.Maid}
+                                handleChange={handleInputChange} />
                             {formErrors.Name && <span className='messageError'>{formErrors.Name}</span>}
 
                         </div>
                         <div className="ServiceAdd-form_des">
                             <label htmlFor="Des" className='ServiceAdd-form_lb'>Mô tả:</label>
                             <Input className='ServiceAdd-form_IPdes' placeholder='Mô Tả Dịch Vụ' name='description' id='Des'
-                                value={EditData.description} handleChange={handleInputChange} />
+                                value={EditData.description}
+                                handleChange={handleInputChange} />
                         </div>
                         <div className="ServiceAdd-form_QT">Quy tắc cấp số</div>
                         <div className="ServiceAdd-numbernext">
                             <div className="ServiceAdd-numbernext_lb">
-                                <Checkbox checked={autoIncrement} onChange={handleCheckboxChange}>
-                                    Tăng tự động từ:
-                                </Checkbox>
+                                <Input
+                                    type='checkbox'
+                                    name='autoIncrement'
+                                    checked={EditData.autoIncrement}
+                                    handleChange={handleCheckboxChange}
+                                />
+                                Tăng tự động từ:
+
                             </div>
 
                             <div className="inputss">
-                                <Input className='ServiceAdd-numbernext_IP' name='increaseStart' placeholder='0001' value={EditData.increaseStart} handleChange={handleInputChange} />
+
+                                <Input className='ServiceAdd-numbernext_IP' placeholder='0001' name='increaseStart'
+                                    value={EditData.increaseStart}
+                                    handleChange={handleInputChange} />
                                 <b>Đến</b>
-                                <Input className='ServiceAdd-numbernext_IP' name='increaseEnd' placeholder='1000' value={EditData.increaseEnd} handleChange={handleInputChange} />
+                                <Input className='ServiceAdd-numbernext_IP' placeholder='1000' name='increaseEnd'
+                                    value={EditData.increaseEnd}
+                                    handleChange={handleInputChange} />
                             </div>
 
                         </div>
                         <div className="ServiceAdd-Prefix">
                             <div className="ServiceAdd-numbernext_lb">
-                                <Checkbox checked={autoIncrement} onChange={handleCheckboxChange}>
-                                    Prefix:
-                                </Checkbox>
+                                <Input
+                                    type='checkbox'
+                                    name='PrefixCB'
+                                    checked={!!EditData.PrefixCB}
+                                    handleChange={handleCheckboxChange}
+                                />
+                                Prefix:
                             </div>
 
-                            <Input className='ServiceAdd-numbernext_IP' placeholder='0001' name='Prefix' value={EditData.Prefix} handleChange={handleInputChange} />
+                            <Input className='ServiceAdd-numbernext_IP' placeholder='0001' name='Prefix'
+                                value={EditData.Prefix}
+                                handleChange={handleInputChange}
+                            />
                         </div>
                         <div className="ServiceAdd-Surfix">
                             <div className="ServiceAdd-numbernext_lb">
-                                <Checkbox checked={autoIncrement} onChange={handleCheckboxChange}>
-                                    Surfix:
-                                </Checkbox>
+                                <Input
+                                    type='checkbox'
+                                    name='SurfixCB'
+                                    checked={!!EditData.SurfixCB}
+                                    handleChange={handleCheckboxChange}
+                                />
+                                Surfix:
                             </div>
-                            <Input className='ServiceAdd-numbernext_IP' placeholder='0001' value={EditData.Surfix} name='Surfix' />
-
+                            <Input
+                                className='ServiceAdd-numbernext_IP'
+                                placeholder='0001'
+                                name='Surfix'
+                                value={EditData.Surfix}
+                                handleChange={handleInputChange}
+                            />
                         </div>
 
+
                         <div className="ServiceAdd-reset"></div>
-                        <Button className='btnform-exit' onclick={() => navigate(`/Service/${id}`)}>Hủy Bỏ</Button>
+                        <Button className='btnform-exit' onclick={() => navigate("/Service")}>Hủy Bỏ</Button>
                         <Button type='submit' className='btnform-add'>Cập Nhật</Button>
                     </form>
                 </div >

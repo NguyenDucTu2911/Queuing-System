@@ -8,7 +8,7 @@ export interface Devices {
   Active?: string;
   MaID?: string;
   Connect?: string;
-  Service?: string;
+  Service?: string[];
   TypeDevice?: string;
   NameLogin?: string;
   pass?: string;
@@ -19,7 +19,7 @@ export interface AddDevice {
   MaID: string;
   Name: string;
   Address: string;
-  Service: string;
+  Service: string[];
   TypeDevice: string;
   NameLogin: string;
   pass: string;

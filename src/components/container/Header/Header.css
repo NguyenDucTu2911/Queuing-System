@@ -1,75 +1,181 @@
 .Header {
     position: absolute;
-    width: 1240px;
-    height: 88px;
-    left: 200px;
-    top: 0px;
-    z-index: 1;
+    width   : 1240px;
+    height  : 88px;
+    left    : 200px;
+    top     : 0px;
+    z-index : 1;
 }
 
 .Header-info {
     position: absolute;
-    width: 172px;
-    height: 42px;
-    left: 1004px;
-    top: 24px;
-    cursor: pointer;
+    width   : 172px;
+    height  : 42px;
+    left    : 1004px;
+    top     : 24px;
+    cursor  : pointer;
 }
 
 .info-avata {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    right: 132px;
-    top: 0px;
+    position     : absolute;
+    width        : 40px;
+    height       : 40px;
+    right        : 132px;
+    top          : 0px;
     border-radius: 48px;
 }
 
 .info-name {
     position: absolute;
-    width: 150px;
-    height: 42px;
-    left: 48px;
-    top: 0px;
+    width   : 150px;
+    height  : 42px;
+    left    : 48px;
+    top     : 0px;
 }
 
 .info_TopText {
-    position: absolute;
-    width: 72px;
-    height: 18px;
-    right: 77px;
-    top: 0px;
+    position   : absolute;
+    width      : 72px;
+    height     : 18px;
+    right      : 77px;
+    top        : 0px;
     font-weight: var(--fontWeight-nunito-regular);
-    font-size: 12px;
+    font-size  : 12px;
     line-height: 18px;
-    color: #7E7D88;
+    color      : #7E7D88;
 }
 
 .info_NameText {
-    position: absolute;
-    width: 150px;
-    height: 24px;
-    right: 0px;
-    top: 18px;
+    position   : absolute;
+    width      : 150px;
+    height     : 24px;
+    right      : 0px;
+    top        : 18px;
     font-weight: var(--fontWeight-nunito-bold);
-    font-size: 16px;
+    font-size  : 16px;
     line-height: 24px;
-    color: #535261;
+    color      : #535261;
 }
 
-.breadcrumb-item {
+.Header-announcement {
+    position     : absolute;
+    width        : 32px;
+    height       : 32px;
+    right        : 260px;
+    top          : 28px;
+    background   : #FFF2E7;
+    border-radius: 32px;
+    color        : #FFAC6A;
+    cursor       : pointer;
+}
+
+.active {
+    background-color: #FF7506;
+    color           : #FFF2E7;
+}
+
+/* .Header-announcement:active {
+    background-color: #FF7506;
+    color           : #FFF2E7;
+} */
+
+.icon-bell {
     position: absolute;
-    top: 22px;
-    left: 24px;
-    width: 102px;
-    height: 30px;
-    font-weight: var(--fontWeight-nunito-bold);
-    font-size: 25px;
-    text-decoration: none;
+    width   : 20px;
+    height  : 20px;
+    left    : 10px;
+    top     : 8px;
+}
+
+.popUpActive,
+.popUp {
+    position     : relative;
+    width        : 360px;
+    height       : 526px;
+    right        : 88px;
+    top          : 66px;
+    overflow-y   : scroll;
+    background   : #FFFFFF;
+    box-shadow   : 2px 2px 15px rgba(70, 64, 67, 0.1);
+    border-radius: 10px;
+    display      : none;
+}
+
+.popUpActive {
+    display: block;
+}
+
+.Header-popUp {
+    z-index      : 1000;
+    position     : fixed;
+    width        : 360px;
+    height       : 48px;
+    background   : #FF9138;
+    border-radius: 10px 10px 0 0;
+}
+
+.body-popUp {
+    display       : flex;
+    flex-direction: column;
+    align-items   : flex-start;
+    padding       : 0px;
+
+    position: relative;
+    width   : 360px;
+    height  : auto;
+    left    : 0px;
+    top     : 48px;
+}
+
+.body-popUp_item {
+    position     : relative;
+    width        : 360px;
+    height       : 80px;
+    flex         : none;
+    order        : 0;
+    flex-grow    : 0;
+    border-bottom: 1.5px solid #D4D4D7;
+}
+
+.body-popUp_item:hover {
+    background: #FFF2E7;
+    opacity   : 1;
+}
+
+.body-popUp-name {
+    position   : absolute;
+    width      : 268px;
+    height     : 24px;
+    left       : 24px;
+    top        : 16px;
+    font-weight: 700;
+    font-size  : 16px;
+    line-height: 24px;
+    color      : #BF5805;
+}
+
+.body-popUp-des {
+    position   : absolute;
+    width      : 313px;
+    height     : 24px;
+    left       : 24px;
+    top        : 44px;
+    font-weight: 400;
+    font-size  : 16px;
+    line-height: 24px;
+    color      : #535261;
+}
+
+.Header-popUp_announcement {
+    position   : absolute;
+    width      : 101px;
+    height     : 30px;
+    left       : 24px;
+    top        : 9px;
+    font-family: 'Nunito';
+    font-style : normal;
+    font-weight: 700;
+    font-size  : 20px;
     line-height: 30px;
-    color: #FF9138 !important;
-    flex: none;
-    flex-grow: 0;
-    order: 1;
-    flex-grow: 0;
+    color      : #FFFFFF;
 }

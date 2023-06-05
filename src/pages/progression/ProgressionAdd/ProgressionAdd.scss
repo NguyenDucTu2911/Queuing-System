@@ -69,6 +69,10 @@
             background: #FFFFFF;
             border: 1.5px solid #D4D4D7;
             border-radius: 8px;
+
+            &.error {
+                border: 2px solid red;
+            }
         }
 
         .ProgressionAdd-form_btn {

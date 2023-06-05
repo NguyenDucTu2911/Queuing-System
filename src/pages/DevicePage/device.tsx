@@ -235,7 +235,7 @@ const Device: React.FC<DeviceProps> = (props) => {
                                             : <td><b className='tickRed'>.</b> {item.Active}</td>}
                                         {item && item.Connect === "Kết Nối" ? <td><b className='tickGreen'>.</b>{item.Connect}</td>
                                             : <td><b className='tickRed'>.</b> {item.Connect}</td>}
-                                        <td>{item.Service}</td>
+                                        <td>{item.Service ? item.Service.join(", ") : ""}</td>
                                         <td><a onClick={() => navigate(`/device/${item.id}`)}>Chi Tiết</a></td>
                                         <td><a onClick={() => navigate(`/device/Edit/${item.id}`)} >Cập Nhật</a></td>
                                     </tr>

@@ -8,19 +8,18 @@ import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { RootState } from '../../../../redux/store';
 import { Account, updateRole } from '../../../../redux/Slices/accountSlice';
 import useSessionStorage from '../../../../components/customHook/useSessionStorage';
+import { validationRoleManagement } from '../RoleManagementAdd/RoleManagementAdd';
 
 interface RoleManagementUpdateProps { }
 
 const RoleManagementUpdate: React.FC<RoleManagementUpdateProps> = (props) => {
     const Role = useAppSelector((state: RootState) => state.account.Account)
     const [RoleData, setRoleData] = useState<Partial<Account>>({})
+    const [RoleDataError, setRoleDataError] = useState<Partial<validationRoleManagement>>({})
     const { id } = useParams()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     console.log(RoleData)
-    const [selectAll, setSelectAll] = useState(false);
-
-
 
     useEffect(() => {
         fetchRole(id)
@@ -35,46 +34,75 @@ const RoleManagementUpdate: React.FC<RoleManagementUpdateProps> = (props) => {
     }
 
     const handleSelectAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const checkboxName = event.target.name;
-        const isChecked = event.target.checked;
-        console.log("ádkhaks", checkboxName)
-        if (checkboxName === "All-A") {
-            setSelectAll(isChecked);
-            const updatedCheckboxValues = {
-                quyenax: isChecked,
-                quyenay: isChecked,
-                quyenaz: isChecked,
-            };
-            setRoleData({ ...RoleData, ...updatedCheckboxValues });
-        } else {
-            setSelectAll(isChecked);
-            const updatedCheckboxValues = {
-                quyenBx: isChecked,
-                quyenBy: isChecked,
-                quyenBz: isChecked,
-            };
-            setRoleData({ ...RoleData, ...updatedCheckboxValues });
-        }
+        const { checked, name } = event.target;
+        if (name === "All-A") {
+            setRoleData((prevData) => ({
+                ...prevData,
+                quyenax: checked,
+                quyenay: checked,
+                quyenaz: checked,
 
+            }));
+        } else {
+            setRoleData((prevData) => ({
+                ...prevData,
+                quyenBx: checked,
+                quyenBy: checked,
+                quyenBz: checked,
+            }));
+        }
     };
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const checkboxName = event.target.name;
         const isChecked = event.target.checked;
         setRoleData({ ...RoleData, [checkboxName]: isChecked, });
-        setSelectAll(Object.values(RoleData).every((value) => value));
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
+        const errors: Partial<validationRoleManagement> = {};
 
+        switch (name) {
+            case "Name":
+                errors.Name = value.length < 5 ? "Tên vai trò ít nhất 5 ký tự" : undefined;
+                break;
+            case "description":
+                errors.description = value ? "" : "Vui lòng nhập Mô tả";
+                break;
+            default:
+                break;
+        }
+
+        setRoleDataError(errors);
         setRoleData({
             ...RoleData,
             [name]: value
         })
     }
 
-    const handleUpdate = () => {
+    const handleUpdate = async (event: React.FormEvent<HTMLElement>) => {
+        event.preventDefault();
+        const errors: Partial<validationRoleManagement> = {};
+
+        if (!RoleData.Name) {
+            errors.Name = "Vui lòng nhập tên vai trò"
+        }
+
+        if (!RoleData.description) {
+            errors.description = "Vui lòng nhập Mô tả"
+        }
+
+        if (!RoleData.quyenax && !RoleData.quyenay && !RoleData.quyenaz) {
+            errors.RoleGroupA = "Chọn ít nhất một chức năng trong nhóm chức năng A"
+        }
+
+        if (!RoleData.quyenBx && !RoleData.quyenBy && !RoleData.quyenBz) {
+            errors.RoleGroupB = "Chọn ít nhất một chức năng trong nhóm chức năng B"
+        }
+
+        setRoleDataError(errors);
+
         if (RoleData && RoleData.Name && RoleData.description) {
             console.log(RoleData)
             dispatch(updateRole(RoleData as Account))
@@ -95,17 +123,22 @@ const RoleManagementUpdate: React.FC<RoleManagementUpdateProps> = (props) => {
                             <label className='RoleManagementAdd-form_LB'>Tên Vai Trò
                                 <p className='errorStart'>*</p>
                             </label>
-                            <Input className='RoleManagementAdd-form_IPName' placeholder='Nhập Vai Trò' name='Name' value={RoleData.Name}
+                            <Input className={`RoleManagementAdd-form_IPName ${RoleDataError.Name ? 'error' : ''}`}
+                                placeholder='Nhập Vai Trò' name='Name'
+                                value={RoleData.Name}
                                 handleChange={handleInputChange}
                             />
+                            {RoleDataError.Name && <span className='textError'>{RoleDataError.Name}</span>}
                         </div>
                         <div className="RoleManagementAdd-form_des">
                             <label className='RoleManagementAdd-form_LB'>Mô Tả
                                 <p className='errorStart'>*</p>
                             </label>
-                            <Input className='RoleManagementAdd-form_IPDes' placeholder='Nhập Mô Tả' name='description' value={RoleData.description}
+                            <Input className={`RoleManagementAdd-form_IPDes ${RoleDataError.description ? 'error' : ''}`}
+                                placeholder='Nhập Mô Tả' name='description' value={RoleData.description}
                                 handleChange={handleInputChange}
                             />
+                            {RoleDataError.description && <span className='textError'>{RoleDataError.description}</span>}
                         </div>
                         <div className="RoleManagementAdd-form_role-LB RoleManagementAdd-form_LB">
                             Phân quyền chức năng<p className='errorStart'>*</p>
@@ -114,9 +147,12 @@ const RoleManagementUpdate: React.FC<RoleManagementUpdateProps> = (props) => {
 
                             <div className="role-Title">Nhóm chức năng A</div>
                             <div className="role-itemAll">
-                                <Input type='checkbox' className='CheckBox' name='All-A'
-                                    checked={selectAll}
-                                    handleChange={handleSelectAllChange}
+                                <input
+                                    type='checkbox'
+                                    className='CheckBox'
+                                    name='All-A'
+                                    checked={RoleData.quyenax && RoleData.quyenay && RoleData.quyenaz}
+                                    onChange={handleSelectAllChange}
                                 />
                                 <p className='role-item_text'>Tất cả</p>
                             </div>
@@ -145,7 +181,7 @@ const RoleManagementUpdate: React.FC<RoleManagementUpdateProps> = (props) => {
                                 <div className="role-Title">Nhóm chức năng B</div>
                                 <div className="role-itemAll">
                                     <Input type='checkbox' className='CheckBox' name='All-B'
-                                        checked={selectAll}
+                                        checked={RoleData.quyenBx && RoleData.quyenBy && RoleData.quyenBz}
                                         handleChange={handleSelectAllChange}
                                     />
                                     <p className='role-item_text'>Tất cả</p>

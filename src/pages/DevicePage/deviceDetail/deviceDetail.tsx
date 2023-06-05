@@ -58,7 +58,7 @@ const DeviceDetail: React.FC = () => {
                         <label className="deviceDetail_lable">
                             Dịch Vụ Sử Dụng:
                         </label>
-                        <b className='deviceDetail-b_DV'>{device?.Service}</b>
+                        <b className='deviceDetail-b_DV'>{device?.Service ? device.Service.join(", ") : ""}</b>
                     </div>
 
                     <div className="deviceDetail-typeDevice">

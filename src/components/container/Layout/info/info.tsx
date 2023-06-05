@@ -62,7 +62,7 @@ const Info: React.FC<InfoProps> = (props) => {
                         </div>
 
                         <div className="detail-position">
-                            <label htmlFor="position" className='formUser-Lb'>Mật Khẩu</label>
+                            <label htmlFor="position" className='formUser-Lb'>Vai trò</label>
                             <Input type="text" className='formUser-Ip form-text' name='position' id='position'
                                 value={'Kế Toán'} disabled
                             />

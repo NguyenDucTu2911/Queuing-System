@@ -1,16 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./numberLVCharts.scss"
 import num from "../../../assets/image/Vector.png"
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { RootState } from '../../../redux/store';
+import { fetchProgressions } from '../../../redux/Slices/ProgressionSlice';
 
 interface NumberLVChartsProps { }
-
+interface Actives {
+    ActiveOnl: number,
+    ActiveOff: number,
+    ActiveSum: number,
+    percent: number,
+    Pending: number,
+    sum: number,
+}
 const NumberLVCharts: React.FC<NumberLVChartsProps> = (props) => {
+    const Progression = useAppSelector((state: RootState) => state.Progression.Progression)
+    const [Progressions, setProgression] = useState<Partial<Actives>>({})
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const handleNumber = () => {
         navigate("/capso")
-
     }
+
+    useEffect(() => {
+        dispatch(fetchProgressions())
+    }, [])
+
+    useEffect(() => {
+        findProgression()
+    }, [Progression])
+
+    const findProgression = () => {
+        let count = 0;
+        let sum = 0;
+        let Pending = 0;
+        Progression.forEach((item) => {
+            if (item.Active) {
+                sum++;
+                if (item.Active === "Đã sử dụng") {
+                    count++;
+                }
+                if (item.Active === "Đang chờ") {
+                    Pending++
+                }
+            }
+        });
+        setProgression({
+            ...Progressions,
+            ActiveOnl: count,
+            percent: Number((count / sum * 100).toFixed(2)),
+            ActiveOff: (sum - (count + Pending)),
+            ActiveSum: sum,
+            Pending: Pending,
+            sum: sum
+        })
+    };
 
     return (
         <>
@@ -25,7 +71,7 @@ const NumberLVCharts: React.FC<NumberLVChartsProps> = (props) => {
                         </div>
                     </div>
                     <div className="NumberLVCharts_text">
-                        1.001
+                        {Progressions.sum}
                     </div>
                 </div>
 
@@ -39,7 +85,7 @@ const NumberLVCharts: React.FC<NumberLVChartsProps> = (props) => {
                         </div>
                     </div>
                     <div className="NumberLVCharts_text">
-                        1.001
+                        {Progressions.ActiveOnl}
                     </div>
                 </div>
 
@@ -53,7 +99,7 @@ const NumberLVCharts: React.FC<NumberLVChartsProps> = (props) => {
                         </div>
                     </div>
                     <div className="NumberLVCharts_text">
-                        1.001
+                        {Progressions.Pending}
                     </div>
                 </div>
 
@@ -63,11 +109,11 @@ const NumberLVCharts: React.FC<NumberLVChartsProps> = (props) => {
                             <i className="fa-regular fa-calendar num-icon" style={{ color: "#2771d3" }}></i>
                         </div>
                         <div className="item_text">
-                            Số thứ tự đã cấp
+                            Số thứ tự đã bỏ qua
                         </div>
                     </div>
                     <div className="NumberLVCharts_text">
-                        1.001
+                        {Progressions.ActiveOff}
                     </div>
                 </div>
             </div>

@@ -1,59 +1,59 @@
 .Dashboard {
-    position: relative;
-    width: 1440px;
-    height: 810px;
-    background: #F7F7F7;
+    position     : relative;
+    width        : 1440px;
+    height       : 810px;
+    background   : #F7F7F7;
     border-radius: 16px;
-    border: 1px solid;
-    overflow: hidden;
+    border       : 1px solid;
+    overflow     : hidden;
 }
 
 .charts {
     position: absolute;
-    width: 791px;
-    height: 484px;
-    left: 224px;
-    bottom: 30px;
+    width   : 791px;
+    height  : 484px;
+    left    : 224px;
+    bottom  : 30px;
 }
 
 .menuBar {
-    position: absolute;
-    width: 401px;
-    height: 810px;
-    left: 1039px;
-    top: 0px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 6px rgba(219, 219, 219, 0.5);
+    position     : absolute;
+    width        : 401px;
+    height       : 810px;
+    left         : 1039px;
+    top          : 0px;
+    background   : #FFFFFF;
+    box-shadow   : 0px 4px 6px rgba(219, 219, 219, 0.5);
     border-radius: 8px 0px 0px 8px;
 }
 
 .daypicker {
     position: absolute;
-    left: 24px;
-    top: 445px;
+    left    : 24px;
+    top     : 445px;
 }
 
 .menuBar-title {
-    position: absolute;
-    width: 118px;
-    height: 36px;
-    left: 24px;
-    top: 104px;
+    position   : absolute;
+    width      : 118px;
+    height     : 36px;
+    left       : 24px;
+    top        : 104px;
     font-weight: var(--fontWeight-nunito-bold);
-    font-size: 24px;
+    font-size  : 24px;
     line-height: 36px;
-    color: var(--color-origin-Text);
+    color      : var(--color-origin-Text);
 }
 
 .menuBar-item {
-    position: absolute;
-    width: 353px;
-    height: 83px;
-    background: #FFFFFF;
-    box-shadow: 2px 2px 15px rgba(70, 64, 67, 0.1);
+    position     : absolute;
+    width        : 353px;
+    height       : 83px;
+    background   : #FFFFFF;
+    box-shadow   : 2px 2px 15px rgba(70, 64, 67, 0.1);
     border-radius: 12px;
-    left: 24px;
-    cursor: pointer;
+    left         : 24px;
+    cursor       : pointer;
 }
 
 .menuBar-top {
@@ -70,104 +70,125 @@
 
 .menubar-action {
     position: absolute;
-    width: 145px;
-    height: 47px;
-    left: 192px;
-    top: 18px;
+    width   : 145px;
+    height  : 47px;
+    left    : 192px;
+    top     : 18px;
 }
 
 .menuBar-isactive {
     position: absolute;
-    width: 137px;
-    height: 21px;
+    width   : 137px;
+    height  : 21px;
 }
 
 .menuBar-No-active {
     position: absolute;
-    width: 125px;
-    height: 21px;
-    top: 27px;
+    width   : 125px;
+    height  : 21px;
+    top     : 27px;
 }
 
 .menuBar-text-origin {
-    position: absolute;
-    width: 38px;
-    height: 18px;
-    left: 110px;
-    top: 3px;
+    position   : absolute;
+    width      : 38px;
+    height     : 18px;
+    left       : 110px;
+    top        : 3px;
     font-weight: 700;
-    font-size: 14px;
+    font-size  : 14px;
     line-height: 18px;
-    color: #FF7506;
+    color      : #FF7506;
 }
 
 .menuBar-text {
-    position: absolute;
-    width: 100px;
-    height: 21px;
+    position   : absolute;
+    width      : 100px;
+    height     : 21px;
     font-weight: 400;
-    font-size: 12px;
+    font-size  : 12px;
     line-height: 21px;
-    color: #7E7D88;
+    color      : #7E7D88;
 }
 
 .menubar-device {
     position: absolute;
-    width: 67px;
-    height: 54px;
-    left: 88px;
-    top: 14px;
+    width   : 67px;
+    height  : 54px;
+    left    : 88px;
+    top     : 14px;
 }
 
 .title {
-    position: absolute;
-    width: auto;
-    height: 36px;
-    left: 224px;
-    top: 104px;
+    position   : absolute;
+    width      : auto;
+    height     : 36px;
+    left       : 224px;
+    top        : 104px;
     font-weight: var(--fontWeight-nunito-bold);
-    font-size: 24px;
+    font-size  : 24px;
     line-height: 36px;
-    color: var(--color-origin-Text);
+    color      : var(--color-origin-Text);
 }
 
-.menubar-chart{
+.menubar-chart {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    left: 16px;
-    top: 11px;
+    width   : 60px;
+    height  : 60px;
+    left    : 16px;
+    top     : 11px;
 }
 
-.textMenubar{
-    position: absolute;
-    width: 64px;
-    height: 36px;
+.textMenubar {
+    position   : absolute;
+    width      : 64px;
+    height     : 36px;
     font-weight: 800;
-    font-size: 24px;
+    font-size  : 24px;
     line-height: 36px;
-    color: #535261
+    color      : #535261
 }
 
 .menubar-Number_icon,
 .menubar-Service_icon,
-.menubar-device_icon{
-    position: absolute;
-    width: 81px;
-    height: 21px;
-    left: 2px;
-    top: 33px;
+.menubar-device_icon {
+    position   : absolute;
+    width      : 81px;
+    height     : 21px;
+    left       : 2px;
+    top        : 33px;
     font-weight: 600;
-    font-size: 14px;
+    font-size  : 14px;
     line-height: 21px;
-    color: #FF7506;
+    color      : #FF7506;
 }
 
 
-.menubar-Service_icon{
-    color:#4277FF ;
+.menubar-Service_icon {
+    color: #4277FF;
 }
 
-.menubar-Number_icon{
+.menubar-Number_icon {
     color: #35C75A;
+}
+
+.menuBar-Pending {
+    position: absolute;
+    width   : 145px;
+    height  : 21px;
+    top     : -3px;
+}
+
+.menuBar-Used {
+    position: absolute;
+    width   : 145px;
+    height  : 21px;
+    top     : 17px;
+}
+
+.menuBar-Bypass {
+    position: absolute;
+    width   : 145px;
+    height  : 21px;
+    top     : 36px;
 }

@@ -12,6 +12,7 @@ export interface Progressions {
   power?: string;
   email?: string;
   SDT?: string;
+  MaDV: String;
 }
 
 interface ProgressionsState {
@@ -76,6 +77,39 @@ export const addProgressions = createAsyncThunk(
   }
 );
 
+export const fetchProgressionsId = createAsyncThunk(
+  "Service/fetchProgressionsId",
+  async (MaDv: string) => {
+    try {
+      if (!MaDv) {
+        throw new Error("Không có mã dv");
+      } else {
+        const data = await db
+          .collection("Progression")
+          .where("MaDV", "==", MaDv)
+          .get();
+        if (data.empty) {
+          throw new Error("Không có dữ liệu");
+        } else {
+          const progressions: Progressions[] = [];
+          data.docs.forEach((doc) => {
+            const progressionData = {
+              id: doc.id,
+              ...doc.data(),
+            } as Progressions;
+            progressions.push(progressionData);
+          });
+          console.log(progressions);
+          return progressions;
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+);
+
 const ProgressionSlice = createSlice({
   name: "Progression",
   initialState,
@@ -105,6 +139,19 @@ const ProgressionSlice = createSlice({
         state.error = null;
       })
       .addCase(addProgressions.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? "Error fetching service";
+      })
+      .addCase(fetchProgressionsId.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchProgressionsId.fulfilled, (state, action) => {
+        state.Progression = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchProgressionsId.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message ?? "Error fetching service";
       });

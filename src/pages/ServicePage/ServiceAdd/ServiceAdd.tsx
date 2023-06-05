@@ -5,7 +5,6 @@ import Navbar from '../../../components/container/nav/navbar';
 import { Input } from '../../../components/container/Input/Input';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/container/Button/Button';
-import { Checkbox } from 'antd';
 import { Services, addService } from '../../../redux/Slices/serviceSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { RootState } from '../../../redux/store';
@@ -17,23 +16,25 @@ const ServiceAdd: React.FC<ServiceAddProps> = (props) => {
     const [Service, setService] = useState<Partial<Services>>({});
     const [formErrors, setFormErrors] = useState<Partial<Services>>({});
     const { error } = useAppSelector((state: RootState) => state.service)
-    const [autoIncrement, setAutoIncrement] = useState(false);
     const dispatch = useAppDispatch()
 
+    console.log(Service)
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-
         setService({
             ...Service,
-            [name]: value
-        })
-    }
-
-    const handleCheckboxChange = (event: any) => {
-        setAutoIncrement(event.target.checked);
-
+            [name]: value,
+            Active: "Đang Hoạt Động"
+        });
     };
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const checkboxName = event.target.name;
+        const isChecked = event.target.checked;
+        setService({ ...Service, [checkboxName]: isChecked, });
+    };
+
 
     const handleAdd = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -100,36 +101,64 @@ const ServiceAdd: React.FC<ServiceAddProps> = (props) => {
                         <div className="ServiceAdd-form_QT">Quy tắc cấp số</div>
                         <div className="ServiceAdd-numbernext">
                             <div className="ServiceAdd-numbernext_lb">
-                                <Checkbox checked={autoIncrement} onChange={handleCheckboxChange}>
-                                    Tăng tự động từ:
-                                </Checkbox>
+                                <Input
+                                    type='checkbox'
+                                    name='autoIncrement'
+                                    checked={Service.autoIncrement}
+                                    handleChange={handleCheckboxChange}
+                                />
+                                Tăng tự động từ:
+
                             </div>
 
                             <div className="inputss">
-                                <Input className='ServiceAdd-numbernext_IP' placeholder='0001' name='increaseStart' />
+
+                                <Input className='ServiceAdd-numbernext_IP' placeholder='0001' name='increaseStart'
+                                    value={Service.increaseStart}
+                                    handleChange={handleInputChange} />
                                 <b>Đến</b>
-                                <Input className='ServiceAdd-numbernext_IP' placeholder='1000' name='increaseEnd' />
+
+                                <Input className='ServiceAdd-numbernext_IP' placeholder='1000' name='increaseEnd'
+                                    value={Service.increaseEnd}
+                                    handleChange={handleInputChange} />
                             </div>
 
                         </div>
                         <div className="ServiceAdd-Prefix">
                             <div className="ServiceAdd-numbernext_lb">
-                                <Checkbox checked={autoIncrement} onChange={handleCheckboxChange}>
-                                    Prefix:
-                                </Checkbox>
+                                <Input
+                                    type='checkbox'
+                                    name='PrefixCB'
+                                    checked={!!Service.PrefixCB}
+                                    handleChange={handleCheckboxChange}
+                                />
+                                Prefix:
                             </div>
 
-                            <Input className='ServiceAdd-numbernext_IP' placeholder='0001' name='Prefix' />
+                            <Input className='ServiceAdd-numbernext_IP' placeholder='0001' name='Prefix'
+                                value={Service.Prefix}
+                                handleChange={handleInputChange}
+                            />
                         </div>
                         <div className="ServiceAdd-Surfix">
                             <div className="ServiceAdd-numbernext_lb">
-                                <Checkbox checked={autoIncrement} onChange={handleCheckboxChange}>
-                                    Surfix:
-                                </Checkbox>
+                                <Input
+                                    type='checkbox'
+                                    name='SurfixCB'
+                                    checked={!!Service.SurfixCB}
+                                    handleChange={handleCheckboxChange}
+                                />
+                                Surfix:
                             </div>
-                            <Input className='ServiceAdd-numbernext_IP' placeholder='0001' name='Surfix' />
-
+                            <Input
+                                className='ServiceAdd-numbernext_IP'
+                                placeholder='0001'
+                                name='Surfix'
+                                value={Service.Surfix}
+                                handleChange={handleInputChange}
+                            />
                         </div>
+
 
                         <div className="ServiceAdd-reset"></div>
                         <Button className='btnform-exit' onclick={() => navigate("/Service")}>Hủy Bỏ</Button>

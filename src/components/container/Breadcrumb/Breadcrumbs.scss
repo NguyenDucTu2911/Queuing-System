@@ -1,3 +1,26 @@
 .breadcrumb {
-  
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-item {
+    position: relative;
+    top: 22px;
+    left: 24px;
+    text-decoration: none;
+    color: #333;
+    font-weight: var(--fontWeight-nunito-bold);
+    font-size: 25px;
+}
+
+.breadcrumb-arrow {
+    position: relative;
+    top: 22px;
+    left: 24px;
+    margin: 0 8px;
+    color: #666;
+}
+
+.breadcrumb-item:last-child {
+    color: #FF9138;
 }
