@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../../components/container/nav/navbar';
 import { Input } from '../../../components/container/Input/Input';
-import { Checkbox } from 'antd';
 import { Button } from '../../../components/container/Button/Button';
 import { Services } from '../../../redux/Slices/serviceSlice';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -97,7 +96,7 @@ const ServiceEdit: React.FC<ServiceEditProps> = (props) => {
                                 <span style={{ color: "red", paddingLeft: "1px" }}>*</span>
                             </label>
                             <Input className={formErrors.Maid ? "inputError" : 'ServiceAdd-form_IP'} placeholder='Nhập Mã Dịch Vụ' name='Maid' id='MaID'
-                                value={EditData.Name}
+                                value={EditData.Maid}
                                 handleChange={handleInputChange} />
                             {formErrors.Maid && <span className='messageError'>{formErrors.Maid}</span>}
                         </div>
@@ -106,7 +105,7 @@ const ServiceEdit: React.FC<ServiceEditProps> = (props) => {
                                 <span style={{ color: "red", paddingLeft: "1px" }}>*</span>
                             </label>
                             <Input className={formErrors.Maid ? "inputError" : 'ServiceAdd-form_IP'} placeholder='Tên Dịch Vụ' name='Name' id='name'
-                                value={EditData.Maid}
+                                value={EditData.Name}
                                 handleChange={handleInputChange} />
                             {formErrors.Name && <span className='messageError'>{formErrors.Name}</span>}
 

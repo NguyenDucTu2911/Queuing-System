@@ -3,15 +3,15 @@ import "./FormResetPassword.css"
 import { Input } from '../../../container/Input/Input';
 import { Button } from '../../../container/Button/Button';
 import { forgotPass } from '../../../../redux/Slices/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 interface FormResetPasswordProps { }
-
-
 
 const FormResetPassword: React.FC<FormResetPasswordProps> = (props) => {
     const [showpass, setShowpass] = useState(false)
     const [Password, setPassword] = useState<Partial<forgotPass>>({});
     const [PasswordError, setPasswordError] = useState<Partial<forgotPass>>({});
+    const navigate = useNavigate();
     console.log(Password)
 
     const togglePassword = () => {
@@ -48,10 +48,11 @@ const FormResetPassword: React.FC<FormResetPasswordProps> = (props) => {
             errors.NewPassword = "mật khẩu khác nhau"
             errors.password = "mật khẩu khác nhau"
         }
-
-        console.log("ádiasd", Password.NewPassword)
-
         setPasswordError(errors)
+    
+        if (Password && Password.NewPassword) {
+            navigate("/")
+        }
     }
 
     return (
@@ -74,7 +75,7 @@ const FormResetPassword: React.FC<FormResetPasswordProps> = (props) => {
                 <div className="EnterPassWord">
                     <label htmlFor="reviewPassword" className='ResetPassWord-LB'>Nhập lại mật khẩu </label>
                     {PasswordError.password && <span className='error-sp'>{PasswordError.password}</span>}
-                    <Input type={showpass ? 'text' : 'password'} className='ResetPassWord-IP' name='reviewPassword' id='reviewPassword' placeholder='Nhập lại mật khẩu'
+                    <Input type={showpass ? 'text' : 'password'} className='ResetPassWord-IP' name='password' id='password' placeholder='Nhập lại mật khẩu'
                         handleChange={handleInputChange}
                     ></Input>
                     <div className="show" onClick={togglePassword}>

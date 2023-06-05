@@ -107,7 +107,6 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
                 await dispatch(login({ email, password }))
             } catch (error) {
                 errors.password = "sai tai khoan mat khau"
-
             }
 
         } else {

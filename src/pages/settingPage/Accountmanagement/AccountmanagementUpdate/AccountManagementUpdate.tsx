@@ -222,7 +222,7 @@ const AccountManagementUpdate: React.FC<AccountManagementUpdateProps> = (props) 
         if (isFormValid()) {
             console.log(Users)
             dispatch(updateUser(UserData as User))
-            // navigate("/AccountManagement")
+            navigate("/AccountManagement")
         } else {
             console.log("Cập Nhật Không Thành công")
         }

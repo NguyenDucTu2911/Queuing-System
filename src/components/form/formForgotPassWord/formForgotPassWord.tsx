@@ -26,7 +26,7 @@ const FormForgotPassWord: React.FC<formForgotPassWord> = (props) => {
     const HandleReset = () => {
         if (email) {
             dispatch(sendPassword(email))
-            navigate("/")
+            navigate("/ResetPassWord")
         }
 
     }

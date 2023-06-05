@@ -21,7 +21,7 @@ const NumberLVCharts: React.FC<NumberLVChartsProps> = (props) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const handleNumber = () => {
-        navigate("/capso")
+        navigate("/Progression")
     }
 
     useEffect(() => {
