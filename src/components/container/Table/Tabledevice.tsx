@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Pagination, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import type { TableRowSelection } from 'antd/es/table/interface';
-import { useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
+import { useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
 interface TabledeviceProps { }
 interface DataType {
     // key: React.Key;

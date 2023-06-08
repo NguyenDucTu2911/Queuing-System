@@ -1,11 +1,10 @@
 import { combineReducers } from "redux";
-import authSlice from "../Slices/authSlice";
-import reportSlice from "../Slices/reportSlice";
-import deviceSlice from "../Slices/deviceSlice";
-import serviceSlice from "../Slices/serviceSlice";
-import ProgressionSlice from "../Slices/ProgressionSlice";
-import AccountSlice from '../Slices/accountSlice';
-
+import authSlice from "../slices/AuthSlice";
+import reportSlice from "../slices/ReportSlice";
+import deviceSlice from "../slices/DeviceSlice";
+import serviceSlice from "../slices/ServiceSlice";
+import ProgressionSlice from "../slices/ProgressionSlice";
+import AccountSlice from "../slices/AccountSlice";
 
 const reducers = combineReducers({
   auth: authSlice,

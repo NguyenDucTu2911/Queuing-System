@@ -8,8 +8,8 @@ import {
   updatePassword,
   updateProfile,
 } from "firebase/auth";
-import { db } from "../../Firebase/config";
-import firebase from "../../Firebase/config";
+import { db } from "../../firebase/config";
+import firebase from "../../firebase/config";
 
 export interface user {
   UserName?: string;
@@ -31,6 +31,7 @@ export interface SignInData {
   createdAt?: any;
   image?: string;
   phoneNumber?: any;
+  accessToken?: string;
 }
 export interface forgotPass {
   password?: string;
@@ -46,20 +47,24 @@ interface userUpdate {
   photoURL?: any;
 }
 
-interface DataState {
+export interface DataState {
   data: SignInData | null;
   authenticated: boolean;
   loading: boolean;
   error: string | null;
-  needVerfication: boolean;
+  needVerification: boolean;
 }
 
 const initialState: DataState = {
   loading: false,
   error: null,
   data: null,
-  needVerfication: false,
+  needVerification: false,
   authenticated: false,
+};
+
+const saveAuthState = (state: DataState) => {
+  localStorage.setItem("authState", JSON.stringify(state));
 };
 
 //login app
@@ -71,15 +76,22 @@ export const login = createAsyncThunk(
         .auth()
         .signInWithEmailAndPassword(user.email, user.password);
       const userData = userCredential.user;
-      console.log(userCredential);
+      console.log(userCredential?.user);
       if (userData) {
+        const accessToken = await userData.getIdToken();
         const data = {
           email: userData.email,
           id: userData.uid,
           name: userData.displayName,
           image: userData.photoURL,
           phoneNumber: userData.phoneNumber,
+          accessToken: accessToken,
         } as SignInData;
+        saveAuthState({
+          ...initialState,
+          data: data,
+          authenticated: true,
+        });
         return data;
       } else {
         throw new Error("User data is missing");
@@ -95,7 +107,9 @@ export const login = createAsyncThunk(
 export const SingOut = createAsyncThunk("auth/logOut", async () => {
   const auth = getAuth();
   signOut(auth)
-    .then(() => {})
+    .then(() => {
+      localStorage.removeItem("authState");
+    })
     .catch((error) => {
       throw new Error("Thất Bại");
     });
@@ -149,12 +163,7 @@ export const sendPassword = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    logout: (state) => {
-      state.data = null;
-      state.authenticated = false;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
@@ -177,9 +186,20 @@ const authSlice = createSlice({
       })
       .addCase(sendPassword.rejected, (state, action) => {
         state.loading = false;
-        state.error = "lỗi đang xuất";
+        state.error = action.error.message ?? "Error fetching data";
+      })
+      .addCase(SingOut.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(SingOut.fulfilled, (state, action) => {
+        state.loading = false;
+        state.authenticated = false;
+      })
+      .addCase(SingOut.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? "Error fetching data";
       });
   },
 });
-export const { logout } = authSlice.actions;
+
 export default authSlice.reducer;

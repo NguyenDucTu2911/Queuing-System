@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../../components/container/Header/Header';
+import Header from '../../../components/container/header/Header';
 import Navbar from '../../../components/container/nav/navbar';
 import { Input } from '../../../components/container/Input/Input';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
 import { useParams, useNavigate, useActionData } from 'react-router-dom';
-import { Services } from '../../../redux/Slices/serviceSlice';
+import { Services } from '../../../redux/slices/ServiceSlice';
 import "./ServiceDetail.scss"
 import useSessionStorage from '../../../components/customHook/useSessionStorage';
-import { Progressions, fetchProgressionsId } from '../../../redux/Slices/ProgressionSlice';
+import { Progressions, fetchProgressionsId } from '../../../redux/slices/ProgressionSlice';
 
 
 interface ServiceDetailProps { }

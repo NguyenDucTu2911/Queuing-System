@@ -2,14 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../../components/container/nav/navbar';
 import { Input } from '../../../components/container/Input/Input';
-import { Button } from '../../../components/container/Button/Button';
-import { Services } from '../../../redux/Slices/serviceSlice';
+import { Button } from '../../../components/container/button/Button';
+import { Services } from '../../../redux/slices/ServiceSlice';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../../../components/container/Header/Header';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
+import Header from '../../../components/container/header/Header';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
 import useSessionStorage from '../../../components/customHook/useSessionStorage';
-import { UpdateService } from '../../../redux/Slices/serviceSlice';
+import { UpdateService } from '../../../redux/slices/ServiceSlice';
 
 interface ServiceEditProps { }
 

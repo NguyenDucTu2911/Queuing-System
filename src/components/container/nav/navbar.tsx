@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Logo from "../../../assets/image/Logoalta.png"
 import { NavLink, useNavigate } from 'react-router-dom'
 import "./navbar.css"
-import { useAppDispatch } from '../../../redux/hooks';
-import { logout } from '../../../redux/Slices/authSlice';
+import { useAppDispatch } from '../../../redux/Hooks';
+import { SingOut } from '../../../redux/slices/AuthSlice';
 interface NavbarProps { }
 
 const Navbar: React.FC<NavbarProps> = (props) => {
@@ -15,7 +15,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
         setShowDropdown(!showDropdown);
     };
     const hendleClose = () => {
-        dispatch(logout())
+        dispatch(SingOut())
         navigate("/")
     }
 

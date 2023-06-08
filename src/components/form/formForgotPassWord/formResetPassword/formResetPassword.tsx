@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import "./FormResetPassword.css"
 import { Input } from '../../../container/Input/Input';
-import { Button } from '../../../container/Button/Button';
-import { forgotPass } from '../../../../redux/Slices/authSlice';
+import { Button } from '../../../container/button/Button';
+import { forgotPass } from '../../../../redux/slices/AuthSlice';
 import { useNavigate } from 'react-router-dom';
 
 interface FormResetPasswordProps { }
@@ -49,7 +49,7 @@ const FormResetPassword: React.FC<FormResetPasswordProps> = (props) => {
             errors.password = "mật khẩu khác nhau"
         }
         setPasswordError(errors)
-    
+
         if (Password && Password.NewPassword) {
             navigate("/")
         }

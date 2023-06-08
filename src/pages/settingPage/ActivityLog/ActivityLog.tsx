@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../../components/container/nav/navbar';
-import Header from '../../../components/container/Header/Header';
+import Header from '../../../components/container/header/Header';
 import "./ActivityLog.scss"
 import { Input } from '../../../components/container/Input/Input';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
-import { Account, User, ActivityLogs, fetchActivityLog } from '../../../redux/Slices/accountSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
+import { Account, User, ActivityLogs, fetchActivityLog } from '../../../redux/slices/AccountSlice';
 import { DatePicker, Space } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';

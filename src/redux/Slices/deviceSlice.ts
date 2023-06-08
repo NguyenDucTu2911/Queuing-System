@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { db } from "../../Firebase/config";
+import { db } from "../../firebase/config";
 
 export interface Devices {
   id: string;
@@ -138,7 +138,7 @@ const deviceSlice = createSlice({
       .addCase(AddDevices.fulfilled, (state, action) => {
         state.error = null;
         state.loading = false;
-        state.Device.push(action.payload);
+        state.Device.concat(action.payload);
       })
       .addCase(AddDevices.rejected, (state, action) => {
         state.error = action.error.message ?? "Error fetching Devices";

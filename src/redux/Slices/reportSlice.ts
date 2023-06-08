@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { db } from "../../Firebase/config";
+import { db } from "../../firebase/config";
 
 export interface Report {
   id: string;

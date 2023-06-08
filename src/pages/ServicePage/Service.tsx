@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/container/nav/navbar';
-import Header from '../../components/container/Header/Header';
+import Header from '../../components/container/header/Header';
 import "./Service.scss"
 import { Input } from '../../components/container/Input/Input';
 import { useNavigate } from 'react-router-dom';
-import { fetchService, Services } from '../../redux/Slices/serviceSlice';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { RootState } from '../../redux/store';
+import { fetchService, Services } from '../../redux/slices/ServiceSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
+import { RootState } from '../../redux/Store';
 interface ServiceProps { }
 
 const Service: React.FC<ServiceProps> = (props) => {

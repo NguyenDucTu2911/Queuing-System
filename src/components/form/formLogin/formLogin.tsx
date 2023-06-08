@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Input } from '../../container/Input/Input';
-import { Button } from '../../container/Button/Button';
+import { Button } from '../../container/button/Button';
 
 import "./FormLogin.css"
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { login } from '../../../redux/Slices/authSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { DataState, login } from '../../../redux/slices/AuthSlice';
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth';
-import { RootState } from '../../../redux/store';
+import { RootState } from '../../../redux/Store';
+import useLocalStorage from '../../customHook/useLocalStorage';
 
-
-
-interface FormLoginProps { }
 interface ILoginState {
     username: string;
     password: string;
@@ -24,8 +22,7 @@ interface ILoginState {
     };
 };
 
-const FormLogin: React.FC<FormLoginProps> = (props) => {
-
+const FormLogin: React.FC = () => {
     const [showpass, setShowpass] = useState(false)
     const [loginState, setLoginState] = useState<ILoginState>({
         username: "",
@@ -34,30 +31,26 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
     });
     const authenticated = useAppSelector((state: RootState) => state.auth.authenticated);
     const error = useAppSelector((state: RootState) => state.auth.error);
-    console.log(error)
-
-    console.log(authenticated)
-
     const dispatch = useAppDispatch()
-
     const navigate = useNavigate();
+
+    console.log(error)
+    // console.log("hello", checkAuth)
+
+    useEffect(() => {
+        LoginSuccess()
+    }, [authenticated])
+
+    const LoginSuccess = () => {
+        authenticated ? navigate("/Dashboard") : navigate("/")
+    }
+
     const handleForgotPassWord = () => {
         navigate("/ForgotPassWord")
     }
 
     const togglePassword = () => {
         setShowpass(!showpass)
-    }
-
-    useEffect(() => {
-        LoginSucset()
-    }, [authenticated])
-
-    const LoginSucset = () => {
-        console.log("hello")
-        if (authenticated === true) {
-            navigate("/Dashboard")
-        }
     }
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import "./Dashboard.css"
 import Navbar from '../../components/container/nav/navbar';
-import Header from '../../components/container/Header/Header';
+import Header from '../../components/container/header/Header';
 import ReportCharts from '../../components/container/report-charts/reportCharts';
 import NumberLVCharts from '../../components/container/numberLVCharts/numberLVCharts';
-import Calendar from '../../components/container/DateRangePicker/Calendar';
+import Calendar from '../../components/container/dateRangePicker/Calendar';
 import { useNavigate } from 'react-router-dom';
 import { Progress } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fetchDevice } from '../../redux/Slices/deviceSlice';
-import { RootState } from '../../redux/store';
-import { fetchService } from '../../redux/Slices/serviceSlice';
-import { fetchProgressions } from '../../redux/Slices/ProgressionSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
+import { fetchDevice } from '../../redux/slices/DeviceSlice';
+import { RootState } from '../../redux/Store';
+import { fetchService } from '../../redux/slices/ServiceSlice';
+import { fetchProgressions } from '../../redux/slices/ProgressionSlice';
 
 interface DashboardProps { }
 interface Actives {

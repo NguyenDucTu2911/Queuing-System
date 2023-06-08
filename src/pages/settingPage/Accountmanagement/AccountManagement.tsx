@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import "./AccountManagement.scss"
 import { Input } from '../../../components/container/Input/Input';
 import Navbar from '../../../components/container/nav/navbar';
-import Header from '../../../components/container/Header/Header';
+import Header from '../../../components/container/header/Header';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
-import { Account, User, fetchUsers } from '../../../redux/Slices/accountSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
+import { Account, User, fetchUsers } from '../../../redux/slices/AccountSlice';
 
 interface AccountmanagementProps { }
 

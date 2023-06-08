@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/container/nav/navbar';
-import Header from '../../components/container/Header/Header';
+import Header from '../../components/container/header/Header';
 import "./Progression.scss"
 import { Input } from '../../components/container/Input/Input';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fetchProgressions, Progressions } from '../../redux/Slices/ProgressionSlice';
-import { RootState } from '../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
+import { fetchProgressions, Progressions } from '../../redux/slices/ProgressionSlice';
+import { RootState } from '../../redux/Store';
 import formatDate from '../../components/container/format/formatDate';
 interface SearchDate {
     firstDay: string;

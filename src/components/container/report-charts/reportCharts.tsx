@@ -6,9 +6,9 @@ import {
     LinearScale, LineElement, CategoryScale, PointElement
 } from 'chart.js';
 import Dropdown from '../dropdown/Dropdown';
-import { fetchReports, Report } from '../../../redux/Slices/reportSlice';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
+import { fetchReports, Report } from '../../../redux/slices/ReportSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
 import useLocalStorage from '../../customHook/useLocalStorage';
 
 ChartJS.register(

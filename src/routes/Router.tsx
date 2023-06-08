@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import Login from "../pages/LoginPage/Login";
+import Login from "../pages/loginPage/Login";
 import ErrorPage from "../components/container/404ErrorPage/ErrorPage";
-import ForgotPassWord from "../pages/LoginPage/ForgotPassWord";
-import ResetPassWord from "../pages/LoginPage/ResetPassWord";
-import Dashboard from "../pages/DashboardPage/Dashboard";
+import ForgotPassWord from "../pages/loginPage/ForgotPassWord";
+import ResetPassWord from "../pages/loginPage/ResetPassWord";
+import Dashboard from "../pages/dashboardPage/Dashboard";
 import Device from "../pages/DevicePage/device";
-import Report from "../pages/ReportPage/report";
+import Report from "../pages/reportPage/report";
 import Service from "../pages/ServicePage/Service";
 import Info from "../components/container/Layout/info/info";
 import FormAddDevice from "../components/form/formdevice/formAddDevice";
@@ -23,7 +23,7 @@ import RoleManagementUpdate from "../pages/settingPage/Rolemanagement/RoleManage
 import AccountManagement from "../pages/settingPage/Accountmanagement/AccountManagement";
 import AccountManagementUpdate from "../pages/settingPage/Accountmanagement/AccountmanagementUpdate/AccountManagementUpdate";
 import AccountManagementAdd from "../pages/settingPage/Accountmanagement/AccountManagementAdd/AccountManagementAdd";
-import ActivityLog from "../pages/settingPage/ActivityLog/ActivityLog";
+import ActivityLog from "../pages/settingPage/activityLog/ActivityLog";
 
 const router = createBrowserRouter([
     {

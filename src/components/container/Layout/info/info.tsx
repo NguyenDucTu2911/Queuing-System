@@ -1,16 +1,17 @@
 import React from 'react';
-import Header from '../../Header/Header';
+import Header from '../../header/Header';
 import Navbar from '../../nav/navbar';
 import "./info.scss"
 import { Input } from '../../Input/Input';
 import useLocalStorage from '../../../customHook/useLocalStorage';
-import { SignInData } from '../../../../redux/Slices/authSlice';
+import { DataState, SignInData } from '../../../../redux/slices/AuthSlice';
 import intro from "../../../../assets/image/intro.png"
 interface InfoProps { }
 
 const Info: React.FC<InfoProps> = (props) => {
 
-    const [user, setUser] = useLocalStorage<Partial<SignInData>>("user", {})
+    const [checkAuth, setcheckAuth] = useLocalStorage<DataState | null>('authState', null);
+
 
     return (
         <>
@@ -22,14 +23,14 @@ const Info: React.FC<InfoProps> = (props) => {
                 <div className="formUser">
                     <div className="profile">
                         <div className="profile-avata" style={{ backgroundImage: `url(${intro})` }} />
-                        <div className="profile-name">{user.name}</div>
+                        <div className="profile-name">{checkAuth?.data?.name}</div>
                     </div>
 
                     <div className="formUser-Detail">
                         <div className="detail-userName">
                             <label htmlFor="userName" className='formUser-Lb'>Tên người dùng</label>
                             <Input type="text" className='formUser-Ip form-text' name='userName' id='userName'
-                                value={user.name} disabled
+                                value={checkAuth?.data?.name} disabled
                             />
                         </div>
 
@@ -43,14 +44,14 @@ const Info: React.FC<InfoProps> = (props) => {
                         <div className="detail-Email">
                             <label htmlFor="Email" className='formUser-Lb'>Email</label>
                             <Input type="text" className='formUser-Ip form-text' name='Email' id='Email'
-                                value={user.email} disabled
+                                value={checkAuth?.data?.email} disabled
                             />
                         </div>
 
                         <div className="detail-nameLogin">
                             <label htmlFor="nameLogin" className='formUser-Lb'>Tên Đăng Nhập</label>
                             <Input type="text" className='formUser-Ip form-text' name='nameLogin' id='nameLogin'
-                                value={user.email} disabled
+                                value={checkAuth?.data?.email} disabled
                             />
                         </div>
 

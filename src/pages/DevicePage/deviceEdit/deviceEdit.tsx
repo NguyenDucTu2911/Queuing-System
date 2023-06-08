@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import "./DeviceEdit.scss"
 
 import Navbar from '../../../components/container/nav/navbar';
-import Header from '../../../components/container/Header/Header';
+import Header from '../../../components/container/header/Header';
 import { Input } from '../../../components/container/Input/Input';
-import { Button } from '../../../components/container/Button/Button';
+import { Button } from '../../../components/container/button/Button';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
 import useLocalStorage from '../../../components/customHook/useLocalStorage';
-import { AddDevice, UpdateDevices } from '../../../redux/Slices/deviceSlice';
+import { AddDevice, UpdateDevices } from '../../../redux/slices/DeviceSlice';
 
 interface DeviceEditProps { }
 

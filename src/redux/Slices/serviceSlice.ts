@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { db } from "../../Firebase/config";
+import { db } from "../../firebase/config";
 import { Progressions } from "./ProgressionSlice";
 
 export interface Services {
@@ -131,7 +131,7 @@ const ServiceSlice = createSlice({
         state.error = null;
       })
       .addCase(addService.fulfilled, (state, action) => {
-        state.Service.push(action.payload);
+        state.Service.concat(action.payload);
         state.loading = false;
         state.error = null;
       })
@@ -144,12 +144,9 @@ const ServiceSlice = createSlice({
         state.error = null;
       })
       .addCase(UpdateService.fulfilled, (state, action) => {
-        state.Service = state.Service.map((item) => {
-          if (item.id === action.payload.id) {
-            return action.payload;
-          }
-          return item;
-        });
+        state.Service = state.Service.map((item) =>
+          item.id === action.payload.id ? action.payload : item
+        );
         state.loading = false;
         state.error = null;
       })

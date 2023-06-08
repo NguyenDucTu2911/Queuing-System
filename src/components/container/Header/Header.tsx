@@ -3,34 +3,32 @@ import "./Header.css"
 import Logo from "../../../assets/image/Logoalta.png"
 import avata from "../../../assets/image/avata.png"
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
 import useLocalStorage from '../../customHook/useLocalStorage';
-import { SignInData } from '../../../redux/Slices/authSlice';
+import { DataState, SignInData } from '../../../redux/slices/AuthSlice';
 import { useLocation } from 'react-router-dom';
 // import { Breadcrumb } from 'antd';
-import Breadcrumb from '../Breadcrumb/Breadcrumb';
-import { ActivityLogs, fetchActivityLog } from '../../../redux/Slices/accountSlice';
+import Breadcrumb from '../breadcrumb/Breadcrumb';
+import { ActivityLogs, fetchActivityLog } from '../../../redux/slices/AccountSlice';
 import useSessionStorage from '../../customHook/useSessionStorage';
 interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = (props) => {
-    const userSelector = useAppSelector((state: RootState) => state.auth.data)
+    // const userSelector = useAppSelector((state: RootState) => state.auth.data)
     const ActivityLogData = useAppSelector((state: RootState) => state.account.Account)
     const navigate = useNavigate();
     const dispatch = useAppDispatch()
 
-    const [user, setUser] = useLocalStorage<Partial<SignInData>>("user", {})
+    // const [user, setUser] = useLocalStorage<Partial<SignInData>>("user", {})
+    const [checkAuth, setcheckAuth] = useLocalStorage<DataState | null>('authState', null);
     const [ActivityLog, setActivityLog] = useSessionStorage<ActivityLogs[]>("ActivityLog", [])
     const [isOpen, SetIsOpen] = useState(false)
-    const location = useLocation()
 
     useEffect(() => {
         dispatch(fetchActivityLog())
-        if (userSelector) {
-            setUser(userSelector)
-        }
-    }, [userSelector])
+        if (!checkAuth?.authenticated) navigate("/")
+    }, [])
 
     useEffect(() => {
         dispatch(fetchActivityLog())
@@ -59,7 +57,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                             },
                         ]}
                     /> */}
-                    <Breadcrumb/>
+                    <Breadcrumb />
                 </nav>
                 <div className={`Header-announcement ${isOpen ? 'active' : ''}`} onClick={handeleOpen}>
                     <i className="fa-solid fa-bell icon-bell"></i>
@@ -95,7 +93,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                     </div>
                     <div className="info-name" onClick={handleInfo}>
                         <div className="info_TopText">Xin Chào</div>
-                        <div className="info_NameText">{user.name}</div>
+                        <div className="info_NameText">{checkAuth?.data?.name}</div>
                     </div>
                 </div>
             </div>

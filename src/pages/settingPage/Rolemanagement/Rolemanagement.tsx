@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../../components/container/nav/navbar';
-import Header from '../../../components/container/Header/Header';
+import Header from '../../../components/container/header/Header';
 import "./Rolemanagement.scss"
 import { Input } from '../../../components/container/Input/Input';
 import { useNavigate } from 'react-router-dom';
-import { Account, fetchRole, User } from '../../../redux/Slices/accountSlice';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
+import { Account, fetchRole, User } from '../../../redux/slices/AccountSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
 interface RolemanagementProps { }
 
 const RoleManagement: React.FC<RolemanagementProps> = (props) => {

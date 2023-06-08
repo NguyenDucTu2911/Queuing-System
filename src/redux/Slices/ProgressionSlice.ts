@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { db } from "../../Firebase/config";
+import { db } from "../../firebase/config";
 
 export interface Progressions {
   id: string;
@@ -134,7 +134,7 @@ const ProgressionSlice = createSlice({
         state.error = null;
       })
       .addCase(addProgressions.fulfilled, (state, action) => {
-        state.Progression.push(action.payload);
+        state.Progression.concat(action.payload);
         state.loading = false;
         state.error = null;
       })

@@ -1,7 +1,10 @@
-import { db } from "../../Firebase/config";
+import { db } from "../../firebase/config";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { user } from "./authSlice";
+import { user, sendPassword } from "./AuthSlice";
+import bcrypt from "bcryptjs";
+
+const salt = bcrypt.genSaltSync(10);
 
 export interface Account {
   id: string;
@@ -53,6 +56,17 @@ const initialState: AccountState = {
   Account: [],
   error: null,
   loading: false,
+};
+
+let hashPasswords = (Password: string) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let hashPassword = await bcrypt.hash(Password, salt);
+      resolve(hashPassword);
+    } catch (e) {
+      reject(e);
+    }
+  });
 };
 
 export const fetchRole = createAsyncThunk("account/fetchRole", async () => {
@@ -126,7 +140,16 @@ export const fetchUsers = createAsyncThunk("account/fetchUsers", async () => {
     if (data) {
       const UsersData: User[] = [];
       data.docs.forEach((item) => {
-        const allData = { id: item.id, ...item.data() } as User;
+        // const encodedString = new Buffer(item.data().password).toString(
+        //   "base64"
+        // );
+        // const encodedPassword = bcrypt.encodeBase64(item.data().password);
+        // console.log("check", encodedString);
+        const allData = {
+          id: item.id,
+          ...item.data(),
+          // password: encodedPassword,
+        } as User;
         UsersData.push(allData);
       });
       return UsersData;
@@ -147,15 +170,22 @@ export const newUser = createAsyncThunk(
         .collection("users")
         .where("email", "==", newData.email)
         .get();
+
       if (!data.empty) {
         throw new Error("Tài Khoản đã Tồn Tại");
       } else {
-        await db.collection("users").add(newData);
-        return { ...newData, id: newData.id };
+        if (!newData.password) {
+          throw new Error("Mật khẩu không được trống");
+        }
+        const hashedPassword = await hashPasswords(newData.password);
+        const dataUser = { ...newData, password: hashedPassword };
+        const newUserRef = await db.collection("users").add(dataUser);
+        const newUserData = { ...dataUser, id: newUserRef.id };
+        return newUserData;
       }
-    } catch (e) {
-      console.log(e);
-      throw e;
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
   }
 );
@@ -167,8 +197,13 @@ export const updateUser = createAsyncThunk(
       if (users && users.id) {
         const data = db.collection("users").doc(users.id);
         if (data) {
-          await data.update(users);
-          return { ...users, id: users.id } as User;
+          if (!users.password) {
+            throw new Error("Mật khẩu không được trống");
+          }
+          const hashedPassword = await hashPasswords(users.password);
+          const dataUser = { ...users, password: hashedPassword };
+          await data.update(dataUser);
+          return { ...dataUser, id: users.id } as User;
         } else {
           throw new Error("không có Người dùng");
         }
@@ -287,7 +322,7 @@ const AccountSlice = createSlice({
         state.error = null;
       })
       .addCase(newUser.fulfilled, (state, action) => {
-        state.Account.push(action.payload);
+        state.Account.concat(action.payload);
         state.loading = false;
       })
       .addCase(newUser.rejected, (state, action) => {

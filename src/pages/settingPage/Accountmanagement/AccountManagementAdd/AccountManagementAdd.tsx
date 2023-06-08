@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { User, fetchPosition, newUser, position } from '../../../../redux/Slices/accountSlice';
+import { User, fetchPosition, newUser, position } from '../../../../redux/slices/AccountSlice';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../redux/Hooks';
 import Navbar from '../../../../components/container/nav/navbar';
-import Header from '../../../../components/container/Header/Header';
+import Header from '../../../../components/container/header/Header';
 import { Input } from '../../../../components/container/Input/Input';
-import { Button } from '../../../../components/container/Button/Button';
-import { RootState } from '../../../../redux/store';
+import { Button } from '../../../../components/container/button/Button';
+import { RootState } from '../../../../redux/Store';
 import { Select } from 'antd';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
 

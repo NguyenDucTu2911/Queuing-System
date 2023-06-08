@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import "./RoleManagementAdd.scss"
 import { Input } from '../../../../components/container/Input/Input';
-import Header from '../../../../components/container/Header/Header';
+import Header from '../../../../components/container/header/Header';
 import Navbar from '../../../../components/container/nav/navbar';
-import { Button } from '../../../../components/container/Button/Button';
+import { Button } from '../../../../components/container/button/Button';
 import { useNavigate } from 'react-router-dom';
-import { Account, newRole } from '../../../../redux/Slices/accountSlice';
-import { useAppDispatch } from '../../../../redux/hooks';
+import { Account, newRole } from '../../../../redux/slices/AccountSlice';
+import { useAppDispatch } from '../../../../redux/Hooks';
 interface RoleManagementAddProps { }
 export interface validationRoleManagement {
     RoleGroupA: string,

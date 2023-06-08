@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
-import { AddDevice } from '../../../redux/Slices/deviceSlice';
+import { useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
+import { AddDevice } from '../../../redux/slices/DeviceSlice';
 import "./DeviceDetail.scss"
 import Navbar from '../../../components/container/nav/navbar';
-import Header from '../../../components/container/Header/Header';
+import Header from '../../../components/container/header/Header';
 import useLocalStorage from '../../../components/customHook/useLocalStorage';
 
 const DeviceDetail: React.FC = () => {

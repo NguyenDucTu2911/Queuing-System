@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Navbar from '../../components/container/nav/navbar';
-import Header from '../../components/container/Header/Header';
+import Header from '../../components/container/header/Header';
 import "./report.scss"
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { RootState } from '../../redux/store';
-import { Progressions, fetchProgressions } from '../../redux/Slices/ProgressionSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
+import { RootState } from '../../redux/Store';
+import { Progressions, fetchProgressions } from '../../redux/slices/ProgressionSlice';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../../components/container/Input/Input';
 import { DownloadTableExcel } from 'react-export-table-to-excel';

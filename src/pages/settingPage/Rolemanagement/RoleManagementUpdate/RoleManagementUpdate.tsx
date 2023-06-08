@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../../../../components/container/Header/Header';
+import Header from '../../../../components/container/header/Header';
 import Navbar from '../../../../components/container/nav/navbar';
 import { Input } from '../../../../components/container/Input/Input';
-import { Button } from '../../../../components/container/Button/Button';
-import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
-import { RootState } from '../../../../redux/store';
-import { Account, updateRole } from '../../../../redux/Slices/accountSlice';
+import { Button } from '../../../../components/container/button/Button';
+import { useAppDispatch, useAppSelector } from '../../../../redux/Hooks';
+import { RootState } from '../../../../redux/Store';
+import { Account, updateRole } from '../../../../redux/slices/AccountSlice';
 import useSessionStorage from '../../../../components/customHook/useSessionStorage';
 import { validationRoleManagement } from '../RoleManagementAdd/RoleManagementAdd';
 

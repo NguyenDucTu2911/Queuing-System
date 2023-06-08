@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import "./FormAddDevice.scss"
 import { Input } from '../../container/Input/Input';
-import Header from '../../container/Header/Header';
+import Header from '../../container/header/Header';
 import Navbar from '../../container/nav/navbar';
-import { Button } from '../../container/Button/Button';
+import { Button } from '../../container/button/Button';
 import { useNavigate } from 'react-router-dom';
-import { AddDevices, AddDevice } from '../../../redux/Slices/deviceSlice';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
+import { AddDevices, AddDevice } from '../../../redux/slices/DeviceSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
 interface FormAddDeviceProps { }
 const FormAddDevice: React.FC<FormAddDeviceProps> = (props) => {
 

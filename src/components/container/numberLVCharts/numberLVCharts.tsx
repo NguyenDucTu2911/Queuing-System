@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import "./numberLVCharts.scss"
 import num from "../../../assets/image/Vector.png"
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
-import { fetchProgressions } from '../../../redux/Slices/ProgressionSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
+import { fetchProgressions } from '../../../redux/slices/ProgressionSlice';
 
 interface NumberLVChartsProps { }
 interface Actives {

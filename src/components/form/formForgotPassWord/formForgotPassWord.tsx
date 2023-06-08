@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Button } from '../../container/Button/Button';
+import { Button } from '../../container/button/Button';
 import { Input } from '../../container/Input/Input';
 import "./formForgotPassWord.css"
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../redux/hooks';
-import { sendPassword, SendMaillPass } from '../../../redux/Slices/authSlice';
+import { useAppDispatch } from '../../../redux/Hooks';
+import { sendPassword, SendMaillPass } from '../../../redux/slices/AuthSlice';
 
 interface formForgotPassWord { }
 
@@ -28,7 +28,6 @@ const FormForgotPassWord: React.FC<formForgotPassWord> = (props) => {
             dispatch(sendPassword(email))
             navigate("/ResetPassWord")
         }
-
     }
 
     return (

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import Header from '../../../components/container/Header/Header';
+import Header from '../../../components/container/header/Header';
 import Navbar from '../../../components/container/nav/navbar';
 import "./ProgressionAdd.scss"
-import { Button } from '../../../components/container/Button/Button';
+import { Button } from '../../../components/container/button/Button';
 import { useNavigate } from 'react-router-dom';
 import formatDate, { formatDateMon } from '../../../components/container/format/formatDate';
-import { useAppDispatch } from '../../../redux/hooks';
+import { useAppDispatch } from '../../../redux/Hooks';
 import ProgressionModal from '../../../components/container/modal/ProgressionModal';
-import { Progressions, addProgressions } from '../../../redux/Slices/ProgressionSlice';
+import { Progressions, addProgressions } from '../../../redux/slices/ProgressionSlice';
 
 interface ProgressionAddProps { }
 

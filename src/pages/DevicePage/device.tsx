@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/container/nav/navbar';
 import "./device.scss"
-import Header from '../../components/container/Header/Header';
+import Header from '../../components/container/header/Header';
 import { Input } from '../../components/container/Input/Input';
-import { Devices, fetchDevice } from '../../redux/Slices/deviceSlice';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { RootState } from '../../redux/store';
+import { Devices, fetchDevice } from '../../redux/slices/DeviceSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
+import { RootState } from '../../redux/Store';
 import { useNavigate } from 'react-router-dom';
 
 

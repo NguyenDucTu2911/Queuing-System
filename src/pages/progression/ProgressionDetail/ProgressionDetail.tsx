@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import Header from '../../../components/container/Header/Header';
+import Header from '../../../components/container/header/Header';
 import Navbar from '../../../components/container/nav/navbar';
 import "./ProgressionDetail.scss"
 import { useNavigate, useParams } from 'react-router-dom';
 import useSessionStorage from '../../../components/customHook/useSessionStorage';
-import { Progressions } from '../../../redux/Slices/ProgressionSlice';
-import { useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
+import { Progressions } from '../../../redux/slices/ProgressionSlice';
+import { useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
 interface ProgressionDetailProps { }
 
 const ProgressionDetail: React.FC<ProgressionDetailProps> = (props) => {

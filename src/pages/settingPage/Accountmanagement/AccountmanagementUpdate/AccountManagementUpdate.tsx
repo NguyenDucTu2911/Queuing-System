@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import "./AccountManagementUpdate.scss"
 import Navbar from '../../../../components/container/nav/navbar';
-import Header from '../../../../components/container/Header/Header';
+import Header from '../../../../components/container/header/Header';
 import { Input } from '../../../../components/container/Input/Input';
-import { Button } from '../../../../components/container/Button/Button';
+import { Button } from '../../../../components/container/button/Button';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
-import { RootState } from '../../../../redux/store';
-import { Account, User, fetchPosition, updateUser } from '../../../../redux/Slices/accountSlice';
+import { useAppDispatch, useAppSelector } from '../../../../redux/Hooks';
+import { RootState } from '../../../../redux/Store';
+import { Account, User, fetchPosition, updateUser } from '../../../../redux/slices/AccountSlice';
 import { Select } from 'antd';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
 

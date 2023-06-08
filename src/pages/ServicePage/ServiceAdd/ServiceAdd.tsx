@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import "./ServiceAdd.scss"
-import Header from '../../../components/container/Header/Header';
+import Header from '../../../components/container/header/Header';
 import Navbar from '../../../components/container/nav/navbar';
 import { Input } from '../../../components/container/Input/Input';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../../../components/container/Button/Button';
-import { Services, addService } from '../../../redux/Slices/serviceSlice';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { RootState } from '../../../redux/store';
+import { Button } from '../../../components/container/button/Button';
+import { Services, addService } from '../../../redux/slices/ServiceSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
+import { RootState } from '../../../redux/Store';
 
 interface ServiceAddProps { }
 
