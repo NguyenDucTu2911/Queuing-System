@@ -1,9 +1,8 @@
 import React from 'react';
 import "./LayoutForgot.css"
 import Frame from "../../../../assets/image/Frame.png"
-interface LayoutForgotProps { }
 
-const LayoutForgot: React.FC<LayoutForgotProps> = (props) => {
+const LayoutForgot: React.FC = () => {
     return (
         <>
             <div className="layoutRight">

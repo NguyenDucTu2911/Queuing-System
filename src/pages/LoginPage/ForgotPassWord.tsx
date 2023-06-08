@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from "../../assets/image/Logoalta.png"
 import FormForgotPassWord from '../../components/form/formForgotPassWord/formForgotPassWord';
-import LayoutForgot from '../../components/container/Layout/layoutForgot/layoutForgot';
+import LayoutForgot from '../../components/container/layout/layoutForgot/layoutForgot';
 interface ForgotPassWordProps { }
 
 const ForgotPassWord: React.FC<ForgotPassWordProps> = (props) => {

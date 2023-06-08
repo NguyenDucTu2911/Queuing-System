@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from "../../assets/image/Logoalta.png"
 import FormLogin from '../../components/form/formLogin/formLogin';
-import LayoutLogin from '../../components/container/Layout/layoutLogin/LayoutLogin';
+import LayoutLogin from '../../components/container/layout/layoutLogin/LayoutLogin';
 import "./Login.css"
 
 const Login: React.FC = () => {
@@ -10,7 +10,7 @@ const Login: React.FC = () => {
       <div className="LoginLogo"
         style={{ background: (`url(${Logo})`) }}
       />
-      <FormLogin/>
+      <FormLogin />
       <LayoutLogin />
     </div>
   );
