@@ -15,14 +15,14 @@ import ServiceAdd from "../pages/servicePage/serviceAdd/ServiceAdd";
 import ServiceDetail from "../pages/servicePage/serviceDetail/ServiceDetail";
 import ServiceEdit from "../pages/servicePage/serviceEdit/ServiceEdit";
 import Progression from "../pages/progression/progression";
-import ProgressionAdd from "../pages/progression/ProgressionAdd/ProgressionAdd";
-import ProgressionDetail from "../pages/progression/ProgressionDetail/ProgressionDetail";
-import RoleManagement from "../pages/settingPage/Rolemanagement/Rolemanagement";
-import RoleManagementAdd from "../pages/settingPage/Rolemanagement/RoleManagementAdd/RoleManagementAdd";
-import RoleManagementUpdate from "../pages/settingPage/Rolemanagement/RoleManagementUpdate/RoleManagementUpdate";
-import AccountManagement from "../pages/settingPage/Accountmanagement/AccountManagement";
-import AccountManagementUpdate from "../pages/settingPage/Accountmanagement/AccountmanagementUpdate/AccountManagementUpdate";
-import AccountManagementAdd from "../pages/settingPage/Accountmanagement/AccountManagementAdd/AccountManagementAdd";
+import ProgressionAdd from "../pages/progression/progressionAdd/ProgressionAdd";
+import ProgressionDetail from "../pages/progression/progressionDetail/ProgressionDetail";
+import RoleManagement from "../pages/settingPage/rolemanagement/Rolemanagement";
+import RoleManagementAdd from "../pages/settingPage/rolemanagement/roleManagementAdd/RoleManagementAdd";
+import RoleManagementUpdate from "../pages/settingPage/rolemanagement/roleManagementUpdate/RoleManagementUpdate";
+import AccountManagement from "../pages/settingPage/accountmanagement/AccountManagement";
+import AccountManagementUpdate from "../pages/settingPage/accountmanagement/accountmanagementUpdate/AccountManagementUpdate";
+import AccountManagementAdd from "../pages/settingPage/accountmanagement/accountManagementAdd/AccountManagementAdd";
 import ActivityLog from "../pages/settingPage/activityLog/ActivityLog";
 
 const router = createBrowserRouter([

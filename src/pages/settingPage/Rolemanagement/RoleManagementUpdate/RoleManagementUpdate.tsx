@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../../redux/Hooks';
 import { RootState } from '../../../../redux/Store';
 import { Account, updateRole } from '../../../../redux/slices/AccountSlice';
 import useSessionStorage from '../../../../components/customHook/useSessionStorage';
-import { validationRoleManagement } from '../RoleManagementAdd/RoleManagementAdd';
+import { validationRoleManagement } from '../roleManagementAdd/RoleManagementAdd';
 
 interface RoleManagementUpdateProps { }
 

@@ -5,15 +5,16 @@ import Header from '../../components/container/header/Header';
 import ReportCharts from '../../components/container/report-charts/reportCharts';
 import NumberLVCharts from '../../components/container/numberLVCharts/numberLVCharts';
 import Calendar from '../../components/container/dateRangePicker/Calendar';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import { Progress } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import { fetchDevice } from '../../redux/slices/DeviceSlice';
 import { RootState } from '../../redux/Store';
 import { fetchService } from '../../redux/slices/ServiceSlice';
 import { fetchProgressions } from '../../redux/slices/ProgressionSlice';
+import useLocalStorage from '../../components/customHook/useLocalStorage';
+import { DataState } from '../../redux/slices/AuthSlice';
 
-interface DashboardProps { }
 interface Actives {
     ActiveOnl: number,
     ActiveOff: number,
@@ -22,7 +23,7 @@ interface Actives {
     Pending: number,
 }
 
-const Dashboard: React.FC<DashboardProps> = (props) => {
+const Dashboard: React.FC = () => {
 
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -32,6 +33,7 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     const [devices, setDevice] = useState<Partial<Actives>>({})
     const [services, setservice] = useState<Partial<Actives>>({})
     const [Progressions, setProgression] = useState<Partial<Actives>>({})
+    const [checkAuth, setcheckAuth] = useLocalStorage<DataState | null>('authState', null);
 
     useEffect(() => {
         dispatch(fetchDevice())
@@ -44,7 +46,15 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
         find()
         findsevice()
         findProgression()
-    }, [device, service, Progression])
+        loader()
+    }, [device, service, Progression, checkAuth])
+
+    const loader = async () => {
+        if (!checkAuth?.authenticated) {
+            return redirect("/");
+        }
+        return null;
+    };
 
     const handleDrive = () => {
         navigate("/device")

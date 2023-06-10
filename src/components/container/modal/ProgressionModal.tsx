@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import "./ProgressionModal.scss"
-import ProgressionAdd from "../../../pages/progression/ProgressionAdd/ProgressionAdd";
+import ProgressionAdd from "../../../pages/progression/progressionAdd/ProgressionAdd";
 
 interface ProgressionModalProps {
   Progression: {

@@ -67,6 +67,29 @@ const saveAuthState = (state: DataState) => {
   localStorage.setItem("authState", JSON.stringify(state));
 };
 
+// export const getToken = async () => {
+//   try {
+//     const currentUser = firebase.auth().currentUser;
+//     if (currentUser) {
+//       const token = await currentUser.getIdToken();
+//       return token;
+//     } else {
+//       throw new Error("No authenticated user");
+//     }
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+// export const decodeToken = (token: string) => {
+//   try {
+//     const decodedToken = jwt.decode(token);
+//     return decodedToken;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
 //login app
 export const login = createAsyncThunk(
   "auth/login",
