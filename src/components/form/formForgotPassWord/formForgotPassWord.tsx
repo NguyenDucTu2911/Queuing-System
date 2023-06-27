@@ -15,7 +15,7 @@ const FormForgotPassWord: React.FC<formForgotPassWord> = (props) => {
     const dispatch = useAppDispatch()
 
     const HandleExit = () => {
-        navigate("/")
+        navigate("/login")
     }
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

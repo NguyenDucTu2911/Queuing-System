@@ -5,12 +5,9 @@ import { Button } from '../../container/button/Button';
 import "./FormLogin.css"
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/Hooks';
-import { DataState, login } from '../../../redux/slices/AuthSlice';
+import { login } from '../../../redux/slices/AuthSlice';
 
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth';
 import { RootState } from '../../../redux/Store';
-import useLocalStorage from '../../customHook/useLocalStorage';
 import { AuthContext } from '../../../context/AuthProvider';
 
 interface ILoginState {
@@ -44,7 +41,7 @@ const FormLogin: React.FC = () => {
     }, [authenticated])
 
     const LoginSuccess = () => {
-        user?.uid ? navigate("/Dashboard") : navigate("/login")
+        authenticated ? navigate("/Dashboard") : navigate("/login")
     }
 
     const handleForgotPassWord = () => {
@@ -100,6 +97,7 @@ const FormLogin: React.FC = () => {
                 const email = loginState.username;
                 const password = loginState.password
                 await dispatch(login({ email, password }))
+                user?.uid ? navigate("/Dashboard") : navigate("/login")
             } catch (error) {
                 errors.password = "sai tai khoan mat khau"
             }

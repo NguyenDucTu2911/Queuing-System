@@ -20,10 +20,8 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
             if (authUser?.uid) {
-                console.log("check", authUser);
                 setUser(authUser);
                 const token = await authUser.getIdToken()
-                console.log("token", token)
                 localStorage.setItem("accessToken", token);
                 return;
             }

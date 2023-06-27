@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = (props) => {
 
     useEffect(() => {
         dispatch(fetchActivityLog())
-        if (!checkAuth?.authenticated) navigate("/")
+        if (!checkAuth?.authenticated) navigate("/login")
     }, [])
 
     useEffect(() => {
