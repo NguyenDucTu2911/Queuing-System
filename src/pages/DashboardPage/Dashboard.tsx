@@ -14,6 +14,7 @@ import { fetchService } from '../../redux/slices/ServiceSlice';
 import { fetchProgressions } from '../../redux/slices/ProgressionSlice';
 import useLocalStorage from '../../components/customHook/useLocalStorage';
 import { DataState } from '../../redux/slices/AuthSlice';
+import { getAuth } from 'firebase/auth';
 
 interface Actives {
     ActiveOnl: number,

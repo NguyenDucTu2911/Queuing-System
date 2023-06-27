@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Input } from '../../container/Input/Input';
 import { Button } from '../../container/button/Button';
 
@@ -11,6 +11,7 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth';
 import { RootState } from '../../../redux/Store';
 import useLocalStorage from '../../customHook/useLocalStorage';
+import { AuthContext } from '../../../context/AuthProvider';
 
 interface ILoginState {
     username: string;
@@ -23,6 +24,7 @@ interface ILoginState {
 };
 
 const FormLogin: React.FC = () => {
+    const { user } = useContext(AuthContext);
     const [showpass, setShowpass] = useState(false)
     const [loginState, setLoginState] = useState<ILoginState>({
         username: "",
@@ -42,7 +44,7 @@ const FormLogin: React.FC = () => {
     }, [authenticated])
 
     const LoginSuccess = () => {
-        authenticated ? navigate("/Dashboard") : navigate("/")
+        user?.uid ? navigate("/Dashboard") : navigate("/login")
     }
 
     const handleForgotPassWord = () => {

@@ -51,7 +51,7 @@ const FormResetPassword: React.FC<FormResetPasswordProps> = (props) => {
         setPasswordError(errors)
 
         if (Password && Password.NewPassword) {
-            navigate("/")
+            navigate("/login")
         }
     }
 

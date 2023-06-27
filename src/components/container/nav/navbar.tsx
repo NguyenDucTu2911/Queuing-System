@@ -16,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
     };
     const hendleClose = () => {
         dispatch(SingOut())
-        navigate("/")
+        navigate("/login")
     }
 
     return (
